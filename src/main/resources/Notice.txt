@@ -1,0 +1,24 @@
+
+공지사항테이블
+CREATE TABLE `tb_notice` (
+    `id`            bigint(20)    NOT NULL AUTO_INCREMENT COMMENT 'PK',
+    `title`         varchar(100)  NOT NULL COMMENT '제목',
+    `content`       varchar(3000) NOT NULL COMMENT '내용',
+    `writer`        varchar(20)   NOT NULL COMMENT '작성자',
+    `created_date`  datetime      NOT NULL DEFAULT current_timestamp() COMMENT '생성일시',
+    PRIMARY KEY (`id`)
+) COMMENT '게시글';
+
+공지사항 댓글 테이블
+create table notice_comment (
+      id bigint not null auto_increment comment '댓글 번호 (PK)'
+    , post_id bigint not null comment '게시글 번호 (FK)'
+    , content varchar(1000) not null comment '내용'
+    , writer varchar(20) not null comment '작성자'
+    , delete_yn tinyint(1) not null comment '삭제 여부'
+    , created_date datetime not null default CURRENT_TIMESTAMP comment '생성일시'
+    , primary key(id)
+) comment '댓글';
+
+공지사항테이블 과 공지사항댓글테이블 연결
+alter table notice_comment add constraint fk_notice_comment foreign key(post_id) references tb_notice(id);
