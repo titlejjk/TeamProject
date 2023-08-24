@@ -1,5 +1,6 @@
 package com.project.project.user.service;
 
+import com.project.project.exception.CustomException.AlreadyFollowedException;
 import com.project.project.user.dao.FollowMapper;
 import com.project.project.user.dto.FollowDto;
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,12 @@ public class FollowServiceImpl implements FollowService{
     //사용자 팔로우
     @Override
     public void followUser(FollowDto followDto) {
-        followMapper.insertFollow(followDto);
+
+        int count = followMapper.countFollow(followDto.getFollowerEmail(), followDto.getFollowingEmail());
+        if (count > 0) {
+            throw new AlreadyFollowedException("이미 Follow된 상대입니다.");
+        }
+            followMapper.insertFollow(followDto);
     }
 
     //팔로워 목록 조회

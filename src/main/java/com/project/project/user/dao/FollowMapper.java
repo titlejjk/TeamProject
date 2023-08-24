@@ -19,4 +19,7 @@ public interface FollowMapper {
 
     //Delete Follow
     void deleteFollow(FollowDto followDto);
+
+    //팔로우 관계의 존재 여부를 확인
+    int countFollow(String followerEmail, String followingEmail);
 }
