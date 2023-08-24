@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.project.user.dao.UserMapper">
+
+    <!-- 팔로우 추가 -->
+    <insert id="inserFollow">
+        INSERT INTO follows (follower_email, following_email)
+        VALUES (#{followerEmail}, #{followingEmail})
+    </insert>
+
+    <!-- 팔로워 조회 -->
+    <select id="findFollowers" resultType="com.project.project.user.dto.FollowDto">
+        SELECT * FROM follows WHERE follower_email = #{userEmail}
+    </select>
+
+    <!-- 팔로잉 조회 -->
+    <select id="findFollowings" resultType="com.project.project.user.dto.FollowDto">
+        SELECT * FROM follows WHERE following_email = #{userEmail}
+    </select>
+
+    <!-- 팔로우 삭제 -->
+    <delete id="deleteFollow">
+        DELETE FROM follows WHERE follower_email = #{followerEmail} AND following_email = #{followingEmail}
+    </delete>
+</mapper>
