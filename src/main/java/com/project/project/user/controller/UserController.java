@@ -66,5 +66,8 @@ public class UserController {
     @DeleteMapping("/unfollow")
     public ResponseEntity<Void> unfollowUser(@RequestBody FollowDto followDto){
         followService.unfollowUser(followDto);
-        return ResponseEntity.ok().build();}
+        return ResponseEntity.ok().build();
+    }
+
+
 }

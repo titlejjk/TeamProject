@@ -1,5 +1,6 @@
 package com.project.project.exception;
 
+import com.project.project.exception.CustomException.AlreadyFollowedException;
 import com.project.project.exception.CustomException.BadCredentialsException;
 import com.project.project.exception.CustomException.EmailAlreadyExistsException;
 import com.project.project.exception.CustomException.NicknameAlreadyExistsException;
@@ -35,9 +36,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
-    //로그 기록, 사용자에게 메세지 전달 등의 처리
-    @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<?>handleAccessDeniedException(AccessDeniedException ex){
-        return new ResponseEntity<>("Access Denied", HttpStatus.FORBIDDEN);
+
+    public ResponseEntity<?> handleAlreadyFollowedException(AlreadyFollowedException ex){
+        return new ResponseEntity<>("이미 팔로우한 사용자 입니다.", HttpStatus.BAD_REQUEST);
     }
 }
