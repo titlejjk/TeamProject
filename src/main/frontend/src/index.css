@@ -1,0 +1,85 @@
+/* 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "SUIT", sans-serif;
+}
+ul,
+ol,
+li {
+  list-style: none;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  font-size: 100%;
+  margin: initial;
+}
+body {
+  line-height: 1;
+}
+.cf::after {
+  content: "";
+  width: 0;
+  height: 0;
+  font-size: 0;
+  display: block;
+  clear: both;
+}
+.blind {
+  display: none;
+}
+fieldset {
+  border: none;
+}
+caption {
+  display: none;
+}
+
+@import url("https://cdn.jsdelivr.net/gh/sunn-us/SUIT/fonts/static/woff2/SUIT.css");
+
+:root {
+  word-break: keep-all;
+}
+
+:root {
+  --color-orange: #ff6a10;
+  --color-middle-brown: #ba7149;
+  --color-dark-brown: #754530;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+
+ @media screen and (min-width: 720px) and (max-width: 1024){
+  #root {
+  zoom:0.7
+  }
+  .header-container{
+    width: 0;
+  }
+  .footer{
+    gap:100px
+  }
+ }
+  @media screen and (min-width: 300px) and (max-width: 720px){
+    #root {
+    zoom:0.5
+    }
+  }
+    @media screen and (min-width: 270px) and (max-width: 300px){
+      #root {
+      zoom:0.3
+      }
+ }
