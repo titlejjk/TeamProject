@@ -1,0 +1,22 @@
+server:
+  port: 9999
+
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/project
+    username: root
+    password: 123
+    driver-class-name: org.mariadb.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.project.project.user.dto
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org.mybatis.spring: TRACE
+    com.project.project.user.mapper: DEBUG
+
+file:
+  location: /Users/jojungeun/Desktop/TeamProject/upload
