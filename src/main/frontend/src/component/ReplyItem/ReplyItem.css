@@ -1,0 +1,40 @@
+/* ReplyItem.css */
+
+.recipe_detail_reply_item {
+    margin-top: 30px;
+    display: flex;
+    gap: 38px;
+  }
+  
+  .recipe_detail_reply_item > .image_container {
+    margin-top: 8px;
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    overflow: hidden;
+  }
+  
+  .recipe_detail_reply_item > .image_container > img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+  
+  .recipe_detail_reply_item .insight {
+    display: flex;
+    gap: 10px;
+    color: #aeaeae;
+  }
+  
+  .recipe_detail_reply_item .insight > span:first-child {
+    color: #606060;
+  }
+  
+  .recipe_detail_reply_item p {
+    white-space: pre-line;
+    margin: 0;
+    margin-top: 8px;
+  }  

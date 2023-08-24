@@ -1,0 +1,37 @@
+.notice-board{
+    width: 800px !important;
+    
+}
+.notice-top{
+    display: flex;
+    justify-content: space-between;
+    margin: 100px 0 50px 0;
+}
+.notice-title{
+    font-size: 30px;
+}
+.go-notice-write{
+    font-size: 22px;
+    margin-top:5px; 
+    /*공지사항의 중간에 맞추기 위해서 margin-top : 5px줌*/
+}
+.notice-item{
+    margin-bottom: 40px;
+}
+.notice-item::after{
+    content: "";
+    display: block;
+    border: 0.8px solid #bcbcbc;
+    width: 800px;
+    margin-top: 30px;
+}
+
+.post-title{
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.post-date{
+    margin: 30px 0;
+}
+

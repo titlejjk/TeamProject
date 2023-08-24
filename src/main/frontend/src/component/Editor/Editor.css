@@ -1,0 +1,29 @@
+.title-container {
+    width: 100%;
+}
+.title-container input {
+    width: 100%;
+    height: 60px;
+    border: none;
+    border-bottom: 1px solid lightgrey;
+    margin-bottom: 15px;
+    font-size: 18px;
+    outline: none;
+}
+.title-container input:focus{
+    border-color: red;
+    outline: none;
+}
+
+.content-container {
+    height: 600px;
+    width: 100%;
+    margin-bottom: 15px;
+}
+.content-container .ql-toolbar {
+    height: 45px;
+    padding: 10px 5px;
+}
+.content-container .ql-container {
+    height: 555px;
+}

@@ -1,0 +1,86 @@
+.card-img{
+    width: 300px;
+    height: 250px;
+}
+
+.card-list{
+    display: flex;
+    justify-content: space-between;
+}
+.card{
+    margin-right: 20px;
+}
+
+.card:nth-child(4){
+    margin-right: 0 !important;
+}
+
+.cardList-title{
+    
+    margin: 20px 0;
+    font-size: 20px;
+    line-height: 30px;
+}
+
+.like-box{
+    display: flex;
+}
+
+.card-title-box{
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.heart-btn{
+    border: none;
+    background-color: #ffffff;
+    font-size: 28px;
+    cursor: pointer;
+
+}
+
+.board-card-list .card{
+    margin-right: 0 ;
+}
+
+.board-card-list .card-img{
+    width: 400px ;
+    height: 300px;
+}
+
+.board-card-list .card-title-box {
+    width: 400px;
+}
+.board-card-list .card-list{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+
+}
+
+.board-list-top{
+    display: flex;
+    justify-content: space-between;
+    margin: 80px 0 30px;
+}
+
+.list-total-count{
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.write-go{
+    height: 15px;
+    font-size: 15px;
+    border: 1px solid #ffffff;
+    color: #ffffff;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: var(--color-middle-brown);
+}
+
+.write-go:hover{
+    background-color:  rgb(186, 113, 73, 0.8);
+    color: #ffffff;
+    border: 1px solid white;
+}
