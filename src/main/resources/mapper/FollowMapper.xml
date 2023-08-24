@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.project.project.user.dao.UserMapper">
+<mapper namespace="com.project.project.user.dao.FollowMapper">
 
     <!-- 팔로우 추가 -->
-    <insert id="inserFollow">
+    <insert id="insertFollow">
         INSERT INTO follows (follower_email, following_email)
         VALUES (#{followerEmail}, #{followingEmail})
     </insert>

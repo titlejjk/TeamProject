@@ -1,6 +1,8 @@
 package com.project.project.user.controller;
 
+import com.project.project.user.dto.FollowDto;
 import com.project.project.user.dto.UserDto;
+import com.project.project.user.service.FollowService;
 import com.project.project.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -8,12 +10,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
-
+    //회원관련 service
     private final UserService userService;
+    //팔로우 관련 service
+    private final FollowService followService;
 
     //회원 정보 수정 메서드
     @PutMapping("/update")
@@ -34,4 +40,31 @@ public class UserController {
         userService.deactivateUser(userNum);
         return new ResponseEntity<>("회원 탈퇴가 성공적으로 처리되었습니다", HttpStatus.OK);
     }
+
+    //팔로우
+    @PostMapping("/follow")
+    public ResponseEntity<Void> followUser(@RequestBody FollowDto followDto){
+        followService.followUser(followDto);
+        return ResponseEntity.ok().build();
+    }
+
+    //팔로우 목록 조회
+    @GetMapping("/followers/{userEmail}")
+    public ResponseEntity<List<FollowDto>>getFollowers(@PathVariable String userEmail){
+        List<FollowDto> followers = followService.getFollowers(userEmail);
+        return ResponseEntity.ok(followers);
+    }
+
+    //팔로잉 목록 조회
+    @GetMapping("/followings/{userEmail}")
+    public ResponseEntity<List<FollowDto>> getFollowings(@PathVariable String userEmail){
+        List<FollowDto> followings = followService.getFollowings(userEmail);
+        return ResponseEntity.ok(followings);
+    }
+
+    //언팔로우
+    @DeleteMapping("/unfollow")
+    public ResponseEntity<Void> unfollowUser(@RequestBody FollowDto followDto){
+        followService.unfollowUser(followDto);
+        return ResponseEntity.ok().build();}
 }
