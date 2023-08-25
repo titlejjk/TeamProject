@@ -19,6 +19,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.Enumeration;
 
 @Component
 @RequiredArgsConstructor
@@ -36,8 +38,8 @@ public class JwtAuthencationFilter extends OncePerRequestFilter {
             logger.debug("Processing authentication for '{}'", request.getRequestURL()); // 로깅 추가
 
             String token = parseBearerToken(request);
+
             if (token != null && !token.equalsIgnoreCase("null")) {
-                System.out.println(token);
                 String userEmail = tokenProvider.validate(token);
                 AbstractAuthenticationToken authentication =
                         new UsernamePasswordAuthenticationToken(userEmail, null, AuthorityUtils.NO_AUTHORITIES);
@@ -48,6 +50,7 @@ public class JwtAuthencationFilter extends OncePerRequestFilter {
                 SecurityContextHolder.setContext(securityContext);
 
                 logger.debug("Authenticated user '{}'", userEmail); // 로깅 추가
+                logger.debug("SecurityContext created with authentication: '{}'", securityContext.getAuthentication());
             }
         } catch (Exception e) {
             logger.error("Failed to process authentication request", e); // 로깅 추가
@@ -58,7 +61,9 @@ public class JwtAuthencationFilter extends OncePerRequestFilter {
 
     private String parseBearerToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) return bearerToken.substring(7);
-        return null;
+        if (StringUtils.isEmpty(bearerToken) || !bearerToken.startsWith("Bearer ")) {
+            return null;
+        }
+        return bearerToken.substring(7);
     }
 }

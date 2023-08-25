@@ -9,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import java.nio.file.AccessDeniedException;
-
 //전역 예외 처리 클래스
 //App내의 발생하는 예외처리를 위해 만듬
 @RestControllerAdvice

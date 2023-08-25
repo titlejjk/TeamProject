@@ -1,16 +1,15 @@
 package com.project.project.user.controller;
 
+import com.project.project.security.TokenProvider;
 import com.project.project.user.dto.SignInResponseDto;
 import com.project.project.user.dto.SignUpRequest;
 import com.project.project.user.dto.UserDto;
 import com.project.project.user.service.AuthServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Collections;
 import java.util.HashSet;
@@ -25,8 +24,7 @@ public class AuthController {
     private final AuthServiceImpl authService;
     //TokenBlacklist
     private final Set<String> tokenBlacklist = Collections.synchronizedSet(new HashSet<>());
-
-    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+    private final TokenProvider tokenProvider;
 
     //회원가입
     @PostMapping("/signup")
@@ -40,23 +38,22 @@ public class AuthController {
 
     //로그인
     @PostMapping("/signin")
-    public ResponseEntity<?>signIn(@RequestBody UserDto request){
-        SignInResponseDto response = authService.authenticateUser(
+    public ResponseEntity<?>signIn(@RequestBody UserDto request, HttpServletResponse response) {
+        SignInResponseDto signInResponseDto = authService.authenticateUser(
                 request.getUserEmail(),
                 request.getUserPassword()
-
         );
-        System.out.println(request);
-        return ResponseEntity.ok(response);
+        //Authorization 헤더에 토큰 설정
+        response.setHeader("Authorization", "Bearer " + signInResponseDto.getToken());
+        System.out.println(response);
+        return ResponseEntity.ok(signInResponseDto);
     }
-
     //회원가입시 이메일 중복 체크
     @GetMapping("/check-email")
     public ResponseEntity<?>checkEmailDuplication(@RequestParam String userEmail){
         boolean isDuplicated = authService.isEmailDuplicated(userEmail);
         return ResponseEntity.ok().body(isDuplicated ? "Duplicated" : "Not Duplicated");
     }
-
     //로그아웃
     @PostMapping("/logout")
     public ResponseEntity<String> logout(@RequestHeader("Authorization")String token){
@@ -66,4 +63,18 @@ public class AuthController {
     }
     //인증 필터나 인터셉터에서 블랙리스트확인
     //블랙리스트에 있는 토큰을 사용한 요청은 거부
+
+    //token 검증
+    @GetMapping("/validate-token")
+    public ResponseEntity<String> validateToken(@RequestHeader("Authorization") String authHeader){
+        String token = authHeader.substring(7);//"Bearer "삭제하고 token값으로 넣기
+        try{
+            String userEmail = tokenProvider.validate(token);
+
+            return ResponseEntity.ok("Token is valid. User Email : " + userEmail);
+        }catch (Exception e){
+            //토큰검증 실패
+            return ResponseEntity.badRequest().body("Invalid token");
+        }
+    }
 }
