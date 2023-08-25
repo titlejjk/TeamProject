@@ -6,12 +6,10 @@ import com.project.project.user.dto.SignUpRequest;
 import com.project.project.user.dto.UserDto;
 import com.project.project.user.service.AuthServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Collections;
 import java.util.HashSet;
@@ -27,8 +25,6 @@ public class AuthController {
     //TokenBlacklist
     private final Set<String> tokenBlacklist = Collections.synchronizedSet(new HashSet<>());
     private final TokenProvider tokenProvider;
-
-    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
     //회원가입
     @PostMapping("/signup")
