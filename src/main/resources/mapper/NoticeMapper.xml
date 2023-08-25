@@ -3,20 +3,13 @@
 
 <mapper namespace="com.project.project.notice.NoticeMapper">
 
-    <!-- tb_notice 테이블 전체 컬럼 -->
-    <sql id="postColumns">
-        id
-        , title
-        , content
-        , writer
-        , created_date
-    </sql>
+
 
 
     <!-- 공지사항 저장 -->
     <insert id="save" parameterType="com.project.project.notice.NoticeDto" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO tb_notice (
-        <include refid="postColumns" />
+        id, title, content, writer, created_date
         ) VALUES (
         #{id}
         , #{title}
@@ -30,7 +23,7 @@
     <!-- 공지사항 상세정보 조회 -->
     <select id="findById" parameterType="long" resultType="com.project.project.notice.NoticeDto">
         SELECT
-        <include refid="postColumns" />
+        *
         FROM
         tb_notice
         WHERE
@@ -61,7 +54,7 @@
     <!-- 공지사항 리스트 조회 -->
     <select id="findAll" resultType="com.project.project.notice.NoticeDto">
         SELECT
-        <include refid="postColumns" />
+       id, title, content, writer, created_date AS createdDate
         FROM
         tb_notice
         ORDER BY

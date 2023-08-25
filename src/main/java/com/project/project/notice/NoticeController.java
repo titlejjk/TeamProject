@@ -29,6 +29,7 @@ public class NoticeController {
     @GetMapping("/{id}")
     public ResponseEntity<NoticeDto> getPostById(@PathVariable Long id) {
         NoticeDto post = noticeService.findPostById(id);
+        System.out.println(post.getCreatedDate());
         if (post != null) {
             return ResponseEntity.ok(post);
         } else {

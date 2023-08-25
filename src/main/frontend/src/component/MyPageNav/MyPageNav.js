@@ -2,7 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import React from "react";
 import "./MyPageNav.css"; // CSS 파일 임포트
 
-function MypageNav() {
+function MyPageNav() {
   const location = useLocation();
 
   return (
@@ -45,4 +45,4 @@ function MypageNav() {
   );
 }
 
-export default MypageNav;
+export default MyPageNav;

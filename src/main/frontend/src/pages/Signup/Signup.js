@@ -37,7 +37,7 @@ const Signup = () => {
         userNickname: nickname,
         petTypeIds: withAnimals,
       });
-      console.log("성공!");
+      console.log("성공!")
       // 회원가입 성공 후 로그인 페이지로 이동
       navigate("/login");
     } catch (error) {
@@ -69,15 +69,15 @@ const Signup = () => {
     } catch (error) {
       console.error("이메일 중복확인 오류:", error);
     }
-  };
+  };;
 
   const ANIMAL_MAPPING = {
-    반려견: 1,
-    반려묘: 2,
-    반려햄: 3,
-    반려조: 4,
-    기타: 5,
-    없음: 6,
+    "반려견": 1,
+    "반려묘": 2,
+    "반려햄": 3,
+    "반려조": 4,
+    "기타": 5,
+    "없음": 6
   };
 
   const handleWithAnimalChange = (animal) => {
@@ -122,147 +122,151 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-container container ">
-      <h1>회원가입</h1>
-      <hr />
-      <form className="signup-form">
-        <label>이메일</label>
-        <input
-          type="email"
-          placeholder="이메일"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+      <div className="signup-container container ">
+        <h1>회원가입</h1>
+        <hr />
+        <form className="signup-form">
+          <label>이메일</label>
+          <input
+              type="email"
+              placeholder="이메일"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <button className="emailCheck-button" onClick={handleEmailCheck}>
-          이메일 중복확인
-        </button>
+          <button className="emailCheck-button" onClick={handleEmailCheck}>
+            이메일 중복확인
+          </button>
 
-        {isEmailValid ? (
-          <span style={{ color: "green" }}>사용 가능한 이메일입니다.</span>
-        ) : (
-          <span style={{ color: "red" }}>중복된 이메일입니다.</span>
-        )}
+          {isEmailValid ? (
+              <span style={{ color: "green" }}>사용 가능한 이메일입니다.</span>
+          ) : (
+              <span style={{ color: "red" }}>중복된 이메일입니다.</span>
+          )}
 
-        <label>비밀번호</label>
-        <span className="signup-span">
+          <label>비밀번호</label>
+          <span className="signup-span">
           영문,숫자를 포함한 8자이상의 비밀번호를 입력해주세요
         </span>
-        <input
-          type="password"
-          placeholder="비밀번호"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <input
+              type="password"
+              placeholder="비밀번호"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <label>비밀번호 확인</label>
-        <input
-          type="password"
-          placeholder="비밀번호 확인"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        {passwordError && <span style={{ color: "red" }}>{passwordError}</span>}
+          <label>비밀번호 확인</label>
+          <input
+              type="password"
+              placeholder="비밀번호 확인"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          {passwordError && <span style={{ color: "red" }}>{passwordError}</span>}
 
-        <label>닉네임</label>
-        <span className="signup-span">2자 이상 10자 이하로 입력해주세요</span>
-        <input
-          type="text"
-          placeholder="별명(2 - 10자)"
-          value={nickname}
-          onChange={handleNicknameChange}
-        />
-        {nicknameError && <span style={{ color: "red" }}>{nicknameError}</span>}
+          <label>닉네임</label>
+          <span className="signup-span">2자 이상 10자 이하로 입력해주세요</span>
+          <input
+              type="text"
+              placeholder="별명(2 - 10자)"
+              value={nickname}
+              onChange={handleNicknameChange}
+          />
+          {nicknameError && <span style={{ color: "red" }}>{nicknameError}</span>}
 
-        <div>
-          <span className="signup-span2">함께하고 있는 반려동물</span>
-          <span className="signup-span">* 중복선택 가능</span>
-          <div className="signup-pets">
+          <div>
+            <span className="signup-span2">함께하고 있는 반려동물</span>
+            <span className="signup-span">* 중복선택 가능</span>
+            <div className="signup-pets">
+              <label>
+                <input
+                    type="checkbox"
+                    onChange={() => handleWithAnimalChange("반려견")}
+                />
+                반려견
+              </label>
+              <label>
+                <input
+                    type="checkbox"
+                    onChange={() => handleWithAnimalChange("반려묘")}
+                />
+                반려묘
+              </label>
+              <label>
+                <input
+                    type="checkbox"
+
+                    onChange={() => handleWithAnimalChange("반려햄")}
+                />
+                반려햄
+              </label>
+              <label>
+                <input
+                    type="checkbox"
+
+                    onChange={() => handleWithAnimalChange("반려조")}
+                />
+                반려조
+              </label>
+              <label>
+                <input
+                    type="checkbox"
+
+                    onChange={() => handleWithAnimalChange("기타")}
+                />
+                기타
+              </label>
+              <label>
+                <input
+                    type="checkbox"
+
+                    onChange={() => handleWithAnimalChange("없음")}
+                />
+                없음
+              </label>
+            </div>
+          </div>
+          <span className="signup-span2">약관동의</span>
+          <div className="signup-agree">
             <label>
               <input
-                type="checkbox"
-                onChange={() => handleWithAnimalChange("반려견")}
+                  type="checkbox"
+                  checked={agreed.all}
+                  onChange={handleAgreeAllChange}
               />
-              반려견
+              전체동의
             </label>
             <label>
               <input
-                type="checkbox"
-                onChange={() => handleWithAnimalChange("반려묘")}
+                  type="checkbox"
+                  checked={agreed.age}
+                  onChange={() => handleAgreeSingleChange("age")}
               />
-              반려묘
+              만 14세 이상입니다. (필수)
             </label>
             <label>
               <input
-                type="checkbox"
-                onChange={() => handleWithAnimalChange("반려햄")}
+                  type="checkbox"
+                  checked={agreed.privacy}
+                  onChange={() => handleAgreeSingleChange("privacy")}
               />
-              반려햄
+              개인정보수집 및 이용동의 (필수)
             </label>
             <label>
               <input
-                type="checkbox"
-                onChange={() => handleWithAnimalChange("반려조")}
+                  type="checkbox"
+                  checked={agreed.promotion}
+                  onChange={() => handleAgreeSingleChange("promotion")}
               />
-              반려조
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                onChange={() => handleWithAnimalChange("기타")}
-              />
-              기타
-            </label>
-            <label>
-              <input
-                type="checkbox"
-                onChange={() => handleWithAnimalChange("없음")}
-              />
-              없음
+              이벤트, 쿠폰, 특가 알림 메일 및 SMS 등 수신 (선택)
             </label>
           </div>
-        </div>
-        <span className="signup-span2">약관동의</span>
-        <div className="signup-agree">
-          <label>
-            <input
-              type="checkbox"
-              checked={agreed.all}
-              onChange={handleAgreeAllChange}
-            />
-            전체동의
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              checked={agreed.age}
-              onChange={() => handleAgreeSingleChange("age")}
-            />
-            만 14세 이상입니다. (필수)
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              checked={agreed.privacy}
-              onChange={() => handleAgreeSingleChange("privacy")}
-            />
-            개인정보수집 및 이용동의 (필수)
-          </label>
-          <label>
-            <input
-              type="checkbox"
-              checked={agreed.promotion}
-              onChange={() => handleAgreeSingleChange("promotion")}
-            />
-            이벤트, 쿠폰, 특가 알림 메일 및 SMS 등 수신 (선택)
-          </label>
-        </div>
 
-        <button className="signup-button" onClick={handleSignup}>
-          회원가입하기
-        </button>
-      </form>
-    </div>
+          <button className="signup-button" onClick={handleSignup}>
+            회원가입하기
+          </button>
+        </form>
+      </div>
   );
 };
 export default Signup;

@@ -20,7 +20,9 @@ public class TokenProvider {
 
     //사용자 이메일을 받아 JWT를 생성하는 메서드
     public String create(UserDto userDto){
-        //토큰에 담을 클레임 정의
+        /*
+            토큰에 User의 정보를 넣어주기.
+         */
         Claims claims = Jwts.claims().setSubject(userDto.getUserEmail());
         claims.put("userNum", userDto.getUserNum());
         claims.put("userEmail", userDto.getUserEmail());

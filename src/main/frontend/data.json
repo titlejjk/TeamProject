@@ -1,0 +1,743 @@
+{
+  "recipe": [
+    {
+      "num": 0,
+      "title": "아주 쉽고 맛있는 닭가슴살 샐러드",
+      "level": "초급",
+      "time": "20분",
+      "writer": "petlover123",
+      "ingredients": [
+        "닭가슴살",
+        "당근",
+        "브로콜리",
+        "양상추"
+      ],
+      "description": "간단하게 만들 수 있는 닭가슴살 샐러드 레시피입니다.",
+      "main_image_url": "http://localhost:3000/pulic/images/recipe01.jpg",
+      "likes": 50,
+      "category": "반려견"
+    },
+    {
+      "num": 1,
+      "title": "상큼하고 달달해서 우리 강아지가 좋아하는 사과 시리얼 스낵",
+      "level": "초급",
+      "time": "15분",
+      "writer": "doggytreats",
+      "ingredients": [
+        "사과",
+        "오트밀",
+        "요거트"
+      ],
+      "description": "맛있고 건강한 사과 시리얼 스낵 레시피입니다.",
+      "main_image_url": "http://localhost:3000/images/recipe02.jpg",
+      "likes": 20,
+      "category": "반려견"
+    },
+    {
+      "num": 2,
+      "title": "고구마 쿠키",
+      "level": "중급",
+      "time": "30분",
+      "writer": "pawsandbites",
+      "ingredients": [
+        "고구마",
+        "계란",
+        "현미 가루",
+        "오메가 3 보충제"
+      ],
+      "description": "고구마를 활용한 건강한 간식인 고구마 쿠키 레시피입니다.",
+      "main_image_url": "http://localhost:3000/images/recipe03.jpg",
+      "likes": 30,
+      "category": "반려조"
+    },
+    {
+      "num": 3,
+      "title": "양고기 스튜",
+      "level": "중급",
+      "time": "40분",
+      "writer": "petfoodie",
+      "ingredients": [
+        "양고기",
+        "감자",
+        "당근",
+        "녹차"
+      ],
+      "description": "풍미 넘치는 양고기 스튜 레시피로 반려견을 맛있게 먹여주세요.",
+      "main_image_url": "http://localhost:3000/images/recipe04.jpg",
+      "likes": 0,
+      "category": "반려견"
+    },
+    {
+      "num": 4,
+      "title": "연어 스틱",
+      "level": "고급",
+      "time": "25분",
+      "writer": "healthydog",
+      "ingredients": [
+        "연어",
+        "감자 가루",
+        "달걀",
+        "오메가 3 보충제"
+      ],
+      "description": "고급 간식 연어 스틱 레시피로 건강한 영양소를 공급해보세요.",
+      "main_image_url": "http://localhost:3000/images/recipe05.jpg",
+      "likes": 0,
+      "category": "반려조"
+    },
+    {
+      "num": 5,
+      "title": "닭가슴살 구이",
+      "level": "중급",
+      "time": "30분",
+      "writer": "fitcook",
+      "ingredients": [
+        "닭가슴살",
+        "양파",
+        "마늘",
+        "간장"
+      ],
+      "description": "건강한 닭가슴살 구이 레시피로 단백질 공급!",
+      "main_image_url": "http://localhost:3000/images/recipe06.jpg",
+      "likes": 0,
+      "category": "반려견"
+    },
+    {
+      "num": 6,
+      "title": "시금치 고구마 볼",
+      "level": "초급",
+      "time": "15분",
+      "writer": "veganlover",
+      "ingredients": [
+        "시금치",
+        "고구마",
+        "찹쌀 가루",
+        "소금"
+      ],
+      "description": "비건 레시피로 만드는 시금치 고구마 볼!",
+      "main_image_url": "http://localhost:3000/images/recipe07.jpg",
+      "likes": 0,
+      "category": "반려견"
+    },
+    {
+      "num": 7,
+      "title": "바나나 스무디",
+      "level": "초급",
+      "time": "10분",
+      "writer": "healthylife",
+      "ingredients": [
+        "바나나",
+        "요거트",
+        "우유",
+        "꿀"
+      ],
+      "description": "간단하게 만드는 바나나 스무디 레시피!",
+      "main_image_url": "http://localhost:3000/images/recipe08.jpg",
+      "likes": 0,
+      "category": "기타"
+    },
+    {
+      "num": 8,
+      "title": "사과 치즈 볼",
+      "level": "중급",
+      "time": "20분",
+      "writer": "healthydog",
+      "ingredients": [
+        "사과",
+        "치즈",
+        "코코넛 가루",
+        "계피"
+      ],
+      "description": "과일과 치즈가 어우러진 맛있는 간식 사과 치즈 볼!",
+      "main_image_url": "http://localhost:3000/images/recipe09.jpg",
+      "likes": 0,
+      "category": "반려견"
+    },
+    {
+      "num": 9,
+      "title": "양파링",
+      "level": "초급",
+      "time": "15분",
+      "writer": "fitcook",
+      "ingredients": [
+        "양파",
+        "밀가루",
+        "우유",
+        "파우더"
+      ],
+      "description": "간단하게 만드는 양파링 레시피!",
+      "main_image_url": "http://localhost:3000/images/recipe10.jpg",
+      "likes": 0,
+      "category": "기타"
+    },
+    {
+      "num": 10,
+      "title": "아주 쉽고 맛있는 닭가슴살 샐러드",
+      "level": "초급",
+      "time": "20분",
+      "writer": "petlover123",
+      "ingredients": ["닭가슴살", "당근", "브로콜리", "양상추"],
+      "description": "간단하게 만들 수 있는 닭가슴살 샐러드 레시피입니다.",
+      "main_image_url": "http://localhost:3000/images/recipe01.jpg",
+      "likes": 50,
+      "category": "반려견"
+    },
+    {
+      "num": 11,
+      "title": "맛있는 닭가슴살 베이크",
+      "level": "중급",
+      "time": "35분",
+      "writer": "foodlover",
+      "ingredients": [
+        "닭가슴살",
+        "감자",
+        "양파",
+        "로즈마리"
+      ],
+      "description": "오븐에서 굽는 맛있는 닭가슴살 베이크 레시피입니다.",
+      "main_image_url": "http://localhost:3000/images/recipe11.jpg",
+      "likes": 11,
+      "category": "반려햄"
+    },
+    {
+      "num": 12,
+      "title": "간편한 치킨 너겟",
+      "level": "초급",
+      "time": "25분",
+      "writer": "quickcook",
+      "ingredients": [
+        "닭가슴살",
+        "빵가루",
+        "밀가루",
+        "달걀"
+      ],
+      "description": "간편하게 만드는 치킨 너겟 레시피입니다.",
+      "main_image_url": "http://localhost:3000/images/recipe03.jpg",
+      "likes": 5,
+      "category": "반려묘"
+    },
+    {
+      "num": 13,
+      "title": "간편한 오트밀 머핀",
+      "level": "초급",
+      "time": "30분",
+      "writer": "oatmeallover",
+      "ingredients": [
+        "오트밀",
+        "바나나",
+        "요거트",
+        "계란"
+      ],
+      "description": "간편하게 만드는 오트밀 머핀 레시피입니다.",
+      "main_image_url": "http://localhost:3000/images/recipe05.jpg",
+      "likes": 15,
+      "category": "반려견"
+    },
+    {
+      "num": 14,
+      "title": "사과 바나나 요거트 스무디",
+      "level": "초급",
+      "time": "10분",
+      "writer": "healthysmoothie",
+      "ingredients": [
+        "사과",
+        "바나나",
+        "요거트",
+        "우유"
+      ],
+      "description": "간단하게 만드는 사과 바나나 요거트 스무디 레시피입니다.",
+      "main_image_url": "http://localhost:3000/images/recipe02.jpg",
+      "likes": 8,
+      "category": "반려묘"
+    },
+    {
+      "num": 15,
+      "title": "상큼하고 달달해서 우리 강아지가 좋아하는 사과 시리얼 스낵",
+      "level": "초급",
+      "time": "15분",
+      "writer": "doggytreats",
+      "ingredients": [
+        "사과",
+        "오트밀",
+        "요거트"
+      ],
+      "description": "맛있고 건강한 사과 시리얼 스낵 레시피입니다.",
+      "main_image_url": "http://localhost:3000/images/recipe02.jpg",
+      "likes": 20,
+      "category": "반려견"
+    },
+    {
+      "num": 16,
+      "title": "고구마 쿠키",
+      "level": "중급",
+      "time": "30분",
+      "writer": "pawsandbites",
+      "ingredients": [
+        "고구마",
+        "계란",
+        "현미 가루",
+        "오메가 3 보충제"
+      ],
+      "description": "고구마를 활용한 건강한 간식인 고구마 쿠키 레시피입니다.",
+      "main_image_url": "http://localhost:3000/images/recipe03.jpg",
+      "likes": 30,
+      "category": "반려조"
+    },
+    {
+      "num": 17,
+      "title": "양고기 스튜",
+      "level": "중급",
+      "time": "40분",
+      "writer": "petfoodie",
+      "ingredients": [
+        "양고기",
+        "감자",
+        "당근",
+        "녹차"
+      ],
+      "description": "풍미 넘치는 양고기 스튜 레시피로 반려견을 맛있게 먹여주세요.",
+      "main_image_url": "http://localhost:3000/images/recipe04.jpg",
+      "likes": 0,
+      "category": "반려견"
+    },
+    {
+      "num": 18,
+      "title": "연어 스틱",
+      "level": "고급",
+      "time": "25분",
+      "writer": "healthydog",
+      "ingredients": [
+        "연어",
+        "감자 가루",
+        "달걀",
+        "오메가 3 보충제"
+      ],
+      "description": "고급 간식 연어 스틱 레시피로 건강한 영양소를 공급해보세요.",
+      "main_image_url": "http://localhost:3000/images/recipe05.jpg",
+      "likes": 0,
+      "category": "반려조"
+    },
+    {
+      "num": 19,
+      "title": "닭가슴살 구이",
+      "level": "중급",
+      "time": "30분",
+      "writer": "fitcook",
+      "ingredients": [
+        "닭가슴살",
+        "양파",
+        "마늘",
+        "간장"
+      ],
+      "description": "건강한 닭가슴살 구이 레시피로 단백질 공급!",
+      "main_image_url": "http://localhost:3000/images/recipe06.jpg",
+      "likes": 0,
+      "category": "반려견"
+    },
+    {
+      "num": 20,
+      "title": "시금치 고구마 볼",
+      "level": "초급",
+      "time": "15분",
+      "writer": "veganlover",
+      "ingredients": [
+        "시금치",
+        "고구마",
+        "찹쌀 가루",
+        "소금"
+      ],
+      "description": "비건 레시피로 만드는 시금치 고구마 볼!",
+      "main_image_url": "http://localhost:3000/images/recipe07.jpg",
+      "likes": 0,
+      "category": "반려견"
+    },
+    {
+      "num": 21,
+      "title": "바나나 스무디",
+      "level": "초급",
+      "time": "10분",
+      "writer": "healthylife",
+      "ingredients": [
+        "바나나",
+        "요거트",
+        "우유",
+        "꿀"
+      ],
+      "description": "간단하게 만드는 바나나 스무디 레시피!",
+      "main_image_url": "http://localhost:3000/images/recipe08.jpg",
+      "likes": 0,
+      "category": "기타"
+    },
+    {
+      "num": 22,
+      "title": "사과 치즈 볼",
+      "level": "중급",
+      "time": "20분",
+      "writer": "healthydog",
+      "ingredients": [
+        "사과",
+        "치즈",
+        "코코넛 가루",
+        "계피"
+      ],
+      "description": "과일과 치즈가 어우러진 맛있는 간식 사과 치즈 볼!",
+      "main_image_url": "http://localhost:3000/images/recipe09.jpg",
+      "likes": 0,
+      "category": "반려견"
+    },
+    {
+      "num": 23,
+      "title": "양파링",
+      "level": "초급",
+      "time": "15분",
+      "writer": "fitcook",
+      "ingredients": [
+        "양파",
+        "밀가루",
+        "우유",
+        "파우더"
+      ],
+      "description": "간단하게 만드는 양파링 레시피!",
+      "main_image_url": "http://localhost:3000/images/recipe10.jpg",
+      "likes": 0,
+      "category": "기타"
+    },
+    {
+      "num": 24,
+      "title": "맛있는 닭가슴살 베이크",
+      "level": "중급",
+      "time": "35분",
+      "writer": "foodlover",
+      "ingredients": [
+        "닭가슴살",
+        "감자",
+        "양파",
+        "로즈마리"
+      ],
+      "description": "오븐에서 굽는 맛있는 닭가슴살 베이크 레시피입니다.",
+      "main_image_url": "http://localhost:3000/images/recipe11.jpg",
+      "likes": 11,
+      "category": "반려햄"
+    },
+    {
+      "num": 25,
+      "title": "간편한 치킨 너겟",
+      "level": "초급",
+      "time": "25분",
+      "writer": "quickcook",
+      "ingredients": [
+        "닭가슴살",
+        "빵가루",
+        "밀가루",
+        "달걀"
+      ],
+      "description": "간편하게 만드는 치킨 너겟 레시피입니다.",
+      "main_image_url": "http://localhost:3000/images/recipe03.jpg",
+      "likes": 5,
+      "category": "반려묘"
+    },
+    {
+      "num": 26,
+      "title": "간편한 오트밀 머핀",
+      "level": "초급",
+      "time": "30분",
+      "writer": "oatmeallover",
+      "ingredients": [
+        "오트밀",
+        "바나나",
+        "요거트",
+        "계란"
+      ],
+      "description": "간편하게 만드는 오트밀 머핀 레시피입니다.",
+      "main_image_url": "http://localhost:3000/images/recipe05.jpg",
+      "likes": 15,
+      "category": "반려견"
+    },
+    {
+      "num": 27,
+      "title": "사과 바나나 요거트 스무디",
+      "level": "초급",
+      "time": "10분",
+      "writer": "healthysmoothie",
+      "ingredients": [
+        "사과",
+        "바나나",
+        "요거트",
+        "우유"
+      ],
+      "description": "간단하게 만드는 사과 바나나 요거트 스무디 레시피입니다.",
+      "main_image_url": "http://localhost:3000/images/recipe02.jpg",
+      "likes": 8,
+      "category": "반려묘"
+    }
+  ],
+  "categories": {
+    "recipeBoardCategory": [
+      {
+        "name": "반려견",
+        "img_url": "http://localhost:3000/images/animal01.png",
+        "link": "/category/dog"
+      },
+      {
+        "name": "반려묘",
+        "img_url": "http://localhost:3000/images/animal02.png",
+        "link": "/category/cat"
+      },
+      {
+        "name": "반려햄",
+        "img_url": "http://localhost:3000/images/animal04.png",
+        "link": "/category/ham"
+      },
+      {
+        "name": "반려조",
+        "img_url": "http://localhost:3000/images/animal03.png",
+        "link": "/category/bird"
+      },
+      {
+        "name": "기타",
+        "img_url": "http://localhost:3000/images/animal05.png",
+        "link": "/category/etc"
+      }
+    ],
+    "chefBoardCategory": [
+      {
+        "name": "petlover123",
+        "img_url": "http://localhost:3000/images/chef01.png",
+        "link": "/category/dog"
+      },
+      {
+        "name": "doggytreats",
+        "img_url": "http://localhost:3000/images/chef02.png",
+        "link": "/category/cat"
+      },
+      {
+        "name": "pawsandbites",
+        "img_url": "http://localhost:3000/images/chef03.png",
+        "link": "/category/dog"
+      },
+      {
+        "name": "petfoodie",
+        "img_url": "http://localhost:3000/images/chef04.png",
+        "link": "/category/cat"
+      },
+      {
+        "name": "healthydog",
+        "img_url": "http://localhost:3000/images/chef05.png",
+        "link": "/category/dog"
+      },
+      {
+        "name": "fitcook",
+        "img_url": "http://localhost:3000/images/chef06.png",
+        "link": "/category/cat"
+      },
+      {
+        "name": "veganlover",
+        "img_url": "http://localhost:3000/images/chef07.png",
+        "link": "/category/dog"
+      },
+      {
+        "name": "healthylife",
+        "img_url": "http://localhost:3000/images/chef08.png",
+        "link": "/category/cat"
+      },
+      {
+        "name": "healthydog",
+        "img_url": "http://localhost:3000/images/chef09.png",
+        "link": "/category/dog"
+      },
+      {
+        "name": "itcook",
+        "img_url": "http://localhost:3000/images/chef10.png",
+        "link": "/category/cat"
+      }
+    ]
+  },
+  "partyList": [
+    {
+      "title": "뽀삐의 생일파티🐶🎉",
+      "main_image_url": "http://localhost:3000/images/party_img01.jpg",
+      "link": "/category/etc"
+    },
+    {
+      "title": "우리집 멍뭉이의 생일파티💛",
+      "main_image_url": "http://localhost:3000/images/party_img02.jpg",
+      "link": "/category/etc"
+    },
+    {
+      "title": "둥이들 100일파티😻",
+      "main_image_url": "http://localhost:3000/images/party_img03.jpg",
+      "link": "/category/etc"
+    },
+    {
+      "title": "초코 1000일 기념❤️❤️",
+      "main_image_url": "http://localhost:3000/images/party_img04.jpg",
+      "link": "/category/etc"
+    },
+    {
+      "title": "햄냥이의 파티에 초대합니다!🎉🎉",
+      "main_image_url": "http://localhost:3000/images/party_img05.png",
+      "link": "/category/etc"
+    },
+    {
+      "title": "뽀삐의 생일파티🐶🎉",
+      "main_image_url": "http://localhost:3000/images/party_img01.jpg",
+      "link": "/category/etc"
+    },
+    {
+      "title": "우리집 멍뭉이의 생일파티💛",
+      "main_image_url": "http://localhost:3000/images/party_img02.jpg",
+      "link": "/category/etc"
+    },
+    {
+      "title": "둥이들 100일파티😻",
+      "main_image_url": "http://localhost:3000/images/party_img03.jpg",
+      "link": "/category/etc"
+    },
+    {
+      "title": "초코 1000일 기념❤️❤️",
+      "main_image_url": "http://localhost:3000/images/party_img04.jpg",
+      "link": "/category/etc"
+    },
+    {
+      "title": "햄냥이의 파티에 초대합니다!🎉🎉",
+      "main_image_url": "http://localhost:3000/images/party_img05.png",
+      "link": "/category/etc"
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "title": "첫 번째 게시물",
+      "content": "이것은 첫 번째 게시물의 내용입니다.",
+      "writer": "user1",
+      "createdDate": "2023-05-30"
+    },
+    {
+      "id": 2,
+      "title": "두 번째 게시물",
+      "content": "이것은 두 번째 게시물의 내용입니다.",
+      "writer": "user2",
+      "createdDate": "2023-05-31"
+    },
+    {
+      "id": 3,
+      "title": "세 번째 게시물",
+      "content": "이것은 세 번째 게시물의 내용입니다.",
+      "writer": "user3",
+      "createdDate": "2023-06-01"
+    },
+    {
+      "id": 4,
+      "title": "네 번째 게시물",
+      "content": "이것은 네 번째 게시물의 내용입니다.",
+      "writer": "user1",
+      "createdDate": "2023-06-02"
+    },
+    {
+      "id": 5,
+      "title": "다섯 번째 게시물",
+      "content": "이것은 다섯 번째 게시물의 내용입니다.",
+      "writer": "user2",
+      "createdDate": "2023-06-03"
+    }
+  ],
+  "reply": [
+    {
+      "id": 1,
+      "thumb": "https://randomuser.me/api/portraits/med/men/50.jpg",
+      "name": "Bruuuiu",
+      "content": "강아지가 너무 좋아해요ㅠㅠ 이렇게 간편하게 만들 수 있나니...\n작성님 항상 건강하시구 행복한 하루되세요!",
+      "createdAt": "2023.07.25"
+    },
+    {
+      "id": 2,
+      "thumb": "https://randomuser.me/api/portraits/med/men/49.jpg",
+      "name": "aaaaaaa",
+      "content": "가슴이 웅장해진다..\n요리 못하는 저에게는 큰 빛, 구원...\n내일 꼭 해먹어여 보겠습니다 ㅋㅋ\n구독하러 갈게요 ㅎㅎ",
+      "createdAt": "2023.07.25"
+    },
+    {
+      "id": 3,
+      "thumb": "https://randomuser.me/api/portraits/med/men/50.jpg",
+      "name": "Bruuuiu",
+      "content": "강아지가 너무 좋아해요ㅠㅠ 이렇게 간편하게 만들 수 있나니...\n작성님 항상 건강하시구 행복한 하루되세요!",
+      "createdAt": "2023.07.25"
+    },
+    {
+      "id": 4,
+      "thumb": "https://randomuser.me/api/portraits/med/men/50.jpg",
+      "name": "Bruuuiu",
+      "content": "강아지가 너무 좋아해요ㅠㅠ 이렇게 간편하게 만들 수 있나니...\n작성님 항상 건강하시구 행복한 하루되세요!",
+      "createdAt": "2023.07.25"
+    },
+    {
+      "id": 5,
+      "thumb": "https://randomuser.me/api/portraits/med/men/50.jpg",
+      "name": "Bruuuiu",
+      "content": "강아지가 너무 좋아해요ㅠㅠ 이렇게 간편하게 만들 수 있나니...\n작성님 항상 건강하시구 행복한 하루되세요!",
+      "createdAt": "2023.07.25"
+    },
+    {
+      "id": 6,
+      "thumb": "https://randomuser.me/api/portraits/med/men/50.jpg",
+      "name": "Bruuuiu",
+      "content": "강아지가 너무 좋아해요ㅠㅠ 이렇게 간편하게 만들 수 있나니...\n작성님 항상 건강하시구 행복한 하루되세요!",
+      "createdAt": "2023.07.25"
+    },
+    {
+      "id": 7,
+      "thumb": "https://randomuser.me/api/portraits/med/men/50.jpg",
+      "name": "Bruuuiu",
+      "content": "강아지가 너무 좋아해요ㅠㅠ 이렇게 간편하게 만들 수 있나니...\n작성님 항상 건강하시구 행복한 하루되세요!",
+      "createdAt": "2023.07.25"
+    },
+    {
+      "id": 8,
+      "thumb": "https://randomuser.me/api/portraits/med/men/50.jpg",
+      "name": "Bruuuiu",
+      "content": "강아지가 너무 좋아해요ㅠㅠ 이렇게 간편하게 만들 수 있나니...\n작성님 항상 건강하시구 행복한 하루되세요!",
+      "createdAt": "2023.07.25"
+    },
+    {
+      "thumb": "https://randomuser.me/api/portraits/med/men/49.jpg",
+      "name": "abcde",
+      "content": "댓글 테스트",
+      "createdAt": "2023.08.24",
+      "id": 9
+    },
+    {
+      "thumb": "https://randomuser.me/api/portraits/med/men/49.jpg",
+      "name": "abcde",
+      "content": "굿",
+      "createdAt": "2023.08.24",
+      "id": 10
+    },
+    {
+      "thumb": "https://randomuser.me/api/portraits/med/men/49.jpg",
+      "name": "abcde",
+      "content": "dasda",
+      "createdAt": "2023.08.24",
+      "id": 11
+    },
+    {
+      "thumb": "https://randomuser.me/api/portraits/med/men/49.jpg",
+      "name": "abcde",
+      "content": "dasdadddd",
+      "createdAt": "2023.08.24",
+      "id": 12
+    },
+    {
+      "thumb": "https://randomuser.me/api/portraits/med/men/49.jpg",
+      "name": "abcde",
+      "content": "sada",
+      "createdAt": "2023.08.24",
+      "id": 13
+    },
+    {
+      "thumb": "https://randomuser.me/api/portraits/med/men/49.jpg",
+      "name": "abcde",
+      "content": "zxcszxc",
+      "createdAt": "2023.08.24",
+      "id": 14
+    }
+  ]
+}
