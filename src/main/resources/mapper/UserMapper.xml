@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.project.project.user.dao.UserMapper">
+<mapper namespace="com.project.user.dao.UserMapper">
 
         <!-- 이메일 중복 체크 -->
         <select id="checkEmailDuplication"  resultType="int">
@@ -24,13 +24,12 @@
         </select>
 
         <!-- 사용자 정보 조회 -->
-        <select id="findByEmail" resultSets="string" resultType="com.project.project.user.dto.UserDto">
+        <select id="findByEmail" resultSets="string" resultType="com.project.user.dto.UserDto">
             SELECT
                 user_num AS userNum,
                 user_email AS userEmail,
                 user_pwd AS userPassword,
                 user_nickname AS userNickname,
-                user_address AS userAddress,
                 user_gender AS userGender,
                 user_birthday AS userBirthday,
                 user_profile AS userProfile,
@@ -44,11 +43,11 @@
         </select>
 
         <!-- 회원정보 수정 -->
-        <update id="updateUser" parameterType="com.project.project.user.dto.UserDto">
+        <update id="updateUser" parameterType="com.project.user.dto.UserDto">
             UPDATE user
             SET
+                user_email = #{userEmail},
                 user_nickname = #{userNickname},
-                user_address = #{userAddress},
                 user_gender = #{userGender},
                 user_birthday = #{userBirthday},
                 user_profile = #{userProfile},

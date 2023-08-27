@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.project.project.user.dao.PetMapper">
+<mapper namespace="com.project.user.dao.PetMapper">
 
     <!-- 사용자의 반려동물 정보 저장 -->
     <insert id="insertUserPet">
@@ -28,7 +28,7 @@
     </delete>
 
     <!-- 회원의 pet을 등록 -->
-    <insert id="insertUserPet1" parameterType="com.project.project.user.dto.UserDto">
+    <insert id="insertUserPet1" parameterType="com.project.user.dto.UserDto">
         INSERT INTO user_pet (user_num, pet_type_id)
         VALUES
         <foreach collection="petTypeIds" item="petTypeId" separator=",">
