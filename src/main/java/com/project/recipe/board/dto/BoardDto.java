@@ -1,6 +1,6 @@
 package com.project.recipe.board.dto;
 
-import com.project.project.recipe.image.sub.dto.SubImgDto;
+import com.project.recipe.image.sub.dto.SubImgDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

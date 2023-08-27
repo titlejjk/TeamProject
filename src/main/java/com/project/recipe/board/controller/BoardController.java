@@ -1,8 +1,8 @@
 package com.project.recipe.board.controller;
 
-import com.project.project.recipe.board.dto.BoardDto;
-import com.project.project.recipe.board.service.BoardService;
-import com.project.project.recipe.image.sub.service.SubImgService;
+import com.project.recipe.board.dto.BoardDto;
+import com.project.recipe.board.service.BoardService;
+import com.project.recipe.image.sub.service.SubImgService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

@@ -1,7 +1,7 @@
 package com.project.recipe.reply.controller;
 
-import com.project.project.recipe.reply.dto.ReplyDto;
-import com.project.project.recipe.reply.service.ReplyService;
+import com.project.recipe.reply.dto.ReplyDto;
+import com.project.recipe.reply.service.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

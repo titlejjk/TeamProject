@@ -1,6 +1,6 @@
 package com.project.recipe.board.dao;
 
-import com.project.project.recipe.board.dto.BoardDto;
+import com.project.recipe.board.dto.BoardDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 

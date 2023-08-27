@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.project.project.recipe.image.sub.dao.SubImgMapper">
+<mapper namespace="com.project.recipe.image.sub.dao.SubImgMapper">
 
     <!--서브이미지 저장-->
     <insert id="insertImg" parameterType="com.project.project.recipe.image.sub.dto.SubImgDto">

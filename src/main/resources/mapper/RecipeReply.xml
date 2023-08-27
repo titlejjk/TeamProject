@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.project.project.recipe.board.reply.dao.ReplyMapper">
+<mapper namespace="com.project.recipe.board.reply.dao.ReplyMapper">
 
     <resultMap id="replyMap" type="com.project.project.recipe.board.dto.BoardDto">
         <id property="rplNum" column="rpl_num"/>

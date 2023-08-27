@@ -1,7 +1,7 @@
 package com.project.recipe.image.sub.controller;
 
-import com.project.project.recipe.image.sub.dto.SubImgDto;
-import com.project.project.recipe.image.sub.service.SubImgService;
+import com.project.recipe.image.sub.dto.SubImgDto;
+import com.project.recipe.image.sub.service.SubImgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

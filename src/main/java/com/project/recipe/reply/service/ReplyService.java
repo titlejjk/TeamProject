@@ -1,6 +1,6 @@
 package com.project.recipe.reply.service;
 
-import com.project.project.recipe.reply.dto.ReplyDto;
+import com.project.recipe.reply.dto.ReplyDto;
 
 public interface ReplyService {
     void saveReply(ReplyDto dto);

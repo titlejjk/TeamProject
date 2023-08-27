@@ -1,7 +1,7 @@
 package com.project.recipe.reply.service;
 
-import com.project.project.recipe.reply.dao.ReplyMapper;
-import com.project.project.recipe.reply.dto.ReplyDto;
+import com.project.recipe.reply.dao.ReplyMapper;
+import com.project.recipe.reply.dto.ReplyDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

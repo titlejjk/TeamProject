@@ -1,6 +1,6 @@
 package com.project.recipe.board.service;
 
-import com.project.project.recipe.board.dto.BoardDto;
+import com.project.recipe.board.dto.BoardDto;
 
 import java.util.List;
 

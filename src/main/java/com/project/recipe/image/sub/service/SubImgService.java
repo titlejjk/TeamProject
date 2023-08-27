@@ -1,6 +1,6 @@
 package com.project.recipe.image.sub.service;
 
-import com.project.project.recipe.image.sub.dto.SubImgDto;
+import com.project.recipe.image.sub.dto.SubImgDto;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;

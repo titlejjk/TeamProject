@@ -1,7 +1,7 @@
 package com.project.recipe.image.sub.service;
 
-import com.project.project.recipe.image.sub.dao.SubImgMapper;
-import com.project.project.recipe.image.sub.dto.SubImgDto;
+import com.project.recipe.image.sub.dao.SubImgMapper;
+import com.project.recipe.image.sub.dto.SubImgDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

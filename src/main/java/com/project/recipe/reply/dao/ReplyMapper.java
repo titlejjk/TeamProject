@@ -1,6 +1,6 @@
 package com.project.recipe.reply.dao;
 
-import com.project.project.recipe.reply.dto.ReplyDto;
+import com.project.recipe.reply.dto.ReplyDto;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper

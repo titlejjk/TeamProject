@@ -1,6 +1,6 @@
 package com.project.recipe.image.sub.dao;
 
-import com.project.project.recipe.image.sub.dto.SubImgDto;
+import com.project.recipe.image.sub.dto.SubImgDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
