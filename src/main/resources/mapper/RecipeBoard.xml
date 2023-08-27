@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.project.recipe.board.dao.BoardMapper">
+
+    <!--검색 조건-->
+    <sql id="searchCondition">
+        <choose>
+            <!--rcp_writer가 null이 아닌 경우에만 실행-->
+            <when test="rcp_writer != null">
+                <!--rcp_writer값에 부분적으로 일치하는 것을 모두 검색-->
+                WHERE rcp_writer LIKE '%'||#{writer}||'%'
+            </when>
+        </choose>
+    </sql>
+
+    <!--게시글 & 메인 이미지 저장-->
+    <insert id="insertRcp" parameterType="com.project.project.recipe.board.dto.BoardDto" useGeneratedKeys="true" keyProperty="rcpNum">
+        INSERT INTO recipe
+        (rcp_writer, rcp_title, rcp_content, serving_size, cooking_time, cooking_level,
+        cooking_order, rcp_viewCount, rcp_regdate, main_org_name, main_save_name, main_path)
+        VALUES
+        (#{writer}, #{title}, #{content}, #{servingSize}, #{cookingTime}, #{cookingLevel},
+        #{cookingOrder}, #{viewCount}, CURRENT_TIMESTAMP, #{mainOrgName}, #{mainSaveName}, #{mainPath})
+    </insert>
+
+    <!--게시글 & 메인 이미지 수정-->
+    <update id="updateRcp" parameterType="com.project.project.recipe.board.dto.BoardDto">
+        UPDATE recipe
+        SET rcp_writer=#{writer}, rcp_title=#{title}, rcp_content=#{content}, serving_size=#{servingSize},
+            cooking_time=#{cookingTime}, cooking_level=#{cookingLevel}, cooking_order=#{cookingOrder},
+            main_org_name=#{mainOrgName}, main_save_name=#{mainSaveName}, main_path=#{mainPath}
+        WHERE rcp_num=#{rcpNum}
+    </update>
+
+    <!--게시글 삭제-->
+    <delete id="deleteRcp" parameterType="int">
+        DELETE FROM recipe
+        WHERE rcp_num=#{rcpNum}
+    </delete>
+
+    <!--게시글 & 메인 이미지 목록 조회-->
+    <select id="getList" resultType="com.project.project.recipe.board.dto.BoardDto">
+        SELECT
+        rcp_num AS rcpNum, rcp_writer AS writer, rcp_title AS title,
+        main_org_name AS mainOrgName, main_save_name AS mainSaveName, main_path AS mainPath
+        FROM recipe
+        <include refid="searchCondition"/> <!--검색조건 포함-->
+        ORDER BY rcp_num DESC <!--최신순으로 정렬-->
+    </select>
+
+    <!--게시글 상세 조회-->
+    <select id="getDetail" parameterType="int" resultType="com.project.project.recipe.board.dto.BoardDto">
+        SELECT
+            r.rcp_num AS rcpNum, r.rcp_writer AS writer, r.rcp_title AS title, r.rcp_content AS content,
+            r.serving_size AS servingSize, r.cooking_time AS cookingTime, r.cooking_level AS cookingLevel,
+            r.cooking_order AS cookingOrder, r.rcp_viewCount AS viewCount, r.rcp_regdate AS regdate,
+            r.main_org_name AS mainOrgName, r.main_save_name AS mainSaveName, r.main_path AS mainPath
+        FROM recipe AS r
+        WHERE r.rcp_num=#{rcpNum}
+    </select>
+
+    <!--게시글 개수-->
+    <select id="getCount" parameterType="com.project.project.recipe.board.dto.BoardDto" resultType="int">
+        SELECT NVL(MAX(ROWNUM), 0) <!--테이블의 행 중 가장 큰 번호를 찾고, NULL이면 0을 반환-->
+        FROM recipe
+    </select>
+
+</mapper>

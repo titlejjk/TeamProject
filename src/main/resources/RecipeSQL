@@ -1,0 +1,27 @@
+-- 레시피 게시판 테이블
+CREATE TABLE recipe(
+    rcp_num INT AUTO_INCREMENT PRIMARY KEY, -- 게시글 번호
+    rcp_writer VARCHAR(255) NOT NULL, -- 작성자(user_num)
+    rcp_title VARCHAR(255) NOT NULL, -- 제목
+    rcp_content TEXT, -- 글 내용 (제목 하단)
+	serving_size INT NOT NULL, -- 제공분량
+	cooking_time INT NOT NULL, -- 조리시간
+	cooking_level VARCHAR(20) NOT NULL, -- 난이도
+	cooking_order TEXT NOT NULL, -- 조리순서
+	rcp_viewCount INT, -- 조회수
+    rcp_regdate DATE, -- 글 작성일
+	main_org_name VARCHAR(255) NOT NULL, -- 메인이미지 원본 파일명
+	main_save_name VARCAHR(255) NOT NULL, -- 메인이미지 저장 파일명
+	main_path TEXT NOT NULL -- 매인이미지 파일 경로
+);
+
+-- 서브 이미지
+CREATE TABLE recipe_subImg(
+	rcp_num INT, -- 게시글 번호
+  	sub_num INT AUTO_INCREMENT PRIMARY KEY, -- 서브이미지 번호
+  	sub_org_name VARCHAR(255) NOT NULL, -- 서브이미지 원본 파일명
+  	sub_save_name VARCHAR(255) NOT NULL, -- 서브이미지 저장 파일명
+  	sub_path TEXT NOT NULL, -- 서브이미지 파일 경로
+	sub_order INT NOT NULL, -- 서브이미지 순서
+	FOREIGN KEY (rcp_num) REFERENCES recipe(rcp_num) -- 게시글 번호 외래키 설정
+);
