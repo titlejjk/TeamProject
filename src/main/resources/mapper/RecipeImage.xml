@@ -3,7 +3,7 @@
 <mapper namespace="com.project.recipe.image.sub.dao.SubImgMapper">
 
     <!--서브이미지 저장-->
-    <insert id="insertImg" parameterType="com.project.project.recipe.image.sub.dto.SubImgDto">
+    <insert id="insertImg" parameterType="com.project.recipe.image.sub.dto.SubImgDto">
         INSERT INTO recipe_subImg
         (rcp_num, sub_org_name, sub_save_name, sub_path, sub_order)
         VALUES

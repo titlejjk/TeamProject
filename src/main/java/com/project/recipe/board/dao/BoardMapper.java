@@ -20,7 +20,7 @@ public interface BoardMapper {
     //글 정보 얻어오기
     BoardDto getDetail(int rcpNum);  //하나의 rcpNum에 대해
     //글 정보 얻어오기 (키워드 활용  ->  e.g.검색)
-//    RecipeDto getData(RecipeDto dto);
+    //BoardDto getData(BoardDto dto);
     //글 개수
     int getCount(BoardDto dto);
     //조회수 증가

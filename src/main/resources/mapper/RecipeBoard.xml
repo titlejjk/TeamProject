@@ -14,7 +14,7 @@
     </sql>
 
     <!--게시글 & 메인 이미지 저장-->
-    <insert id="insertRcp" parameterType="com.project.project.recipe.board.dto.BoardDto" useGeneratedKeys="true" keyProperty="rcpNum">
+    <insert id="insertRcp" parameterType="com.project.recipe.board.dto.BoardDto" useGeneratedKeys="true" keyProperty="rcpNum">
         INSERT INTO recipe
         (rcp_writer, rcp_title, rcp_content, serving_size, cooking_time, cooking_level,
         cooking_order, rcp_viewCount, rcp_regdate, main_org_name, main_save_name, main_path)
@@ -24,7 +24,7 @@
     </insert>
 
     <!--게시글 & 메인 이미지 수정-->
-    <update id="updateRcp" parameterType="com.project.project.recipe.board.dto.BoardDto">
+    <update id="updateRcp" parameterType="com.project.recipe.board.dto.BoardDto">
         UPDATE recipe
         SET rcp_writer=#{writer}, rcp_title=#{title}, rcp_content=#{content}, serving_size=#{servingSize},
             cooking_time=#{cookingTime}, cooking_level=#{cookingLevel}, cooking_order=#{cookingOrder},
@@ -39,7 +39,7 @@
     </delete>
 
     <!--게시글 & 메인 이미지 목록 조회-->
-    <select id="getList" resultType="com.project.project.recipe.board.dto.BoardDto">
+    <select id="getList" resultType="com.project.recipe.board.dto.BoardDto">
         SELECT
         rcp_num AS rcpNum, rcp_writer AS writer, rcp_title AS title,
         main_org_name AS mainOrgName, main_save_name AS mainSaveName, main_path AS mainPath
@@ -49,7 +49,7 @@
     </select>
 
     <!--게시글 상세 조회-->
-    <select id="getDetail" parameterType="int" resultType="com.project.project.recipe.board.dto.BoardDto">
+    <select id="getDetail" parameterType="int" resultType="com.project.recipe.board.dto.BoardDto">
         SELECT
             r.rcp_num AS rcpNum, r.rcp_writer AS writer, r.rcp_title AS title, r.rcp_content AS content,
             r.serving_size AS servingSize, r.cooking_time AS cookingTime, r.cooking_level AS cookingLevel,
@@ -60,7 +60,7 @@
     </select>
 
     <!--게시글 개수-->
-    <select id="getCount" parameterType="com.project.project.recipe.board.dto.BoardDto" resultType="int">
+    <select id="getCount" parameterType="com.project.recipe.board.dto.BoardDto" resultType="int">
         SELECT NVL(MAX(ROWNUM), 0) <!--테이블의 행 중 가장 큰 번호를 찾고, NULL이면 0을 반환-->
         FROM recipe
     </select>
