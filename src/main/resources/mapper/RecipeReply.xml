@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.recipe.board.reply.dao.ReplyMapper">
+
+    <resultMap id="replyMap" type="com.project.recipe.board.dto.BoardDto">
+        <id property="rplNum" column="rpl_num"/>
+        <result property="rplNum" column="rpl_num"/>
+        <result property="rcpNum" column="rcp_num"/>
+        <result property="rplGroup" column="rpl_group"/>
+    </resultMap>
+
+    <!--댓글 저장-->
+    <insert id="insertRpl" parameterType="com.project.recipe.reply.dto.ReplyDto">
+        <selectKey keyProperty="rplNum" order="BEFORE" resultType="Int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO recipe_reply
+        (rpl_num, rcp_num, rpl_writer, rpl_content,
+        rpl_group, rpl_deleted, rpl_regdate)
+        VALUES
+        (#{rplNum}, #{rcpNum}, #{rplWriter}, #{rplContent},
+        #{rplGroup}, #{rplDelete}, #{regdate})
+    </insert>
+
+    <!--대댓글 저장-->
+    <insert id="insertSubRpl" parameterType="com.project.recipe.reply.dto.ReplyDto">
+        <selectKey keyProperty="rplNum" order="BEFORE" resultType="Int">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO recipe_reply
+        (rpl_num, rcp_num, rpl_writer, rpl_content,
+        rpl_target, rpl_group, rpl_deleted, rpl_regdate)
+        VALUES
+        (#{rplNum}, #{rcpNum}, #{rplWriter}, #{rplContent},
+        #{rplTarget}, #{rplGroup}, #{rplDelete}, #{regdate})
+    </insert>
+
+</mapper>
