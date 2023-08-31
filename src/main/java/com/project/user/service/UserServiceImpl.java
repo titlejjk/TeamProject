@@ -7,12 +7,10 @@ import com.project.security.TokenProvider;
 import com.project.user.dao.PetMapper;
 import com.project.user.dao.UserMapper;
 import com.project.user.dto.UserDto;
-import com.project.user.dto.UserPetDto;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 
 @Service
