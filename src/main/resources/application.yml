@@ -19,7 +19,7 @@ logging:
     com.project.project.user.mapper: DEBUG
 
 file:
-  location: /Users/sujeong/Documents/workspace/upload
+  location: /Users/jojungeun/Desktop/TeamProject/upload
 
 servlet:
   multipart:

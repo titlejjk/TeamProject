@@ -22,5 +22,16 @@ public class FollowController {
         String message = followService.toggleFollow(followDto);
         return ResponseEntity.ok(message);
     }
+    // 특정 회원의 팔로워 갯수 조회
+    @GetMapping("/followers/count/{userEmail}")
+    public int countFollowers(@PathVariable String userEmail) {
+        return followService.countFollowers(userEmail);
+    }
+
+    // 특정 회원의 팔로잉 갯수 조회
+    @GetMapping("/followings/count/{userEmail}")
+    public int countFollowings(@PathVariable String userEmail) {
+        return followService.countFollowings(userEmail);
+    }
 
 }

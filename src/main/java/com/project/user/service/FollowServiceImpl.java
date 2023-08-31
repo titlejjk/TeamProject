@@ -5,6 +5,8 @@ import com.project.user.dto.FollowDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class FollowServiceImpl implements FollowService{
@@ -24,6 +26,26 @@ public class FollowServiceImpl implements FollowService{
             followMapper.insertFollow(followDto);
             return "팔로우 되었습니다.";
         }
+    }
+    //특정 회원의 팔로워 조회
+    @Override
+    public List<FollowDto> findFollowers(String userEmail) {
+        return followMapper.findFollowers(userEmail);
+    }
+    //특정 회원의 팔로잉 조회
+    @Override
+    public List<FollowDto> findFollowings(String userEmail) {
+        return followMapper.findFollowings(userEmail);
+    }
+    //특정 회원의 팔로워 갯수 조회
+    @Override
+    public int countFollowers(String userEmail) {
+        return followMapper.countFollowers(userEmail);
+    }
+    //특정 회원의 팔로잉 갯수 조회
+    @Override
+    public int countFollowings(String userEmail) {
+        return followMapper.countFollowings(userEmail);
     }
 
 

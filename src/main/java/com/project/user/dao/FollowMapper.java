@@ -22,4 +22,10 @@ public interface FollowMapper {
 
     //팔로우 관계의 존재 여부를 확인
     int countFollow(String followerEmail, String followingEmail);
+
+    //팔로워 갯수 조회
+    int countFollowers(String userEmail);
+
+    //팔로잉 갯수 조회
+    int countFollowings(String userEmail);
 }

@@ -29,4 +29,15 @@
         SELECT COUNT(*) FROM follows
         WHERE follower_email = #{followerEmail} AND following_email = #{followingEmail}
     </select>
+
+    <!-- 팔로워 갯수 조회 -->
+    <select id="countFollowers" resultType="int">
+        SELECT COUNT(*) FROM follows WHERE follower_email = #{userEmail}
+    </select>
+
+    <!-- 팔로잉 갯수 조회 -->
+    <select id="countFollowings" resultType="int">
+        SELECT COUNT(*) FROM follows WHERE following_email = #{userEmail}
+    </select>
+
 </mapper>
