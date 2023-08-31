@@ -1,6 +1,8 @@
 package com.project.user.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.project.exception.CustomException.TokenInvalidException;
+import com.project.exception.CustomException.UserNotFoundException;
 import com.project.user.dto.UserDto;
 import com.project.user.service.FollowService;
 import com.project.user.service.UserService;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Map;
 
 @Slf4j
 @Controller
@@ -42,5 +45,18 @@ public class UserController {
         return new ResponseEntity<>("회원 탈퇴가 성공적으로 처리되었습니다", HttpStatus.OK);
     }
 
-
+    @PostMapping("/updatePassword")
+    public ResponseEntity<?> updatePasswordByToken(@RequestHeader("Authorization") String token, @RequestBody Map<String, String> newPasswordMap) {
+        try {
+            String newPassword = newPasswordMap.get("newPassword");
+            userService.updatePasswordByToken(token, newPassword);
+            return new ResponseEntity<>("Password updated successfully", HttpStatus.OK);
+        } catch (TokenInvalidException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.UNAUTHORIZED);
+        } catch (UserNotFoundException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>("An error occurred", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

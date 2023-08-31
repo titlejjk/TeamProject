@@ -31,7 +31,7 @@ public class AuthServiceImpl implements AuthService {
 
     // BCryptPasswordEncoder 는 Spring Security 에서 제공하는 비밀번호 암호화 방식 중 하나로,
     // 강력한 해시 함수인 BCrypt 를 사용하여 비밀번호를 안전하게 저장
-    private final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder passwordEncoder;
 
 
 

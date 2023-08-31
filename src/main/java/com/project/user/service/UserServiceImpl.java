@@ -89,7 +89,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void changePassword(String token, String newPassword) {
+    public void updatePasswordByToken(String token, String newPassword) {
         // 1. 토큰 검증 및 사용자 이메일 추출
         String userEmail = tokenProvider.validate(token);
         if (userEmail == null) {
