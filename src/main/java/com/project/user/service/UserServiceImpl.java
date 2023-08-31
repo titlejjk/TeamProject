@@ -10,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import static com.project.user.dto.UserDto.fromExistingAndUpdateProfile;
 
 @Service
 @Builder
@@ -28,11 +27,25 @@ public class UserServiceImpl implements UserService {
 
     //사용자 프로필을 업데이트하는 메서드
     @Override
-    public String updateUser(UserDto existingUserDto, MultipartFile userImage) throws IllegalAccessException {
-        validateUserNickname(existingUserDto.getUserNickname());
-        UserDto updatedUserDto = uploadImageAndUpdateProfile(existingUserDto, userImage);
+    public String updateUser(UserDto userDto) throws IllegalAccessException {
+        validateUserNickname(userDto.getUserNickname());
+
+        String imagePath = fileUploadService.uploadFile(userDto.getUserImage());
+
+        UserDto updatedUserDto = UserDto.builder()
+                .userNum(userDto.getUserNum())
+                .userEmail(userDto.getUserEmail())
+                .userNickname(userDto.getUserNickname())
+                .userGender(userDto.getUserGender())
+                .userBirthday(userDto.getUserBirthday())
+                .userProfile(userDto.getUserProfile())
+                .userImage(userDto.getUserImage())
+                .petTypeIds(userDto.getPetTypeIds())
+                .build();
+
         updatePetInfo(updatedUserDto);
         userMapper.updateUser(updatedUserDto);
+
         return generateNewToken(updatedUserDto);
     }
 
@@ -45,9 +58,8 @@ public class UserServiceImpl implements UserService {
     }
 
     // 이미지 업로드 및 프로필 경로 업데이트
-    private UserDto uploadImageAndUpdateProfile(UserDto existingUserDto, MultipartFile userImage) {
-        String imagePath = fileUploadService.uploadFile(userImage);
-        return UserDto.fromExistingAndUpdateProfile(existingUserDto, imagePath);
+    private String uploadImageAndUpdateProfile(UserDto userDto, MultipartFile userImage) {
+        return fileUploadService.uploadFile(userImage);
     }
 
     // 펫 정보 업데이트

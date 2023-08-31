@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 //모든 파라미터 생성자 생성
 @AllArgsConstructor
@@ -35,23 +35,6 @@ public class UserDto {
     private List<Integer> petTypeIds; // petTypeIds 추가
     private List<String> petTypes = new ArrayList<>();;//반려동물 타입목록
 
-    //기존 사용자 정보와 새로운 프로필 이미지 경로를 합쳐서 정적메서드로 사용
-    public static UserDto fromExistingAndUpdateProfile(UserDto existingUser, String updateProfilePath) {
-        return UserDto.builder()
-                .userNum(existingUser.getUserNum())
-                .userEmail(existingUser.getUserEmail())
-                .userNickname(existingUser.getUserNickname())
-                .userGender(existingUser.getUserGender())
-                .userBirthday(existingUser.getUserBirthday())
-                .userProfile(existingUser.getUserProfile())
-                .userProfile(existingUser.getUserProfile())
-                .userImage(existingUser.getUserImage())
-                .petTypeIds(existingUser.getPetTypeIds())
-                .petTypes(existingUser.getPetTypes())
-                .build();
-    }
-
-
     public void createUser(SignUpRequest signUpRequest, String encryptedPassword) {
         this.userEmail = signUpRequest.getUserEmail();
         this.userPassword = encryptedPassword;
@@ -59,27 +42,4 @@ public class UserDto {
         this.petTypeIds = signUpRequest.getPetTypeIds();
     }
 
-    // UserDto 클래스 내부에 추가
-
-    // 기존 사용자 정보와 새로운 반려동물 정보를 합쳐 새 UserDto 객체를 정적팩토리 메서드로 생성
-    public static UserDto fromExistingAndUpdatedPetInfo(UserDto existingUser, List<Integer> newPetTypeIds, List<String> newPetTypeNames) {
-        return UserDto.builder()
-                .userNum(existingUser.getUserNum())
-                .userEmail(existingUser.getUserEmail())
-                .userPassword(existingUser.getUserPassword())
-                .userPasswordCheck(existingUser.getUserPasswordCheck())
-                .userNickname(existingUser.getUserNickname())
-                .userGender(existingUser.getUserGender())
-                .userBirthday(existingUser.getUserBirthday())
-                .userProfile(existingUser.getUserProfile())
-                .userImage(existingUser.getUserImage())
-                .userIntroduction(existingUser.getUserIntroduction())
-                .userStatus(existingUser.getUserStatus())
-                .userCreatedAt(existingUser.getUserCreatedAt())
-                .userUpdatedAt(existingUser.getUserUpdatedAt())
-                .role(existingUser.getRole())
-                .petTypeIds(newPetTypeIds)
-                .petTypes(newPetTypeNames)
-                .build();
-    }
 }

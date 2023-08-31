@@ -47,6 +47,7 @@ public class AuthServiceImpl implements AuthService {
         insertUserPet(signUpRequest);
     }
 
+    //회원의 반려동물의 정보를 저장하는 메서드
     private  void insertUserPet(SignUpRequest signUpRequest){
         int userNum = userMapper.getLastInsertUserNum();
         for(int petTypeId : signUpRequest.getPetTypeIds()){
@@ -86,11 +87,11 @@ public class AuthServiceImpl implements AuthService {
     }
 
     // 사용자 정보와 새로운 반려동물 정보를 합치는 메서드
-    private UserDto updateUserWithPetInfo(UserDto existingUser, List<Map<String, Object>> petTypes) {
+    private UserDto updateUserWithPetInfo(UserDto userDto, List<Map<String, Object>> petTypes) {
         List<Integer> petTypeIds = extractPetTypeIds(petTypes);
         List<String> petTypeNames = extractPetTypeNames(petTypes);
 
-        return UserDto.fromExistingAndUpdatedPetInfo(existingUser, petTypeIds, petTypeNames);
+        return userDto;
     }
 
     // 반려동물 유형 ID를 추출하는 메서드

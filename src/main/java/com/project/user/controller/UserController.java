@@ -25,13 +25,13 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping(value = "/updateuser", consumes = {"multipart/form-data"})
-    public ResponseEntity<String> updateUser(@RequestPart("existingUser") UserDto existingUser, @RequestPart("userImage") MultipartFile userImage) {
+    public ResponseEntity<String> updateUser(@ModelAttribute UserDto userDto) {
         try {
-            String result = userService.updateUser(existingUser, userImage);
-            return ResponseEntity.ok(result); // 반환할 결과가 정상적인 경우 200 OK 상태 코드와 함께 반환
+            String result = userService.updateUser(userDto);
+            return ResponseEntity.ok(result);  // 정상적인 경우 200 OK 상태 코드와 함께 반환
         } catch (IllegalAccessException e) {
             // 예외 처리
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error"); // 예외 발생시 500 Internal Server Error 상태 코드와 함께 반환
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error");  // 예외 발생시 500 Internal Server Error 상태 코드와 함께 반환
         }
     }
 
