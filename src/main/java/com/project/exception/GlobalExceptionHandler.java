@@ -1,9 +1,6 @@
 package com.project.exception;
 
-import com.project.exception.CustomException.BadCredentialsException;
-import com.project.exception.CustomException.EmailAlreadyExistsException;
-import com.project.exception.CustomException.NicknameAlreadyExistsException;
-import com.project.exception.CustomException.AlreadyFollowedException;
+import com.project.exception.CustomException.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -34,8 +31,15 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
     }
 
+    //유효한 토큰인지 조회
+    @ExceptionHandler(TokenInvalidException.class)
+    public ResponseEntity<String> handleTokenInvalidException(TokenInvalidException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
+    }
 
-    public ResponseEntity<?> handleAlreadyFollowedException(AlreadyFollowedException ex){
-        return new ResponseEntity<>("이미 팔로우한 사용자 입니다.", HttpStatus.BAD_REQUEST);
+    //유효한 회원인지 조회
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 }

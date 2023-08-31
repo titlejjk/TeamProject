@@ -11,4 +11,7 @@ public interface UserService {
     //한명의 회원탈퇴 Update Status
     void deactivateUser(int userNum);
 
+    //회원의 비밀번호 변경
+    void changePassword(String token, String newPassword);
+
 }

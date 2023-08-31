@@ -1,5 +1,7 @@
 package com.project.user.service;
 
+import com.project.exception.CustomException.TokenInvalidException;
+import com.project.exception.CustomException.UserNotFoundException;
 import com.project.security.TokenProvider;
 import com.project.user.dao.PetMapper;
 import com.project.user.dao.UserMapper;
@@ -7,6 +9,7 @@ import com.project.user.dto.UserDto;
 import com.project.user.dto.UserPetDto;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,6 +27,8 @@ public class UserServiceImpl implements UserService {
     private final FileUploadService fileUploadService;
     //TokenProvider 의존성추가
     private final TokenProvider tokenProvider;
+    //비밀번호 암호화
+    private final PasswordEncoder passwordEncoder;
 
     //사용자 프로필을 업데이트하는 메서드
     @Override
@@ -81,5 +86,24 @@ public class UserServiceImpl implements UserService {
     public void deactivateUser(int userNum) {
         //사용자의 Status를 'INACTIVE'로 변경
         userMapper.updateUserStatus("INACTIVE", userNum);
+    }
+
+    @Override
+    public void changePassword(String token, String newPassword) {
+        // 1. 토큰 검증 및 사용자 이메일 추출
+        String userEmail = tokenProvider.validate(token);
+        if (userEmail == null) {
+            throw new TokenInvalidException("Invalid or null token");
+        }
+
+        // 2. 유저 존재 여부 확인
+        UserDto userDto = userMapper.findByEmail(userEmail);
+        if (userDto == null) {
+            throw new UserNotFoundException("User does not exist");
+        }
+
+        // 3. 새 비밀번호 암호화 및 DB 업데이트
+        String encryptedPassword = passwordEncoder.encode(newPassword);
+        userMapper.updatePassword(userDto.getUserNum(), encryptedPassword);
     }
 }

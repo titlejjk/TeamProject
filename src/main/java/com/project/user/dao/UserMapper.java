@@ -27,5 +27,9 @@ public interface UserMapper {
     //회원탈퇴(UserStatus Update)
     void updateUserStatus(@Param("status") String status, @Param("userNum")int userNum);
 
+    //회원의 비밀번호 변경
+    void updatePassword(int userNum, String encryptedPassword);
 
+    //유효한 회원조회 여부
+    UserDto findById(String userEmail);
 }

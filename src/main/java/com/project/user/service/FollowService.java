@@ -21,4 +21,5 @@ public interface FollowService {
 
     //특정 회원의 팔로잉 갯수 조회
     public int countFollowings(String userEmail);
+
 }
