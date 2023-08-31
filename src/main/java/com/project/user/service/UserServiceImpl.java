@@ -1,5 +1,6 @@
 package com.project.user.service;
 
+import com.project.exception.CustomException.NicknameAlreadyExistsException;
 import com.project.exception.CustomException.TokenInvalidException;
 import com.project.exception.CustomException.UserNotFoundException;
 import com.project.security.TokenProvider;
@@ -32,10 +33,13 @@ public class UserServiceImpl implements UserService {
 
     //사용자 프로필을 업데이트하는 메서드
     @Override
-    public String updateUser(UserDto userDto) throws IllegalAccessException {
+    public String updateUser(UserDto userDto) throws NicknameAlreadyExistsException {
         validateUserNickname(userDto.getUserNickname());
 
-        String userProfile = fileUploadService.uploadFile(userDto.getUserImage());
+        // 이미지 업로드 후 저장 경로를 userProfile에 저장
+        String imagePath = fileUploadService.uploadFile(userDto.getUserImage());
+        userDto.setUserProfile(imagePath);
+
 
         UserDto updatedUserDto = UserDto.builder()
                 .userNum(userDto.getUserNum())
