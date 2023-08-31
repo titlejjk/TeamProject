@@ -44,11 +44,8 @@ public class UserServiceImpl implements UserService {
                 .userGender(userDto.getUserGender())
                 .userBirthday(userDto.getUserBirthday())
                 .userProfile(userDto.getUserProfile())
-                .userImage(userDto.getUserImage())
-                .petTypeIds(userDto.getPetTypeIds())
                 .build();
 
-        updatePetInfo(updatedUserDto);
         userMapper.updateUser(updatedUserDto);
 
         return generateNewToken(updatedUserDto);
@@ -66,16 +63,6 @@ public class UserServiceImpl implements UserService {
     private String uploadImageAndUpdateProfile(UserDto userDto, MultipartFile userImage) {
         return fileUploadService.uploadFile(userImage);
     }
-
-    // 펫 정보 업데이트
-    private void updatePetInfo(UserDto userDto) {
-        petMapper.deletePetsByUserNum(userDto.getUserNum());
-        for(Integer petTypeId : userDto.getPetTypeIds()) {
-            UserPetDto userPetDto = UserPetDto.fromUserAndPetTypeId(userDto.getUserNum(), petTypeId);
-            petMapper.insertUserPet(userPetDto);
-        }
-    }
-
     // 새 토큰 생성
     private String generateNewToken(UserDto updatedUserDto) {
         return tokenProvider.create(updatedUserDto);
