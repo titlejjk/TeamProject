@@ -10,7 +10,7 @@ spring:
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
-  type-aliases-package: com.project.project.user.dto
+  type-aliases-package: com.project.user.dto
 
 logging:
   level:
@@ -20,3 +20,9 @@ logging:
 
 file:
   location: /Users/jojungeun/Desktop/TeamProject/upload
+
+servlet:
+  multipart:
+    enabled: true
+    max-file-size: 20MB  # 최대 파일 크기 설정
+    max-request-size: 20MB  # 최대 요청 크기 설정

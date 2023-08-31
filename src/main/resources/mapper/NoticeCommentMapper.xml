@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.project.project.noticecomment.NoticeCommentMapper">
+<mapper namespace="com.project.noticecomment.NoticeCommentMapper">
 
     <!-- notice_comment 테이블 전체 컬럼 -->
     <sql id="commentColumns">
@@ -15,7 +15,7 @@
 
 
     <!-- 공지사항 댓글 저장 -->
-    <insert id="save" parameterType="com.project.project.noticecomment.NoticeCommentDto" useGeneratedKeys="true" keyProperty="id">
+    <insert id="save" parameterType="com.project.noticecomment.NoticeCommentDto" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO notice_comment (
         <include refid="commentColumns" />
         ) VALUES (
@@ -30,7 +30,7 @@
 
 
     <!--  공지사항 댓글 상세정보 조회 -->
-    <select id="findById" parameterType="long" resultType="com.project.project.noticecomment.NoticeCommentDto">
+    <select id="findById" parameterType="long" resultType="com.project.noticecomment.NoticeCommentDto">
         SELECT
         <include refid="commentColumns" />
         FROM
@@ -41,7 +41,7 @@
 
 
     <!--  공지사항 댓글 수정 -->
-    <update id="update" parameterType="com.project.project.noticecomment.NoticeCommentDto">
+    <update id="update" parameterType="com.project.noticecomment.NoticeCommentDto">
         UPDATE notice_comment
         SET
             created_date = NOW()
@@ -59,7 +59,7 @@
 
 
     <!--  공지사항 댓글 리스트 조회 -->
-    <select id="findAll" parameterType="long" resultType="com.project.project.noticecomment.NoticeCommentDto">
+    <select id="findAll" parameterType="long" resultType="com.project.noticecomment.NoticeCommentDto">
         SELECT
         <include refid="commentColumns" />
         FROM

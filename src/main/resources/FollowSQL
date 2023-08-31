@@ -1,0 +1,7 @@
+#Follow 테이블
+CREATE TABLE follows (
+    follow_id INT AUTO_INCREMENT PRIMARY KEY, -- 팔로우 관계의 고유 ID
+    follower_email VARCHAR(255) NOT NULL,     -- 팔로우하는 회원의 이메일
+    following_email VARCHAR(255) NOT NULL,    -- 팔로우된 회원의 이메일
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP -- 팔로우된 시각
+);

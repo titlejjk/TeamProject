@@ -24,7 +24,8 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.3.1'
-	compileOnly 'org.projectlombok:lombok'
+    implementation 'org.jetbrains:annotations:24.0.0'
+    compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -38,6 +39,7 @@ dependencies {
 
 	implementation 'javax.xml.bind:jaxb-api:2.3.1'
 
+	implementation 'org.springframework.integration:spring-integration-mqtt:5.5.3'
 	//swagger의존성추가
 	implementation 'io.springfox:springfox-swagger2:2.9.2'
 	implementation 'io.springfox:springfox-swagger-ui:2.9.2'
