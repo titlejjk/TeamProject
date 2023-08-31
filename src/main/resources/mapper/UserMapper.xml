@@ -47,6 +47,7 @@
             UPDATE user
             SET
                 user_email = #{userEmail},
+                user_num = #{userNum},
                 user_nickname = #{userNickname},
                 user_gender = #{userGender},
                 user_birthday = #{userBirthday},
