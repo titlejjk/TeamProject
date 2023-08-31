@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
     public String updateUser(UserDto userDto) throws IllegalAccessException {
         validateUserNickname(userDto.getUserNickname());
 
-        String imagePath = fileUploadService.uploadFile(userDto.getUserImage());
+        String userProfile = fileUploadService.uploadFile(userDto.getUserImage());
 
         UserDto updatedUserDto = UserDto.builder()
                 .userNum(userDto.getUserNum())
