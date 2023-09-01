@@ -12,7 +12,7 @@ public interface UserService {
     void deactivateUser(int userNum);
 
     //회원의 비밀번호 변경
-    void updatePassword(String userEmail, String newPassword);
+    String  updatePassword(UserDto userDto);
 
     //회원의 프로필사진과 한 줄 소개 조회
     UserDto getUserProfileAndIntroduction(String userEmail);

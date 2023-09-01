@@ -20,7 +20,7 @@ public class UserDto {
     private int userNum;
     private String userEmail; //회원의 E-mail type ID
     private String userPassword; //회원의 비밀번호
-    private String userPasswordCheck;
+    private String userNewPassword; //회원의 새로운 비밀번호
     private String userNickname; //회원의 닉네임
     private UserGender userGender; //회원의 성별
     private String userBirthday; //회원의 생일

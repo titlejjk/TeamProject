@@ -87,16 +87,17 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updatePassword(String  userEmail, String newPassword) {
-        // 1. 유저 존재 여부 확인
-        UserDto userDto = userMapper.findByEmail(userEmail);
-        if (userDto == null) {
-            throw new UserNotFoundException("User does not exist");
-        }
+    public String updatePassword(UserDto userDto) {
+// 새 비밀번호를 BCrypt 알고리즘을 사용하여 암호화합니다.
+        String encryptedPassword = passwordEncoder.encode(userDto.getUserNewPassword());
 
-        // 2. 새 비밀번호 암호화 및 DB 업데이트
-        String encryptedPassword = passwordEncoder.encode(newPassword);
-        userMapper.updatePassword(userDto.getUserNum(), encryptedPassword);
+        // 암호화된 새 비밀번호를 DTO에 설정합니다.
+        userDto.setUserNewPassword(encryptedPassword);
+
+        // 암호화된 새 비밀번호를 데이터베이스에 업데이트합니다.
+        userMapper.updatePassword(userDto);
+
+        return "Password updated successfully";
     }
 
     @Override

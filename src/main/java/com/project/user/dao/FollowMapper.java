@@ -21,8 +21,9 @@ public interface FollowMapper {
     //Delete Follow
     void deleteFollow(FollowDto followDto);
 
-    //팔로우 관계의 존재 여부를 확인
-    int countFollow(@Param("followerEmail") String followerEmail, @Param("followingEmail") String followingEmail);
+    //팔로우 관계의 존재 여부를 확인 (이름을 명시적으로 지정해주기 위해 @Param사용)
+    int countFollow(FollowDto followDto);
+
 
     //팔로워 갯수 조회
     int countFollowers(String userEmail);

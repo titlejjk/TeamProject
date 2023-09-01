@@ -17,14 +17,14 @@ public class FollowServiceImpl implements FollowService{
     //팔로우/언팔로우 토글
     @Override
     public String toggleFollow(FollowDto followDto) {
-        int count = followMapper.countFollow(followDto.getFollowerEmail(), followDto.getFollowingEmail());
+        int count = followMapper.countFollow(followDto);
 
-        if(count > 0){
+        if (count > 0) {
             followMapper.deleteFollow(followDto);
-            return "언팔로우 되었습니다.";
-        }else{
+            return "Unfollowed successfully";
+        } else {
             followMapper.insertFollow(followDto);
-            return "팔로우 되었습니다.";
+            return "Followed successfully";
         }
     }
     //특정 회원의 팔로워 조회
