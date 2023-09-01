@@ -9,6 +9,7 @@ import com.project.user.dao.UserMapper;
 import com.project.user.dto.UserDto;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Builder
 @RequiredArgsConstructor
+@Slf4j
 public class UserServiceImpl implements UserService {
 
     //UserMapper 의존성추가
@@ -32,6 +34,7 @@ public class UserServiceImpl implements UserService {
     //사용자 프로필을 업데이트하는 메서드
     @Override
     public String updateUser(UserDto userDto) throws NicknameAlreadyExistsException {
+        log.info("Initial UserDto : {}", userDto);
         validateUserNickname(userDto.getUserNickname());
 
         // 이미지 업로드 후 저장 경로를 userProfile에 저장
@@ -48,8 +51,13 @@ public class UserServiceImpl implements UserService {
                 .userProfile(userDto.getUserProfile())
                 .build();
 
+        //DB에 회원 정보 업데이트
         userMapper.updateUser(updatedUserDto);
 
+        //업데이트된 회원 정보 다시 가져오기(userEmail로 사용하여 조회)
+        UserDto refreshedUser = userMapper.findByEmail(updatedUserDto.getUserEmail());
+        log.info("Initial UserDto : {}", userDto);
+        //회원정보 수정 후 새로운 토큰 생성
         return generateNewToken(updatedUserDto);
     }
 
@@ -67,6 +75,7 @@ public class UserServiceImpl implements UserService {
     }
     // 새 토큰 생성
     private String generateNewToken(UserDto updatedUserDto) {
+        System.out.println(updatedUserDto);
         return tokenProvider.create(updatedUserDto);
     }
 
@@ -78,20 +87,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updatePasswordByToken(String token, String newPassword) {
-        // 1. 토큰 검증 및 사용자 이메일 추출
-        String userEmail = tokenProvider.validate(token);
-        if (userEmail == null) {
-            throw new TokenInvalidException("Invalid or null token");
-        }
-
-        // 2. 유저 존재 여부 확인
+    public void updatePassword(String userEmail, String newPassword) {
+        // 1. 유저 존재 여부 확인
         UserDto userDto = userMapper.findByEmail(userEmail);
         if (userDto == null) {
             throw new UserNotFoundException("User does not exist");
         }
 
-        // 3. 새 비밀번호 암호화 및 DB 업데이트
+        // 2. 새 비밀번호 암호화 및 DB 업데이트
         String encryptedPassword = passwordEncoder.encode(newPassword);
         userMapper.updatePassword(userDto.getUserNum(), encryptedPassword);
     }

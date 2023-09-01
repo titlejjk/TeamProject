@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
     }
 
     //닉네임 중복 예외 처리 메서드
-    //BAD_REQUEST 상태코드 및 예외처리 메세지반환
+    //BAD_REQUEST 상태코드 및 예외처리 메세지 반환
     @ExceptionHandler(NicknameAlreadyExistsException.class)
     public ResponseEntity<String> handleNicknameAlreadyExistsException(NicknameAlreadyExistsException ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
@@ -41,5 +41,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UserNotFoundException.class)
     public ResponseEntity<String> handleUserNotFoundException(UserNotFoundException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
+    //회원의 비밀번호 변경시 예외처리 메세지 반환
+    @ExceptionHandler(PasswordUpdateException.class)
+    public ResponseEntity<String> handlePasswordUpdateException(PasswordUpdateException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

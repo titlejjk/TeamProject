@@ -82,8 +82,11 @@ public class AuthServiceImpl implements AuthService {
     }
 
     // 사용자의 반려동물 정보를 조회하는 메서드
-    private List<Map<String, Object>> getPetTypes(UserDto user) {
-        return petMapper.findPetTypesByUserNum(user.getUserNum());
+    private List<Map<String, Object>> getPetTypes(UserDto userDto) {
+        List<Map<String, Object>> petTypes = petMapper.findPetTypesByUserNum(userDto.getUserNum());
+        System.out.println("Returned petTypes: " + petTypes);
+        return petTypes;
+
     }
 
     // 사용자 정보와 새로운 반려동물 정보를 합치는 메서드
@@ -91,6 +94,9 @@ public class AuthServiceImpl implements AuthService {
         List<Integer> petTypeIds = extractPetTypeIds(petTypes);
         List<String> petTypeNames = extractPetTypeNames(petTypes);
 
+        // 반려동물 정보를 UserDto 객체에 담는다.
+        userDto.setPetTypeIds(petTypeIds);
+        userDto.setPetTypes(petTypeNames);
         return userDto;
     }
 
@@ -119,6 +125,7 @@ public class AuthServiceImpl implements AuthService {
         return new SignInResponseDto(token, exprTime, updatedUser);
     }
 
+    //이메일 중복 검사
     @Override
     public boolean isEmailDuplicated(String userEmail) {
         int count = userMapper.checkEmailDuplication(userEmail);

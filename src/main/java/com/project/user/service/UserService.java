@@ -12,6 +12,6 @@ public interface UserService {
     void deactivateUser(int userNum);
 
     //회원의 비밀번호 변경
-    void updatePasswordByToken(String token, String newPassword);
+    void updatePassword(String userEmail, String newPassword);
 
 }
