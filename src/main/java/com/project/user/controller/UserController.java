@@ -47,15 +47,24 @@ public class UserController {
         return new ResponseEntity<>("회원 탈퇴가 성공적으로 처리되었습니다", HttpStatus.OK);
     }
 
+    //비밀번호 변경 메서드
     @PostMapping("/updatePassword")
-    public ResponseEntity<?> updatePasswordByToken(@RequestParam String userEmail, @RequestParam String newPassword) {
+    public ResponseEntity<?> updatePasswordByToken(@RequestParam String  userEmail, @RequestParam String newPassword) {
         try {
             userService.updatePassword(userEmail, newPassword);
+            System.out.println("userEmail : " + userEmail + "newPassword" + newPassword);
             return new ResponseEntity<>("비밀번호가 성공적으로 변경되었습니다.", HttpStatus.OK);
         } catch (UserNotFoundException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
         } catch (PasswordUpdateException e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    //회원의 프로필사진과 한 줄 소개 조회 메서드
+    @GetMapping("/profile/{userEmail}")
+    public ResponseEntity<UserDto> getUserProfileAndIntroduction(@PathVariable String userEmail) {
+        UserDto userDto = userService.getUserProfileAndIntroduction(userEmail);
+        return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 }

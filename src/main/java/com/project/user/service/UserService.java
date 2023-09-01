@@ -14,4 +14,7 @@ public interface UserService {
     //회원의 비밀번호 변경
     void updatePassword(String userEmail, String newPassword);
 
+    //회원의 프로필사진과 한 줄 소개 조회
+    UserDto getUserProfileAndIntroduction(String userEmail);
+
 }

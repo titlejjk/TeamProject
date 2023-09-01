@@ -48,8 +48,8 @@ public class WebSecurityConfig {
                // 요청에 대한 인증 규칙을 설정
                .authorizeRequests()
                //회원등급에 대한 api권한부여
-               .antMatchers("/").hasAnyAuthority("USER")
-               .antMatchers("/admin").hasRole("ADMIN")
+               .antMatchers("/","/**").hasAnyAuthority("USER")
+               .antMatchers("/admin/**").hasRole("ADMIN")
                .antMatchers("/**","/error","/auth/login","/user/**").permitAll()
                //  '/'와 '/api/auth' 경로는 모든 사용자에게 허용되고, 나머지 요청은 인증된 사용자에게만 허용
                .anyRequest().authenticated();

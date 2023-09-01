@@ -87,7 +87,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updatePassword(String userEmail, String newPassword) {
+    public void updatePassword(String  userEmail, String newPassword) {
         // 1. 유저 존재 여부 확인
         UserDto userDto = userMapper.findByEmail(userEmail);
         if (userDto == null) {
@@ -97,5 +97,10 @@ public class UserServiceImpl implements UserService {
         // 2. 새 비밀번호 암호화 및 DB 업데이트
         String encryptedPassword = passwordEncoder.encode(newPassword);
         userMapper.updatePassword(userDto.getUserNum(), encryptedPassword);
+    }
+
+    @Override
+    public UserDto getUserProfileAndIntroduction(String userEmail) {
+        return userMapper.findUserProfileAndIntroductionByUserEmail(userEmail);
     }
 }

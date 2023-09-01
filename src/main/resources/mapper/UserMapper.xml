@@ -66,11 +66,16 @@
 
         <!-- 비밀번호 변경 -->
         <update id="updatePassword">
-            UPDATE user SET user_pwd = #{encryptedPassword} WHERE user_num = #{userNum}
+            UPDATE user SET user_pwd = #{encryptedPassword} WHERE user_email = #{userEmail}
         </update>
 
         <!-- 유효한 회원여부 조회(회원계정 -->
         <select id="findByUserEmail" resultType="com.project.user.dto.UserDto">
             SELECT user_email FROM user WHERE user_email = #{userEmail}
+        </select>
+
+        <!-- 회원의 프로필사진, 한 줄 소개 Select -->
+        <select id="findProfileAndIIntroduction" resultType="com.project.user.dto.UserDto">
+            SELECT user_profile, user_introduction FROM user WHERE user_email = #{userEmail};
         </select>
 </mapper>
