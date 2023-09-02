@@ -1,38 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.project.recipe.board.reply.dao.ReplyMapper">
+<mapper namespace="com.project.recipe.reply.dao.ReplyMapper">
 
-    <resultMap id="replyMap" type="com.project.recipe.board.dto.BoardDto">
+    <resultMap id="replyMap" type="com.project.recipe.reply.dto.ReplyDto">
         <id property="rplNum" column="rpl_num"/>
         <result property="rplNum" column="rpl_num"/>
         <result property="rcpNum" column="rcp_num"/>
         <result property="rplGroup" column="rpl_group"/>
     </resultMap>
 
-    <!--댓글 저장-->
+    <!--레시피 게시판 댓글 저장-->
     <insert id="insertRpl" parameterType="com.project.recipe.reply.dto.ReplyDto">
         <selectKey keyProperty="rplNum" order="BEFORE" resultType="Int">
             SELECT LAST_INSERT_ID()
         </selectKey>
         INSERT INTO recipe_reply
-        (rpl_num, rcp_num, rpl_writer, rpl_content,
-        rpl_group, rpl_deleted, rpl_regdate)
+        (user_num, rcp_num, rpl_content, rpl_regdate)
         VALUES
-        (#{rplNum}, #{rcpNum}, #{rplWriter}, #{rplContent},
-        #{rplGroup}, #{rplDelete}, #{regdate})
+        (#{userNum}, #{rcpNum}, #{rplContent}, CURRENT_TIMESTAMP)
     </insert>
 
-    <!--대댓글 저장-->
-    <insert id="insertSubRpl" parameterType="com.project.recipe.reply.dto.ReplyDto">
-        <selectKey keyProperty="rplNum" order="BEFORE" resultType="Int">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
-        INSERT INTO recipe_reply
-        (rpl_num, rcp_num, rpl_writer, rpl_content,
-        rpl_target, rpl_group, rpl_deleted, rpl_regdate)
-        VALUES
-        (#{rplNum}, #{rcpNum}, #{rplWriter}, #{rplContent},
-        #{rplTarget}, #{rplGroup}, #{rplDelete}, #{regdate})
-    </insert>
+    <!--레시피 게시판 댓글 수정-->
+    <update id="updateRpl" parameterType="com.project.recipe.reply.dto.ReplyDto">
+        UPDATE recipe_reply
+        SET rpl_content=#{rplContent}
+        WHERE rpl_num=#{rplNum}
+    </update>
 
+    <!--레시피 게시판 댓글 삭제(실제 DB에서 삭제X, 화면에서만 삭제O)-->
+    <update id="deleteRpl" parameterType="int">
+        UPDATE recipe_reply
+        SET rpl_deleted = 'yes'
+        WHERE rpl_num=#{rplNum}
+    </update>
+    
+    <!--레시피 게시판 댓글 조회-->
+    <select id="getList" parameterType="com.project.recipe.reply.dto.ReplyDto" resultType="com.project.recipe.reply.dto.ReplyDto">
+        SELECT
+            r.rcp_num AS rcpNum, r.rpl_num AS rplNum, r.user_num AS userNum, r.rpl_content AS rplContent,
+            r.rpl_deleted AS rplDeleted, r.rpl_regdate AS rplRegdate, u.user_nickname AS userNickname, u.user_profile AS userProfile
+        FROM recipe_reply r
+        JOIN user u ON r.user_num = u.user_num
+        WHERE r.rcp_num=#{rcpNum}
+        ORDER BY r.rpl_num
+<!--        LIMIT #{startRowNum}, #{endRowNum} -->
+    </select>
+
+<!--    &lt;!&ndash;레시피 게시판 댓글 개수&ndash;&gt;-->
+<!--    <select id="getCount" parameterType="int" resultType="int">-->
+<!--        SELECT COUNT(*)-->
+<!--        FROM recipe_reply-->
+<!--        WHERE rcp_num=#{rcpNum}-->
+<!--    </select>-->
 </mapper>

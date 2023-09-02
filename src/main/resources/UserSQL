@@ -17,13 +17,13 @@ CREATE TABLE user (
 
 
 ##반려동물종류 저장
-CREATE TABLE PetType (
+CREATE TABLE pet_type (
     pet_type_id INT PRIMARY KEY AUTO_INCREMENT,
     pet_type_name VARCHAR(50) NOT NULL
 );
 
 ###반려동물 테이블에 반려동물 종류 입력
-INSERT INTO PetType (pet_type_name) VALUES
+INSERT INTO pet_type (pet_type_name) VALUES
 ('반려견'),
 ('반려묘'),
 ('반려햄스터'),
@@ -32,7 +32,7 @@ INSERT INTO PetType (pet_type_name) VALUES
 ('없음');
 
 ####UserPet테이블(회원과 반려동물의 연결)
-CREATE TABLE UserPet (
+CREATE TABLE user_pet (
     user_pet_id INT PRIMARY KEY AUTO_INCREMENT,
     user_id INT NOT NULL,
     pet_type_id INT NOT NULL
