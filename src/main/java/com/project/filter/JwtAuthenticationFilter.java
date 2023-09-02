@@ -1,15 +1,14 @@
 package com.project.filter;
 
 import com.project.security.TokenProvider;
-import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.MalformedJwtException;
-import io.jsonwebtoken.UnsupportedJwtException;
+import com.project.user.dto.UserEnumClass.UserRole;  // UserRole import
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
@@ -22,36 +21,39 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
-public class JwtAuthencationFilter extends OncePerRequestFilter {
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final TokenProvider tokenProvider;
 
-    // 로거 인스턴스
-    private static final Logger logger = LoggerFactory.getLogger(JwtAuthencationFilter.class);
+    private static final Logger logger = LoggerFactory.getLogger(JwtAuthenticationFilter.class);
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
         try {
-            logger.debug("Processing authentication for '{}'", request.getRequestURL()); // 로깅 추가
-            //호출 HTTP Header에 토큰이 있는지 확인
+            logger.debug("Processing authentication for '{}'", request.getRequestURL());
+
             String token = parseBearerToken(request);
 
-            //해당 토큰이 null이 아니라면
             if (token != null && !token.equalsIgnoreCase("null")) {
 
-                //토큰을 검사하고 이상이 없다면 userEmail을 가져온다.
                 String userEmail = tokenProvider.validate(token);
 
-                //TODO: 토큰 안에 있는 권한을 가져온다.
                 String roleByToken = tokenProvider.getRoleByToken(token);
 
-                //TODO: Spring Security에 권한 부여
+                // Convert the roles from String to UserRole enum
+                List<GrantedAuthority> authorities = Arrays.stream(roleByToken.split(","))
+                        .map(role -> new SimpleGrantedAuthority(UserRole.fromValue(role).getValue()))
+                        .collect(Collectors.toList());
+
                 AbstractAuthenticationToken authentication =
-                        new UsernamePasswordAuthenticationToken(userEmail, null, AuthorityUtils.NO_AUTHORITIES);
+                        new UsernamePasswordAuthenticationToken(userEmail, null, authorities);
 
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
@@ -59,15 +61,14 @@ public class JwtAuthencationFilter extends OncePerRequestFilter {
                 securityContext.setAuthentication(authentication);
                 SecurityContextHolder.setContext(securityContext);
 
-                logger.debug("Authenticated user '{}'", userEmail); // 로깅 추가
-                logger.debug("SecurityContext created with authentication: '{}'", securityContext.getAuthentication());
+                logger.debug("Authenticated user '{}' with roles '{}'", userEmail, roleByToken);
             }
-        }catch (Exception e){
-            logger.error("Failed to process authentication request", e); //로깅추가
+        } catch (Exception e) {
+            logger.error("Failed to process authentication request", e);
         }
 
-            filterChain.doFilter(request, response);
-        }
+        filterChain.doFilter(request, response);
+    }
 
     private String parseBearerToken(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");

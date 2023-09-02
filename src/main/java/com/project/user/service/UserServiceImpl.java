@@ -49,6 +49,7 @@ public class UserServiceImpl implements UserService {
                 .userGender(userDto.getUserGender())
                 .userBirthday(userDto.getUserBirthday())
                 .userProfile(userDto.getUserProfile())
+                .userIntroduction(userDto.getUserIntroduction())
                 .build();
 
         //DB에 회원 정보 업데이트
@@ -99,9 +100,9 @@ public class UserServiceImpl implements UserService {
 
         return "Password updated successfully";
     }
-
+    //회원의 사진과 한줄소개를 조회
     @Override
     public UserDto getUserProfileAndIntroduction(String userEmail) {
-        return userMapper.findUserProfileAndIntroductionByUserEmail(userEmail);
+        return userMapper.findProfileAndIIntroduction(userEmail);
     }
 }

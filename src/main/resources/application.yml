@@ -14,14 +14,9 @@ mybatis:
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.project.user.dto
 
-logging:
-  level:
-    org.springframework.security: DEBUG
-    org.mybatis.spring: TRACE
-    com.project.project.user.mapper: DEBUG
-
 file:
   location: /Users/sujeong/Documents/workspace/TeamProject/src/main/resources/static/upload
+
 
 servlet:
   multipart:

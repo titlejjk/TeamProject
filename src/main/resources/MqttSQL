@@ -1,0 +1,13 @@
+-- 온도 정보를 저장할 테이블
+CREATE TABLE TemperatureRecords (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    temperature INT,
+    recordedTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 이벤트 정보를 저장할 테이블
+CREATE TABLE EventRecords (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    eventType VARCHAR(50),
+    recordedTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
