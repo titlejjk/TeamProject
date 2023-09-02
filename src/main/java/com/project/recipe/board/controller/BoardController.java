@@ -11,7 +11,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 @RestController
@@ -58,8 +60,10 @@ public class BoardController {
 
     //게시글 목록
     @GetMapping("/list")
-    public List<BoardDto> getList(){
-        return rcpService.getList();
+    public List<BoardDto> getList(@RequestParam(name="keyword", required = false)String keyword,
+                                  @RequestParam(name="condition", required = false)String condition){
+        Map<String, Object> result = new HashMap<>();
+        return rcpService.getList(keyword, condition, result);
     }
 
     //게시글 상세
@@ -68,4 +72,10 @@ public class BoardController {
         return rcpService.getDetail(rcpNum);
     }
 
+
+    @GetMapping("/myList")
+    public List<BoardDto> getMyList(@RequestParam int userNum){
+        Map<String, Object> result = new HashMap<>();
+        return rcpService.getRcpList(userNum, result);
+    }
 }

@@ -3,6 +3,7 @@ package com.project.recipe.board.service;
 import com.project.recipe.board.dto.BoardDto;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BoardService {
 
@@ -12,7 +13,9 @@ public interface BoardService {
 
     void deleteContent(int rcpNum);
 
-    List<BoardDto> getList();
+    List<BoardDto> getList(String keyword, String condition, Map<String, Object> result);
 
     BoardDto getDetail(int rcpNum);
+
+    List<BoardDto> getRcpList(int userNum, Map<String, Object> result);
 }
