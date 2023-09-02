@@ -1,0 +1,39 @@
+-- 게시글 테이블
+CREATE TABLE party_post (
+    post_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_num INT,
+    title VARCHAR(100),
+    content TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP
+);
+
+-- 댓글 테이블
+CREATE TABLE party_comment (
+    comment_id INT PRIMARY KEY AUTO_INCREMENT,
+    post_id INT,
+    user_num INT,
+    content TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- 좋아요 테이블
+CREATE TABLE party_like_table (
+    like_id INT PRIMARY KEY AUTO_INCREMENT,
+    post_id INT,
+    user_num INT
+);
+
+-- 게시글 이미지 테이블
+CREATE TABLE post_image (
+    image_id INT PRIMARY KEY AUTO_INCREMENT,
+    post_id INT,
+    image_url VARCHAR(200)
+);
+
+-- 조회수 테이블
+CREATE TABLE post_view_count (
+    view_id INT PRIMARY KEY AUTO_INCREMENT,
+    post_id INT,
+    count INT DEFAULT 0
+);
