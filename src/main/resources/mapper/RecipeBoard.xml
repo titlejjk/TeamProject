@@ -5,10 +5,13 @@
     <!--검색 조건-->
     <sql id="searchCondition">
         <choose>
-            <!--rcp_writer가 null이 아닌 경우에만 실행-->
-            <when test="rcp_writer != null">
+            <!--writer가 null이 아닌 경우에만 실행-->
+            <when test="userNickname != null">
                 <!--rcp_writer값에 부분적으로 일치하는 것을 모두 검색-->
-                WHERE rcp_writer LIKE '%'||#{writer}||'%'
+                SELECT r.*
+                FROM recipe r
+                JOIN user u ON r.user_num = u.user_num
+                WHERE u.user_nickname LIKE '%'||#{userNickname}||'%'
             </when>
         </choose>
     </sql>
@@ -16,19 +19,19 @@
     <!--게시글 & 메인 이미지 저장-->
     <insert id="insertRcp" parameterType="com.project.recipe.board.dto.BoardDto" useGeneratedKeys="true" keyProperty="rcpNum">
         INSERT INTO recipe
-        (rcp_writer, rcp_title, rcp_content, serving_size, cooking_time, cooking_level,
-        cooking_order, rcp_viewCount, rcp_regdate, main_org_name, main_save_name, main_path)
+            (user_num, rcp_title, rcp_content, serving_size, cooking_time, cooking_level, ingredients,
+            rcp_viewCount, rcp_regdate, main_path)
         VALUES
-        (#{writer}, #{title}, #{content}, #{servingSize}, #{cookingTime}, #{cookingLevel},
-        #{cookingOrder}, #{viewCount}, CURRENT_TIMESTAMP, #{mainOrgName}, #{mainSaveName}, #{mainPath})
+            (#{userNum}, #{title}, #{content}, #{servingSize}, #{cookingTime}, #{cookingLevel}, #{ingredients},
+            #{viewCount}, CURRENT_TIMESTAMP, #{mainPath})
     </insert>
 
     <!--게시글 & 메인 이미지 수정-->
     <update id="updateRcp" parameterType="com.project.recipe.board.dto.BoardDto">
         UPDATE recipe
-        SET rcp_writer=#{writer}, rcp_title=#{title}, rcp_content=#{content}, serving_size=#{servingSize},
-            cooking_time=#{cookingTime}, cooking_level=#{cookingLevel}, cooking_order=#{cookingOrder},
-            main_org_name=#{mainOrgName}, main_save_name=#{mainSaveName}, main_path=#{mainPath}
+        SET rcp_title=#{title}, rcp_content=#{content}, serving_size=#{servingSize},
+            cooking_time=#{cookingTime}, cooking_level=#{cookingLevel},
+            ingredients=#{ingredients}, main_path=#{mainPath}
         WHERE rcp_num=#{rcpNum}
     </update>
 
@@ -39,30 +42,61 @@
     </delete>
 
     <!--게시글 & 메인 이미지 목록 조회-->
-    <select id="getList" resultType="com.project.recipe.board.dto.BoardDto">
+    <select id="getList" parameterType="com.project.recipe.board.dto.BoardDto" resultType="com.project.recipe.board.dto.BoardDto">
         SELECT
-        rcp_num AS rcpNum, rcp_writer AS writer, rcp_title AS title,
-        main_org_name AS mainOrgName, main_save_name AS mainSaveName, main_path AS mainPath
-        FROM recipe
+            r.rcp_num AS rcpNum, r.user_num AS userNum, r.rcp_title AS title,
+            r.main_path AS mainPath, u.user_nickname AS userNickname
+        FROM recipe r
+        JOIN user u ON r.user_num = u.user_num
         <include refid="searchCondition"/> <!--검색조건 포함-->
-        ORDER BY rcp_num DESC <!--최신순으로 정렬-->
+        ORDER BY r.rcp_num DESC
+<!--        LIMIT #{startRowNum}, #{endRowNum}-->
     </select>
 
     <!--게시글 상세 조회-->
     <select id="getDetail" parameterType="int" resultType="com.project.recipe.board.dto.BoardDto">
         SELECT
-            r.rcp_num AS rcpNum, r.rcp_writer AS writer, r.rcp_title AS title, r.rcp_content AS content,
+            r.rcp_num AS rcpNum, r.user_num AS userNum, r.rcp_title AS title, r.rcp_content AS content,
             r.serving_size AS servingSize, r.cooking_time AS cookingTime, r.cooking_level AS cookingLevel,
-            r.cooking_order AS cookingOrder, r.rcp_viewCount AS viewCount, r.rcp_regdate AS regdate,
-            r.main_org_name AS mainOrgName, r.main_save_name AS mainSaveName, r.main_path AS mainPath
-        FROM recipe AS r
+            r.ingredients, r.rcp_viewCount AS viewCount, r.rcp_regdate AS regdate,r.main_path AS mainPath,
+            u.user_nickname AS userNickname
+        FROM recipe r
+        JOIN user u ON r.user_num = u.user_num
         WHERE r.rcp_num=#{rcpNum}
     </select>
 
-    <!--게시글 개수-->
-    <select id="getCount" parameterType="com.project.recipe.board.dto.BoardDto" resultType="int">
-        SELECT NVL(MAX(ROWNUM), 0) <!--테이블의 행 중 가장 큰 번호를 찾고, NULL이면 0을 반환-->
-        FROM recipe
+    <!--나의 글 조회-->
+    <select id="getRcpList" parameterType="com.project.recipe.board.dto.BoardDto" resultType="com.project.recipe.board.dto.BoardDto">
+        SELECT
+        r.rcp_num AS rcpNum, r.user_num AS userNum,
+        r.rcp_title AS title, r.main_path AS mainPath,
+        u.user_nickname AS userNickname
+        FROM recipe r
+        JOIN user u ON r.user_num = u.user_num
+        WHERE r.user_num = #{userNum}
+        ORDER BY r.rcp_num DESC
+        <!--        LIMIT #{startRowNum}, #{endRowNum} -->
     </select>
+
+    <!--조회수 증가-->
+    <update id="addViewCount" parameterType="int">
+        UPDATE recipe
+        SET rcp_viewCount=rcp_viewCount+1
+        WHERE rcp_num=#{rcpNum}
+    </update>
+
+    <!--게시글 개수-->
+<!--    <select id="getCount" parameterType="com.project.recipe.board.dto.BoardDto" resultType="int">-->
+<!--        SELECT COUNT(*)-->
+<!--        FROM recipe-->
+<!--        <include refid="searchCondition"/>-->
+<!--    </select>-->
+
+    <!--나의 게시글 개수-->
+<!--    <select id="getRcpCount" parameterType="int" resultType="int">-->
+<!--        SELECT COUNT(*)-->
+<!--        FROM recipe-->
+<!--        WHERE user_num=#{userNum}-->
+<!--    </select>-->
 
 </mapper>
