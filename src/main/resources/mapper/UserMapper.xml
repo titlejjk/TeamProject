@@ -47,6 +47,7 @@
             UPDATE user
             SET
                 user_email = #{userEmail},
+                user_num = #{userNum},
                 user_nickname = #{userNickname},
                 user_gender = #{userGender},
                 user_birthday = #{userBirthday},
@@ -56,11 +57,25 @@
             WHERE user_num = #{userNum}
         </update>
 
-        <!-- 회원탈퇴 메서드 -->
+        <!-- 회원탈퇴 -->
         <update id="updateUserStatus">
             UPDATE user
-            SET user_status = #{status}
+            SET user_status = 'INACTIVE'
             WHERE user_num = #{userNum}
         </update>
 
+        <!-- 비밀번호 변경 -->
+        <update id="updatePassword">
+            UPDATE user SET user_pwd = #{userNewPassword} WHERE user_email = #{userEmail}
+        </update>
+
+        <!-- 유효한 회원여부 조회(회원계정 -->
+        <select id="findByUserEmail" resultType="com.project.user.dto.UserDto">
+            SELECT user_email FROM user WHERE user_email = #{userEmail}
+        </select>
+
+        <!-- 회원의 프로필사진, 한 줄 소개 Select -->
+        <select id="findProfileAndIIntroduction" resultType="com.project.user.dto.UserDto">
+            SELECT user_profile, user_introduction FROM user WHERE user_email = #{userEmail};
+        </select>
 </mapper>

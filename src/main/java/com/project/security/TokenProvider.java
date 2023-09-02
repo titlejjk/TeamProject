@@ -28,8 +28,8 @@ public class TokenProvider {
         claims.put("userNum", userDto.getUserNum());
         claims.put("userEmail", userDto.getUserEmail());
         claims.put("userNickname", userDto.getUserNickname());
-        claims.put("petTypes", userDto.getPetTypes());
-        claims.put("petTypeIds", userDto.getPetTypeIds());
+        claims.put("userBirthday", userDto.getUserBirthday());
+        claims.put("userTypes", userDto.getPetTypes());
         claims.put("roles", userDto.getRole());
         //현재 시간으로부터 1시간으로 설정
         Duration tokenDuration = Duration.ofHours(1);
