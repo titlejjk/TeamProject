@@ -1,4 +1,4 @@
-package com.project.user.service;
+package com.project.recipe.board.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -8,9 +8,8 @@ import java.io.File;
 import java.util.UUID;
 
 @Service
-public class FileUploadService {
-
-    @Value("${file.location}")//파일 저장 경로(application.yml에서 설정)
+public class ImageUploadService {
+    @Value("${file.location}")
     private String fileLocation;
 
     public String uploadFile(MultipartFile file){
@@ -35,6 +34,6 @@ public class FileUploadService {
             e.printStackTrace();//예외처리
         }
         //저장된 이미지 경로 반환
-        return "/users/profile/" + saveFileName;
+        return saveFileName;
     }
 }

@@ -4,7 +4,7 @@ import com.project.recipe.board.dao.BoardMapper;
 import com.project.recipe.board.dto.BoardDto;
 import com.project.recipe.image.sub.dao.SubImgMapper;
 import com.project.recipe.image.sub.dto.SubImgDto;
-import com.project.user.dto.UserDto;
+import com.project.user.service.FileUploadService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -12,10 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.HashMap;
+import java.nio.file.Paths;;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -29,43 +27,24 @@ public class BoardServiceImpl implements BoardService {
     @Autowired
     private SubImgMapper subImgMapper;
 
+    @Autowired
+    private ImageUploadService imageUpload;
+
     //파일 업로드 경로
     @Value("${file.location}")
     private String imgPath;
 
+    private String uploadAndInsertImage(BoardDto dto){
+        return imageUpload.uploadFile(dto.getImageFile());
+    }
+
     //게시글 + 메인이미지 저장 처리 메소드
     @Override
     public void saveContent(BoardDto dto) {
-            //첨부 파일이 없을 경우
-        if(dto.getImageFile().isEmpty()){
-            System.out.println("이미지 업로드 필요");
-            //첨부 파일이 있을 경우
-        }else{
-            //1. Dto에 담긴 파일을 추출
-            MultipartFile mainImg = dto.getImageFile();
-            //2. 원본 파일명을 불러옴
-            String mainOrgName = mainImg.getOriginalFilename();
-            //3. 서버 저장용 파일명을 생성
-            String mainSaveName = UUID.randomUUID().toString() + mainOrgName;
-            //4. 저장경로 설정
-            String mainPath = imgPath + File.separator + mainSaveName;
-            //5. 폴더가              없을 경우 폴더 생성
-            File uploadFile = new File(imgPath);
-            if(!uploadFile.exists()){
-                uploadFile.mkdir();
-            }
-            //6. 해당 경로에 파일 저장 (서버에 저장)
-            try{
-                //mainPath를 기반으로한 Path 객체를 생성한 후 절대경로로 변환
-                Path path = Paths.get(mainPath).toAbsolutePath();
-                //Path 객체를 File 객체로 변환하여 업로드 (Path 객체 사용시 경로를 더 안전하게 처리할 수 있음)
-                mainImg.transferTo(path.toFile());
-            }catch(IOException e){
-                e.printStackTrace();
-            }
-            //7. 게시글 + 이미지 등록 (저장)
-            rcpMapper.insertRcp(dto);
-        }
+        String imagePath = uploadAndInsertImage(dto);
+        dto.setMainPath(imagePath);
+        //7. 게시글 + 이미지 등록 (저장)
+        rcpMapper.insertRcp(dto);
     }
 
     //게시글 + 메인이미지 수정 처리 메소드

@@ -35,7 +35,7 @@
     </update>
     
     <!--레시피 게시판 댓글 조회-->
-    <select id="getList" parameterType="com.project.recipe.reply.dto.ReplyDto" resultType="com.project.recipe.reply.dto.ReplyDto">
+    <select id="getRplList" parameterType="com.project.recipe.reply.dto.ReplyDto" resultType="com.project.recipe.reply.dto.ReplyDto">
         SELECT
             r.rcp_num AS rcpNum, r.rpl_num AS rplNum, r.user_num AS userNum, r.rpl_content AS rplContent,
             r.rpl_deleted AS rplDeleted, r.rpl_regdate AS rplRegdate, u.user_nickname AS userNickname, u.user_profile AS userProfile
@@ -46,10 +46,22 @@
 <!--        LIMIT #{startRowNum}, #{endRowNum} -->
     </select>
 
-<!--    &lt;!&ndash;레시피 게시판 댓글 개수&ndash;&gt;-->
+    <!--나의 댓글 조회-->
+    <select id="getMyRplList" parameterType="com.project.recipe.reply.dto.ReplyDto" resultType="com.project.recipe.reply.dto.ReplyDto">
+        SELECT
+            r.rcp_num AS rcpNum, r.rpl_num AS rplNum, r.user_num AS userNum, r.rpl_content AS rplContent,
+            r.rpl_deleted AS rplDeleted, r.rpl_regdate AS rplRegdate, u.user_nickname AS userNickname, u.user_profile AS userProfile
+        FROM recipe_reply r
+        JOIN user u ON r.user_num = u.user_num
+        WHERE r.user_num=#{userNum} AND r.rcp_num=#{rcpNum}
+        ORDER BY r.rpl_num DESC
+    </select>
+
+    <!--레시피 게시판 댓글 개수-->
 <!--    <select id="getCount" parameterType="int" resultType="int">-->
 <!--        SELECT COUNT(*)-->
 <!--        FROM recipe_reply-->
 <!--        WHERE rcp_num=#{rcpNum}-->
 <!--    </select>-->
+
 </mapper>

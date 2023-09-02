@@ -11,8 +11,6 @@ CREATE TABLE recipe(
 	ingredients VARCHAR(255) NOT NULL, -- 재료
 	rcp_viewCount INT, -- 조회수
     rcp_regdate DATE, -- 글 작성일
-	main_org_name VARCHAR(255) NOT NULL, -- 메인이미지 원본 파일명
-	main_save_name VARCHAR(255) NOT NULL, -- 메인이미지 저장 파일명
 	main_path TEXT NOT NULL -- 매인이미지 파일 경로
 )charset=utf8;
 
@@ -21,8 +19,6 @@ CREATE TABLE recipe_subImg(
   	sub_num INT AUTO_INCREMENT PRIMARY KEY, -- 서브이미지 번호
 	rcp_num INT NOT NULL, -- 게시글 번호
 	FOREIGN KEY (rcp_num) REFERENCES recipe(rcp_num),
-  	sub_org_name VARCHAR(255) NOT NULL, -- 서브이미지 원본 파일명
-  	sub_save_name VARCHAR(255) NOT NULL, -- 서브이미지 저장 파일명
   	sub_path TEXT NOT NULL, -- 서브이미지 파일 경로
 	sub_order INT NOT NULL -- 서브이미지 순서
 )charset=utf8;

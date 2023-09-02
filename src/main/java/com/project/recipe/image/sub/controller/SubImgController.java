@@ -17,13 +17,13 @@ public class SubImgController {
     @Autowired
     private SubImgService subImgService;
 
-    //서브이미지 목록  (필요 여부 확인!!)
-    @GetMapping("/list")
-    public List<SubImgDto> list(@RequestParam int rcpNum){
-        List<SubImgDto> list = new ArrayList<>();
-        list = subImgService.getImgs(rcpNum);
-        return list;
-    }
+    //서브이미지 목록
+//    @GetMapping("/list")
+//    public List<SubImgDto> list(@RequestParam int rcpNum){
+//        List<SubImgDto> list = new ArrayList<>();
+//        list = subImgService.getImgs(rcpNum);
+//        return list;
+//    }
 
     //서브이미지 삭제
     @DeleteMapping("/delete")

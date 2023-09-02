@@ -12,6 +12,7 @@ public interface ReplyService {
 
     void deleteReply(int rplNum);
 
-    List<ReplyDto> getList(int rcpNum, Map<String, Object> result);
+    List<ReplyDto> getRplList(int rcpNum);
 
+    List<ReplyDto> getMyRplList(int userNum, int rcpNum);
 }

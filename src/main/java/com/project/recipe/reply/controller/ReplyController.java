@@ -42,9 +42,14 @@ public class ReplyController {
 
     //댓글 목록
     @GetMapping("/list")
-    public List<ReplyDto> getList (@RequestParam int rcpNum){
-        Map<String, Object> result = new HashMap<>();
-        return rplService.getList(rcpNum, result);
+    public List<ReplyDto> getRplList (@RequestParam int rcpNum){
+        return rplService.getRplList(rcpNum);
+    }
+
+    //내가 작성한 댓글
+    @GetMapping("/myRplList")
+    public List<ReplyDto> getMyRplList (@RequestParam int userNum, @RequestParam int rcpNum){
+        return rplService.getMyRplList(userNum, rcpNum);
     }
 
 }

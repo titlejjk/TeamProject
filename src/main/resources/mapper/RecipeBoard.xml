@@ -20,18 +20,18 @@
     <insert id="insertRcp" parameterType="com.project.recipe.board.dto.BoardDto" useGeneratedKeys="true" keyProperty="rcpNum">
         INSERT INTO recipe
             (user_num, rcp_title, rcp_content, serving_size, cooking_time, cooking_level, ingredients,
-            rcp_viewCount, rcp_regdate, main_org_name, main_save_name, main_path)
+            rcp_viewCount, rcp_regdate, main_path)
         VALUES
             (#{userNum}, #{title}, #{content}, #{servingSize}, #{cookingTime}, #{cookingLevel}, #{ingredients},
-            #{viewCount}, CURRENT_TIMESTAMP, #{mainOrgName}, #{mainSaveName}, #{mainPath})
+            #{viewCount}, CURRENT_TIMESTAMP, #{mainPath})
     </insert>
 
     <!--게시글 & 메인 이미지 수정-->
     <update id="updateRcp" parameterType="com.project.recipe.board.dto.BoardDto">
         UPDATE recipe
         SET rcp_title=#{title}, rcp_content=#{content}, serving_size=#{servingSize},
-            cooking_time=#{cookingTime}, cooking_level=#{cookingLevel}, ingredients=#{ingredients},
-            main_org_name=#{mainOrgName}, main_save_name=#{mainSaveName}, main_path=#{mainPath}
+            cooking_time=#{cookingTime}, cooking_level=#{cookingLevel},
+            ingredients=#{ingredients}, main_path=#{mainPath}
         WHERE rcp_num=#{rcpNum}
     </update>
 
@@ -43,9 +43,9 @@
 
     <!--게시글 & 메인 이미지 목록 조회-->
     <select id="getList" parameterType="com.project.recipe.board.dto.BoardDto" resultType="com.project.recipe.board.dto.BoardDto">
-        SELECT r.rcp_num AS rcpNum, r.user_num AS userNum, r.rcp_title AS title,
-            r.main_org_name AS mainOrgName, r.main_save_name AS mainSaveName, r.main_path AS mainPath,
-            u.user_nickname AS userNickname
+        SELECT
+            r.rcp_num AS rcpNum, r.user_num AS userNum, r.rcp_title AS title,
+            r.main_path AS mainPath, u.user_nickname AS userNickname
         FROM recipe r
         JOIN user u ON r.user_num = u.user_num
         <include refid="searchCondition"/> <!--검색조건 포함-->
@@ -58,37 +58,25 @@
         SELECT
             r.rcp_num AS rcpNum, r.user_num AS userNum, r.rcp_title AS title, r.rcp_content AS content,
             r.serving_size AS servingSize, r.cooking_time AS cookingTime, r.cooking_level AS cookingLevel,
-            r.ingredients, r.rcp_viewCount AS viewCount, r.rcp_regdate AS regdate, r.main_org_name AS mainOrgName,
-            r.main_save_name AS mainSaveName, r.main_path AS mainPath, u.user_nickname AS userNickname
+            r.ingredients, r.rcp_viewCount AS viewCount, r.rcp_regdate AS regdate,r.main_path AS mainPath,
+            u.user_nickname AS userNickname
         FROM recipe r
         JOIN user u ON r.user_num = u.user_num
         WHERE r.rcp_num=#{rcpNum}
     </select>
 
-<!--    &lt;!&ndash;게시글 개수&ndash;&gt;-->
-<!--    <select id="getCount" parameterType="com.project.recipe.board.dto.BoardDto" resultType="int">-->
-<!--        SELECT COUNT(*)-->
-<!--        FROM recipe-->
-<!--        <include refid="searchCondition"/>-->
-<!--    </select>-->
-
     <!--나의 글 조회-->
     <select id="getRcpList" parameterType="com.project.recipe.board.dto.BoardDto" resultType="com.project.recipe.board.dto.BoardDto">
-        SELECT r.rcp_num AS rcpNum, r.user_num AS userNum, u.user_nickname AS userNickname, r.rcp_title AS title,
-            r.main_org_name AS mainOrgName, r.main_save_name AS mainSaveName, r.main_path AS mainPath
+        SELECT
+        r.rcp_num AS rcpNum, r.user_num AS userNum,
+        r.rcp_title AS title, r.main_path AS mainPath,
+        u.user_nickname AS userNickname
         FROM recipe r
         JOIN user u ON r.user_num = u.user_num
         WHERE r.user_num = #{userNum}
         ORDER BY r.rcp_num DESC
-<!--        LIMIT #{startRowNum}, #{endRowNum} -->
+        <!--        LIMIT #{startRowNum}, #{endRowNum} -->
     </select>
-
-<!--    &lt;!&ndash;나의 게시글 개수&ndash;&gt;-->
-<!--    <select id="getRcpCount" parameterType="int" resultType="int">-->
-<!--        SELECT COUNT(*)-->
-<!--        FROM recipe-->
-<!--        WHERE user_num=#{userNum}-->
-<!--    </select>-->
 
     <!--조회수 증가-->
     <update id="addViewCount" parameterType="int">
@@ -96,5 +84,19 @@
         SET rcp_viewCount=rcp_viewCount+1
         WHERE rcp_num=#{rcpNum}
     </update>
+
+    <!--게시글 개수-->
+<!--    <select id="getCount" parameterType="com.project.recipe.board.dto.BoardDto" resultType="int">-->
+<!--        SELECT COUNT(*)-->
+<!--        FROM recipe-->
+<!--        <include refid="searchCondition"/>-->
+<!--    </select>-->
+
+    <!--나의 게시글 개수-->
+<!--    <select id="getRcpCount" parameterType="int" resultType="int">-->
+<!--        SELECT COUNT(*)-->
+<!--        FROM recipe-->
+<!--        WHERE user_num=#{userNum}-->
+<!--    </select>-->
 
 </mapper>
