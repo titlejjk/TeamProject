@@ -1,6 +1,7 @@
 package com.project.config;
 
-import com.project.filter.JwtAuthencationFilter;
+
+import com.project.filter.JwtAuthenticationFilter;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +25,7 @@ import java.util.Collections;
 public class WebSecurityConfig {
 
     // 필터를 주입 JWT 인증을 처리하는 데 사용
-    private final JwtAuthencationFilter jwtAuthencationFilter;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
     private static final Logger logger = LoggerFactory.getLogger(WebSecurityConfig.class);
 
    @Bean
@@ -49,14 +50,14 @@ public class WebSecurityConfig {
                .authorizeRequests()
                //회원등급에 대한 api권한부여
                .antMatchers("/","/**").hasAnyAuthority("USER")
-               .antMatchers("/admin/**").hasRole("ADMIN")
+               .antMatchers("/admin/**").hasAuthority("ADMIN")
                .antMatchers("/**","/error","/auth/login","/user/**").permitAll()
                //  '/'와 '/api/auth' 경로는 모든 사용자에게 허용되고, 나머지 요청은 인증된 사용자에게만 허용
                .anyRequest().authenticated();
 
        // jwtAuthencationFilter 를 UsernamePasswordAuthenticationFilter 앞에 등록하고 필터 체인을 반환하는 역할
        // Spring Security 필터 체인에 사용자 정의 필터를 추가하여 JWT 인증을 처리하도록 구성
-       httpSecurity.addFilterBefore(jwtAuthencationFilter, UsernamePasswordAuthenticationFilter.class);
+       httpSecurity.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 
        logger.debug("Web Security Configuration Completed");
        return httpSecurity.build();
