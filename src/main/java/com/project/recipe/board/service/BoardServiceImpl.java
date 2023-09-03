@@ -165,7 +165,7 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<BoardDto> getRcpList(int userNum, Map<String, Object> result) {
+    public List<BoardDto> getMyList(int userNum, Map<String, Object> result) {
 //        //한 페이지에 보여줄 게시글 개수
 //        final int PAGE_ROW_COUNT = 9;
 //        //하단에 보여줄 페이지 번호 개수
@@ -179,7 +179,7 @@ public class BoardServiceImpl implements BoardService {
 //        dto.setStartRowNum(startRowNum);
 //        dto.setEndRowNum(endRowNum);
         //해당 작성자가 작성한 게시글 목록을 조회
-        List<BoardDto> myList = rcpMapper.getRcpList(dto);
+        List<BoardDto> myList = rcpMapper.getMyList(dto);
 //        int totalRow = rcpMapper.getRcpCount(userNum);
 //        //페이지 번호에 따른 시작/끝/총 페이지 수 를 계산
 //        int startPageNum = 1 + ((pageNum - 1) / PAGE_DISPLAY_COUNT) * PAGE_DISPLAY_COUNT;

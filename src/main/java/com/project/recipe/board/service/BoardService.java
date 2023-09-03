@@ -17,5 +17,5 @@ public interface BoardService {
 
     BoardDto getDetail(int rcpNum);
 
-    List<BoardDto> getRcpList(int userNum, Map<String, Object> result);
+    List<BoardDto> getMyList(int userNum, Map<String, Object> result);
 }

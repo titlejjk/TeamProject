@@ -76,6 +76,6 @@ public class BoardController {
     @GetMapping("/myList")
     public List<BoardDto> getMyList(@RequestParam int userNum){
         Map<String, Object> result = new HashMap<>();
-        return rcpService.getRcpList(userNum, result);
+        return rcpService.getMyList(userNum, result);
     }
 }
