@@ -1,5 +1,5 @@
 <img src="https://capsule-render.vercel.app/api?type=soft&color=auto&height=200&section=header&text=TeamProject&fontSize=70" />
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=titlejjk)](https://github.com/anuraghazra/github-readme-stats)
+![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=titlejjk@gmail.com&hide=contribs,prs&show_icons=true&theme=테마)
 # TeamProject
 AcornTeamProject
 **프로젝트 관리 계획 수립**
