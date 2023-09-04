@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Getter
-@Setter
 public class FollowDto {
 
     private int followId; //팔로우 관계의 고유 ID

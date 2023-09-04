@@ -1,5 +1,6 @@
 package com.project.user.controller;
 
+import com.project.party_post.post_like.dto.LikeDto;
 import com.project.user.dto.FollowDto;
 import com.project.user.service.FollowServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -17,26 +18,29 @@ public class FollowController {
 
     private final FollowServiceImpl followService;
 
-    //팔로우/언팔로우 토글
-    /*
-        팔로우 상태를 토글할 수 있게 설정함.
-        클라이언트 측에서는 서버로부터 반환된 메세지를 사용자에게 보여줄 수 있음.
-     */
+    // 좋아요 토글
     @PostMapping("/toggle")
-    public ResponseEntity<String> toggleFollow(@RequestBody FollowDto followDto) {
+    public ResponseEntity<String> toggleLike(@RequestBody FollowDto followDto) {
         String message = followService.toggleFollow(followDto);
         return ResponseEntity.ok(message);
     }
-    // 특정 회원의 팔로워 갯수 조회
+
+    // 특정 게시글에 대한 좋아요 갯수 조회
     @GetMapping("/followers/count/{userEmail}")
-    public int countFollowers(@PathVariable String userEmail) {
-        return followService.countFollowers(userEmail);
+    public ResponseEntity<Integer> countLikesByPostId(@PathVariable String userEmail) {
+        int count = followService.countFollowers(userEmail);
+        return ResponseEntity.ok(count);
     }
 
-    // 특정 회원의 팔로잉 갯수 조회
     @GetMapping("/followings/count/{userEmail}")
-    public int countFollowings(@PathVariable String userEmail) {
-        return followService.countFollowings(userEmail);
+    public ResponseEntity<Integer> countFollowings(@PathVariable String userEmail) {
+        int count = followService.countFollowings(userEmail);
+        return ResponseEntity.ok(count);
     }
-
+    // 현재 사용자가 특정 회원을 팔로우했는지 확인
+    @GetMapping("/isFollowing/{followerEmail}/{followingEmail}")
+    public ResponseEntity<Boolean> isFollowing(@PathVariable String followerEmail, @PathVariable String followingEmail) {
+        boolean isFollowing = followService.isFollowing(followerEmail, followingEmail);
+        return ResponseEntity.ok(isFollowing);
+    }
 }

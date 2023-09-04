@@ -18,7 +18,7 @@ import org.springframework.messaging.MessageChannel;
 @IntegrationComponentScan
 public class MqttConfig {
 
-    // MQTT broker에 연결할 설정을 정의합니다.
+    // MQTT broker에 연결할 설정을 정의.
     @Bean
     public MqttConnectOptions mqttConnectOptions(){
         MqttConnectOptions mqttConnectOptions = new MqttConnectOptions();
@@ -27,7 +27,7 @@ public class MqttConfig {
         return mqttConnectOptions;
     }
 
-    // MQTT Client Factory를 생성합니다.
+    // MQTT Client Factory를 생성.
     @Bean
     public MqttPahoClientFactory mqttClientFactory() {
         DefaultMqttPahoClientFactory factory = new DefaultMqttPahoClientFactory();
@@ -35,13 +35,13 @@ public class MqttConfig {
         return factory;
     }
 
-    // 메시지를 받을 채널을 정의합니다.
+    // 메시지를 받을 채널을 정의.
     @Bean
     public MessageChannel mqttInputChannel() {
         return new DirectChannel();
     }
 
-    // MQTT 메시지를 받는 Adapter를 설정합니다.
+    // MQTT 메시지를 받는 Adapter를 설정.
     @Bean
     public MessageProducer inbound() {
         MqttPahoMessageDrivenChannelAdapter adapter =

@@ -5,23 +5,24 @@ CREATE TABLE party_post (
     title VARCHAR(100),
     content TEXT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
-
--- 댓글 테이블
+-- 댓글관련
 CREATE TABLE party_comment (
     comment_id INT PRIMARY KEY AUTO_INCREMENT,
     post_id INT,
     user_num INT,
     content TEXT,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
--- 좋아요 테이블
 CREATE TABLE party_like_table (
     like_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_num INT,
     post_id INT,
-    user_num INT
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(user_num, post_id)
 );
 
 -- 게시글 이미지 테이블
@@ -31,9 +32,5 @@ CREATE TABLE post_image (
     image_url VARCHAR(200)
 );
 
--- 조회수 테이블
-CREATE TABLE post_view_count (
-    view_id INT PRIMARY KEY AUTO_INCREMENT,
-    post_id INT,
-    count INT DEFAULT 0
-);
+-- 조회수 컬럼추가
+ALTER TABLE party_post ADD COLUMN view_count INT DEFAULT 0;

@@ -3,41 +3,25 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.project.user.dao.FollowMapper">
 
-    <!-- 팔로우 추가 -->
-    <insert id="insertFollow">
-        INSERT INTO follows (follower_email, following_email)
-        VALUES (#{followerEmail}, #{followingEmail})
-    </insert>
-
-    <!-- 팔로워 조회 -->
-    <select id="findFollowers" resultType="com.project.user.dto.FollowDto">
-        SELECT * FROM follows WHERE follower_email = #{userEmail}
-    </select>
-
-    <!-- 팔로잉 조회 -->
-    <select id="findFollowings" resultType="com.project.user.dto.FollowDto">
-        SELECT * FROM follows WHERE following_email = #{userEmail}
-    </select>
-
-    <!-- 팔로우 삭제 -->
-    <delete id="deleteFollow">
-        DELETE FROM follows WHERE follower_email = #{followerEmail} AND following_email = #{followingEmail}
-    </delete>
-
     <!-- 팔로우 관계의 존재 여부를 확인 -->
     <select id="countFollow" resultType="int">
-        SELECT COUNT(*) FROM follows
+        SELECT COUNT(*) FROM follows_new
         WHERE follower_email = #{followerEmail} AND following_email = #{followingEmail}
     </select>
 
-    <!-- 팔로워 갯수 조회 -->
+    <!-- 팔로워 수 조회 -->
     <select id="countFollowers" resultType="int">
-        SELECT COUNT(*) FROM follows WHERE follower_email = #{userEmail}
+        SELECT COUNT(*) FROM follows_new WHERE follower_email = #{userEmail}
     </select>
 
-    <!-- 팔로잉 갯수 조회 -->
+    <!-- 팔로잉 수 조회 -->
     <select id="countFollowings" resultType="int">
-        SELECT COUNT(*) FROM follows WHERE following_email = #{userEmail}
+        SELECT COUNT(*) FROM follows_new WHERE following_email = #{userEmail}
+    </select>
+
+    <!-- 현재 사용자가 특정 회원을 팔로우했는지 확인 -->
+    <select id="isFollowing" resultType="boolean">
+        SELECT COUNT(*) FROM follows_new WHERE follower_email = #{followerEmail} AND following_email = #{followingEmail}
     </select>
 
 </mapper>
