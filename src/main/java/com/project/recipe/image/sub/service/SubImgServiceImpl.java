@@ -1,5 +1,6 @@
 package com.project.recipe.image.sub.service;
 
+import com.project.exception.CustomException.ImageMissingException;
 import com.project.recipe.board.dto.BoardDto;
 import com.project.recipe.board.service.ImageUploadService;
 import com.project.recipe.image.sub.dao.SubImgMapper;
@@ -37,6 +38,7 @@ public class SubImgServiceImpl implements SubImgService {
     //서브이미지 저장 처리 메소드
     @Override
     public void saveImg(int rcpNum, List<MultipartFile> subImgs) {
+
         List<String> imagePaths = new ArrayList<>();
         int i = 1;
         for (MultipartFile subImg : subImgs){
@@ -48,13 +50,12 @@ public class SubImgServiceImpl implements SubImgService {
             dto.setRcpNum(rcpNum);
             dto.setSubPath(imagePath);
             dto.setSubOrder(i);
-           // dto.setSubOrgName(subImg.getOriginalFilename());
+            // dto.setSubOrgName(subImg.getOriginalFilename());
             //dto.setSubSaveName(subImg.getOriginalFilename());
             //dto에 저장된 이미지 파일 추출
             imgMapper.insertImg(dto);
             i++;
         }
-
     }
 
     //서브이미지 삭제 처리 메소드

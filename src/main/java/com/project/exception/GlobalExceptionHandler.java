@@ -48,4 +48,17 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handlePasswordUpdateException(PasswordUpdateException ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
     }
+
+    //필수 입력요소가 누락되었을 때 발생시킬 예외
+    @ExceptionHandler(RequiredFieldMissingException.class)
+    public ResponseEntity<String> handlerRequiredFieldMissingException(RequiredFieldMissingException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NO_CONTENT);
+    }
+
+    //필수 이미지가 누락되었을 때 발생시킬 예외
+    @ExceptionHandler(ImageMissingException.class)
+    public ResponseEntity<String> handlerImageMissingException(ImageMissingException ex){
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NO_CONTENT);
+    }
+
 }

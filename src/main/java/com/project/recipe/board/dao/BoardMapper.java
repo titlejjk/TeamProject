@@ -20,8 +20,11 @@ public interface BoardMapper {
     BoardDto getDetail(int rcpNum);
     //조회수 증가
     void addViewCount(int num);
-    //내가 작성한 글 목록 조회
+    //내가 작성한 게시글 목록 조회
     List<BoardDto> getMyList(BoardDto dto);
+    //카테고리 별 게시글 목록 조회
+    List<BoardDto> getByCategory(BoardDto dto);
+
     //전체 글 개수
     //int getCount(BoardDto dto);
     //내가 작성한 글 개수
