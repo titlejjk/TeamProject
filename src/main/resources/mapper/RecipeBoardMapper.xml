@@ -19,11 +19,11 @@
     <!--게시글 & 메인 이미지 저장-->
     <insert id="insertRcp" parameterType="com.project.recipe.board.dto.BoardDto" useGeneratedKeys="true" keyProperty="rcpNum">
         INSERT INTO recipe
-            (user_num, rcp_title, rcp_content, serving_size, cooking_time, cooking_level, ingredients,
-            rcp_viewCount, rcp_regdate, main_path)
+            (user_num, pet_num, rcp_title, rcp_content, serving_size, cooking_time,
+            cooking_level, ingredients, rcp_viewCount, rcp_regdate, main_path)
         VALUES
-            (#{userNum}, #{title}, #{content}, #{servingSize}, #{cookingTime}, #{cookingLevel}, #{ingredients},
-            #{viewCount}, CURRENT_TIMESTAMP, #{mainPath})
+            (#{userNum}, #{petNum}, #{title}, #{content}, #{servingSize}, #{cookingTime},
+            #{cookingLevel}, #{ingredients}, #{viewCount}, CURRENT_TIMESTAMP, #{mainPath})
     </insert>
 
     <!--게시글 & 메인 이미지 수정-->
@@ -44,10 +44,8 @@
     <!--게시글 & 메인 이미지 목록 조회-->
     <select id="getList" parameterType="com.project.recipe.board.dto.BoardDto" resultType="com.project.recipe.board.dto.BoardDto">
         SELECT
-            r.rcp_num AS rcpNum, r.user_num AS userNum, r.rcp_title AS title,
-            r.main_path AS mainPath, u.user_nickname AS userNickname
+            r.rcp_num AS rcpNum, r.rcp_title AS title, r.main_path AS mainPath
         FROM recipe r
-        JOIN user u ON r.user_num = u.user_num
         <include refid="searchCondition"/> <!--검색조건 포함-->
         ORDER BY r.rcp_num DESC
 <!--        LIMIT #{startRowNum}, #{endRowNum}-->
@@ -66,16 +64,25 @@
     </select>
 
     <!--나의 글 조회-->
-    <select id="getRcpList" parameterType="com.project.recipe.board.dto.BoardDto" resultType="com.project.recipe.board.dto.BoardDto">
+    <select id="getMyList" parameterType="com.project.recipe.board.dto.BoardDto" resultType="com.project.recipe.board.dto.BoardDto">
         SELECT
-        r.rcp_num AS rcpNum, r.user_num AS userNum,
-        r.rcp_title AS title, r.main_path AS mainPath,
-        u.user_nickname AS userNickname
+            r.rcp_num AS rcpNum, r.user_num AS userNum,
+            r.rcp_title AS title, r.main_path AS mainPath
         FROM recipe r
         JOIN user u ON r.user_num = u.user_num
         WHERE r.user_num = #{userNum}
         ORDER BY r.rcp_num DESC
         <!--        LIMIT #{startRowNum}, #{endRowNum} -->
+    </select>
+
+    <!--카테고리 별 게시물 조회-->
+    <select id="getByCategory" parameterType="int" resultType="com.project.recipe.board.dto.BoardDto">
+        SELECT
+            r.rcp_num AS rcpNum,  r.pet_num AS petNum, r.rcp_title AS title, r.main_path AS mainPath
+        FROM recipe r
+        JOIN pet_type p ON r.pet_num = p.pet_type_id
+        WHERE r.pet_num = #{petNum}
+        ORDER BY r.rcp_num DESC
     </select>
 
     <!--조회수 증가-->

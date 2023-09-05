@@ -1,8 +1,10 @@
 package com.project.recipe.board.controller;
 
+import com.project.exception.CustomException.ImageMissingException;
 import com.project.recipe.board.dto.BoardDto;
 import com.project.recipe.board.service.BoardService;
 import com.project.recipe.image.sub.service.SubImgService;
+import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,6 +37,7 @@ public class BoardController {
             rcpService.saveContent(dto);
             //서브 이미지 저장
             subImgService.saveImg(dto.getRcpNum(), subImg);
+
             //저장 완료시 성공메시지 출력
             return new ResponseEntity<>("Insert Complete!", HttpStatus.CREATED);
         } catch (Exception e) {
@@ -58,12 +61,11 @@ public class BoardController {
         return new ResponseEntity<>("Delete Complete!", HttpStatus.OK);
     }
 
-    //게시글 목록
+    //전체 게시글 목록
     @GetMapping("/list")
     public List<BoardDto> getList(@RequestParam(name="keyword", required = false)String keyword,
                                   @RequestParam(name="condition", required = false)String condition){
-        Map<String, Object> result = new HashMap<>();
-        return rcpService.getList(keyword, condition, result);
+        return rcpService.getList(keyword, condition);
     }
 
     //게시글 상세
@@ -72,10 +74,15 @@ public class BoardController {
         return rcpService.getDetail(rcpNum);
     }
 
-
+    //나의 게시글 목록
     @GetMapping("/myList")
     public List<BoardDto> getMyList(@RequestParam int userNum){
-        Map<String, Object> result = new HashMap<>();
-        return rcpService.getRcpList(userNum, result);
+        return rcpService.getMyList(userNum);
+    }
+
+    //카테고리 별 게시글 목록
+    @GetMapping("/petList")
+    public List<BoardDto> getByCategory(@RequestParam int petNum){
+        return rcpService.getByCategory(petNum);
     }
 }

@@ -2,6 +2,7 @@
 CREATE TABLE recipe(
     rcp_num INT AUTO_INCREMENT PRIMARY KEY, -- 게시글 번호
     user_num INT NOT NULL, -- 글 작성자
+    pet_num INT, -- 반려동물 번호 (카테고리)
     FOREIGN KEY (user_num) REFERENCES user(user_num),
     rcp_title VARCHAR(255) NOT NULL, -- 제목
     rcp_content TEXT NOT NULL, -- 조리순서
@@ -13,6 +14,9 @@ CREATE TABLE recipe(
     rcp_regdate DATE, -- 글 작성일
 	main_path TEXT NOT NULL -- 매인이미지 파일 경로
 )charset=utf8;
+
+-- 레시피 게시판 컬럼 추가
+ALTER TABLE recipe ADD COLUMN pet_num INT AFTER user_num
 
 -- 레시피 게시판 : 서브 이미지
 CREATE TABLE recipe_subImg(
@@ -35,10 +39,23 @@ CREATE TABLE recipe_reply(
     rpl_regdate DATE -- 댓글 작성일
 )charset=utf8;
 
--- 레시피 게시판 : 사용자
-CREATE TABLE user_recipe_reply(
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_num INT, -- 사용자 번호
-    rcp_num INT, -- 게시글 번호
-    rpl_num INT -- 댓글 번호
+-- 레시피 게시판 : 댓글
+CREATE TABLE recipe_reply(
+    rpl_num INT AUTO_INCREMENT PRIMARY KEY, -- 댓글 번호
+    rcp_num INT NOT NULL, -- 게시글 번호
+    FOREIGN KEY (rcp_num) REFERENCES recipe(rcp_num),
+	user_num INT NOT NULL, -- 댓글 작성자
+	FOREIGN KEY (user_num) REFERENCES user(user_num),
+    rpl_content TEXT, -- 댓글 내용
+	rpl_deleted ENUM('yes', 'no') DEFAULT 'no', -- 댓글 삭제 여부
+    rpl_regdate DATE -- 댓글 작성일
+)charset=utf8;
+
+-- 레시피 게시판 : 좋아요
+CREATE TABLE recipe_like(
+    id INT AUTO_INCREMENT PRIMARY KEY, -- 좋아요
+    rcp_num INT NOT NULL, -- 게시글
+    FOREIGN KEY (rcp_num) REFERENCES recipe(rcp_num),
+	user_num INT NOT NULL, -- 작성자
+	FOREIGN KEY (user_num) REFERENCES user(user_num)
 );

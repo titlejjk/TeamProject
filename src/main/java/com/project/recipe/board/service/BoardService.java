@@ -6,16 +6,18 @@ import java.util.List;
 import java.util.Map;
 
 public interface BoardService {
-
+    //게시글 등록
     void saveContent(BoardDto dto);
-
+    //게시글 수정
     void updateContent(BoardDto dto);
-
+    //게시글 삭제
     void deleteContent(int rcpNum);
-
-    List<BoardDto> getList(String keyword, String condition, Map<String, Object> result);
-
+    //전체 게시글 목록
+    List<BoardDto> getList(String keyword, String condition);
+    //게시글 상세
     BoardDto getDetail(int rcpNum);
-
-    List<BoardDto> getRcpList(int userNum, Map<String, Object> result);
+    //나의 게시글 목록
+    List<BoardDto> getMyList(int userNum);
+    //카테고리 별 게시글 목록
+    List<BoardDto> getByCategory(int petNum);
 }
