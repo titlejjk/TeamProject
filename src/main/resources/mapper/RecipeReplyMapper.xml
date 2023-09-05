@@ -57,11 +57,4 @@
         ORDER BY r.rpl_num DESC
     </select>
 
-    <!--레시피 게시판 댓글 개수-->
-<!--    <select id="getCount" parameterType="int" resultType="int">-->
-<!--        SELECT COUNT(*)-->
-<!--        FROM recipe_reply-->
-<!--        WHERE rcp_num=#{rcpNum}-->
-<!--    </select>-->
-
 </mapper>

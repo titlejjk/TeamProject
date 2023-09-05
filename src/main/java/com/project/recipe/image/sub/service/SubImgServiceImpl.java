@@ -30,11 +30,6 @@ public class SubImgServiceImpl implements SubImgService {
     @Value("${file.location}")
     private String imgPath;
 
-//    //dto에서 이미지를 업로드하고, 업로드된 이미지 경로를 반환
-//    private String uploadAndInsertImage(BoardDto dto){
-//        return imageUpload.uploadFile(dto.getImageFile());
-//    }
-
     //서브이미지 저장 처리 메소드
     @Override
     public void saveImg(int rcpNum, List<MultipartFile> subImgs) {
@@ -45,13 +40,10 @@ public class SubImgServiceImpl implements SubImgService {
             //서브 이미지 파일을 업로드하고 경로를 가져옴
             String imagePath = imageUpload.uploadFile(subImg);
             imagePaths.add(imagePath);
-
             SubImgDto dto = new SubImgDto();
             dto.setRcpNum(rcpNum);
             dto.setSubPath(imagePath);
             dto.setSubOrder(i);
-            // dto.setSubOrgName(subImg.getOriginalFilename());
-            //dto.setSubSaveName(subImg.getOriginalFilename());
             //dto에 저장된 이미지 파일 추출
             imgMapper.insertImg(dto);
             i++;
@@ -70,6 +62,5 @@ public class SubImgServiceImpl implements SubImgService {
 
         return imgMapper.getImgs(subNum);
     }
-
 
 }

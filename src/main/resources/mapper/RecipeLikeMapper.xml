@@ -46,14 +46,4 @@
         ORDER BY likeCount DESC
     </select>
 
-
-
-    <!--특정 사용자가 좋아요한 게시물을 조회-->
-<!--    <select id="getLikedList" parameterType="com.project.recipe.like.dto.LikeDto" resultType="com.project.recipe.like.dto.LikeDto">-->
-<!--        SELECT rl.rcp_num AS rcpNum, r.rcp_content AS content-->
-<!--        FROM recipe_like rl-->
-<!--        JOIN recipe r ON r.rcp_num = rl.rcp_num-->
-<!--        WHERE user_num = #{userNum}-->
-<!--    </select>-->
-
 </mapper>

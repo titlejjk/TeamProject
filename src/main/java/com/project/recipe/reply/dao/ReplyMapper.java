@@ -18,9 +18,5 @@ public interface ReplyMapper {
     List<ReplyDto> getRplList(ReplyDto dto);
     //내가 작성한 댓글 목록
     List<ReplyDto> getMyRplList(ReplyDto dto);
-    //해당 게시글에 대한 댓글 개수
-    //int getCount(int rcpNum);
-
-
 
 }

@@ -32,9 +32,4 @@ public class BoardDto {
     private String mainSaveName;  //메인 이미지 저장 파일명
     private MultipartFile imageFile;  //이미지 파일 업로드 처리
     private List<SubImgDto> subImgs; //서브 이미지들
-
-    //private int startRowNum;  //한 페이지의 첫번째 행 (페이징 처리를 위함)
-    //private int endRowNum;  //한 페이지의 마지막 행
-    //private int prevNum;  //이전 글 번호
-    //private int nextNum;  //다음 글 번호
 }

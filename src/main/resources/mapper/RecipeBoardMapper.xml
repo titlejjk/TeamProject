@@ -92,18 +92,4 @@
         WHERE rcp_num=#{rcpNum}
     </update>
 
-    <!--게시글 개수-->
-<!--    <select id="getCount" parameterType="com.project.recipe.board.dto.BoardDto" resultType="int">-->
-<!--        SELECT COUNT(*)-->
-<!--        FROM recipe-->
-<!--        <include refid="searchCondition"/>-->
-<!--    </select>-->
-
-    <!--나의 게시글 개수-->
-<!--    <select id="getRcpCount" parameterType="int" resultType="int">-->
-<!--        SELECT COUNT(*)-->
-<!--        FROM recipe-->
-<!--        WHERE user_num=#{userNum}-->
-<!--    </select>-->
-
 </mapper>

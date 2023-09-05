@@ -12,17 +12,11 @@ mybatis:
   mapper-locations: classpath:mapper/**/*.xml
   type-aliases-package: com.project.user.dto
 
-logging:
-  level:
-    org.springframework.security: DEBUG
-    org.mybatis.spring: TRACE
-    com.project.project.user.mapper: DEBUG
-
 file:
   location: /Users/jojungeun/Desktop/TeamProject/TeamProject/src/main/resources/static/upload
 
 servlet:
   multipart:
     enabled: true
-    max-file-size: 20MB  # 최대 파일 크기 설정
-    max-request-size: 20MB  # 최대 요청 크기 설정
+    max-file-size: 10MB  # 최대 파일 크기 설정
+    max-request-size: 10MB  # 최대 요청 크기 설정

@@ -16,12 +16,4 @@
         WHERE sub_num=#{subNum}
     </delete>
 
-    <!--서브이미지 목록 조회-->
-<!--    <select id="getImgs" parameterType="int" resultType="hashmap">-->
-<!--        SELECT-->
-<!--        rcp_num, sub_num, sub_org_name, sub_save_name, sub_path, sub_order-->
-<!--        FROM recipe_subImg-->
-<!--        WHERE rcp_num = #{rcpNum}-->
-<!--        ORDER BY sub_order-->
-<!--    </select>-->
 </mapper>
