@@ -1,10 +1,10 @@
 import React from "react";
 import MyPageNav from "../../component/MyPageNav/MyPageNav";
 import Profile from "../../component/Profile/Profile";
-import ProfileEdit from "../../component/ProfileEdit/ProfileEdit";
-import "./MyPage.css"; // 위에서 작성한 CSS 파일을 임포트하고 있다고 가정합니다.
+import MyContentCardList from "../../component/CardList/MyContentCardList";
+import "./MyContent.css";
 
-const MyPage = () => {
+const MyContent = () => {
   return (
     <div>
       <hr />
@@ -12,10 +12,10 @@ const MyPage = () => {
       <hr />
       <div className="mypage-content container">
         <Profile />
-        <ProfileEdit />
+        <MyContentCardList />
       </div>
     </div>
   );
 };
 
-export default MyPage;
+export default MyContent;

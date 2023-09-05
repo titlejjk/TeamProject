@@ -1,12 +1,12 @@
 .imgWrapper {
-    width: 1280px;
-    height: 500px;
-    overflow: hidden;
-    margin: 0 auto;
-    position: relative;
-    border-radius: 20px; /* imgWrapper의 테두리를 둥글게 만듦 */
-  }
-  
+  width: 1280px;
+  height: 500px;
+  overflow: hidden;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 20px; /* imgWrapper의 테두리를 둥글게 만듦 */
+}
+
 .image {
   width: 100%;
   height: auto;
@@ -16,11 +16,11 @@
 }
 
 .board-title {
-    font-size: 28px;
-    margin: 70px 0 15px 0;
-    font-weight: bold;
+  font-size: 28px;
+  margin: 40px 0 40px 0;
+  font-weight: bold;
 }
 
-.MainPage .card-img{
+.MainPage .card-img {
   border-radius: 50%;
 }

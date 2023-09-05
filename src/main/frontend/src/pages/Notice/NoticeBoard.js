@@ -8,13 +8,22 @@ const NoticeBoard = ({ user}) => {
     
     const [isAdmin, setIsAdmin] = useState(false);
 
+    const [currentPage, setCurrentPage] = useState(0);
+    // 페이징 처리에 관련한 로직 및 상태 추가
+
+    const [totalPostCount, setTotalPostCount] = useState(0);
+    //전체 글의 개수를 표시
+
+    const postPerPage = 4;
+    //한 페이지에 표시할 카드의 수를 정의
+    // 추가
     // user 정보에 따라 관리자 여부 확인
     // if (user && user.role === 'admin') {
     //     setIsAdmin(true);
     // }
       
         useEffect(() => {
-          axios.get('http://localhost:5000/posts')
+          axios.get('http://localhost:9999/notice/list')
             .then(response => {
               setPosts(response.data);
             })
@@ -34,7 +43,7 @@ const NoticeBoard = ({ user}) => {
             <ul className="notice-list">
               {posts.map(post => (
                 <li className="notice-item" key={post.id}>
-                    <Link to="/noticeDetail" className='post-title'>{post.title}</Link>
+                    <Link to="/notice/{id}" className='post-title'>{post.title}</Link>
                       {/*    <p className='post-content'>{post.content}</p> */}
                       <p className='post-date'>{post.createdDate}</p>
                     

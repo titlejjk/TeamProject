@@ -8,7 +8,7 @@
   padding: 10px;
 }
 
-.navarMenu {
+.navbarMenu {
   margin: 0 15px;
   padding: 5px 10px;
   text-decoration: none;
@@ -17,7 +17,7 @@
   transition: color 0.3s; /* 글자색 변화에 트랜지션 적용 */
 }
 
-.navarMenu.active::before {
+.navbarMenu.active::before {
   content: "";
   position: absolute;
   bottom: -12px; /* 바의 위치 설정 */
@@ -27,22 +27,22 @@
   background-color: #ff6a10;
 }
 
-.navarMenu.active {
+.navbarMenu.active {
   color: #ff6a10; /* 활성화된 메뉴 글자색 변경 */
 }
 
-.navarMenu:hover {
+.navbarMenu:hover {
   color: #ff6a10; /* 변경된 메뉴에 호버시 글자색 변경 */
 }
 
-.navarMenu:hover:before,
-.navarMenu:focus:before {
+.navbarMenu:hover:before,
+.navbarMenu:focus:before {
   opacity: 1; /* 바 유지 */
   transform: translateY(0px); /* 바 위치 초기화 */
 }
 
-.navarMenu:hover:after,
-.navarMenu:focus:after {
+.navbarMenu:hover:after,
+.navbarMenu:focus:after {
   opacity: 1;
   transform: translateY(0px);
 }

@@ -1,19 +1,34 @@
-.editor-container {
+.mainImg-upload-button {
+    display: flex;
+    height: 400px; /* 추가: 최대 높이 지정 */
+    width: 70%; /* 추가: 최대 너비 지정 */
+    margin: 100px auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    background-color: rgb(235, 235, 235);
+    border: 1px solid lightgrey !important;
+    cursor: pointer;
+    overflow: auto;
+} 
+
+.recipe-editor {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 100px auto;
+    margin: -50px auto !important;
     width: 70%;
 }
 
-.file-container {
+.sub-container {
     display: flex;
     justify-content: flex-start;
     align-items: center;
     width: 100%;
     margin-bottom: 15px;
 }
-.upload-button {
+.subImgs-upload-button {
     display: flex;
     width: 100px;
     height: 40px;
@@ -28,7 +43,7 @@
 .selected-files {
     display: flex;
     align-items: center;
-    overflow-y: auto;
+    overflow: auto;
     width: 100%;
     height: 40px;
     border: none;

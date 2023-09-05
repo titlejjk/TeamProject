@@ -21,8 +21,8 @@ const Card = ({ card, showTitle }) => {
 
     return (
         <div className="card">
-            <Link to={`/RecipeDetail/${card.id}`}>
-                <img className="card-img" src={card.main_image_url} alt={card.title} />
+            <Link to={`/RecipeDetail/${card.rcpNum}`}>
+                <img className="card-img" src={card.mainPath} alt={card.title} />
             </Link>
 
             {showTitle && (

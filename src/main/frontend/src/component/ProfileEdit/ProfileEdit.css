@@ -1,5 +1,5 @@
 .profile-edit-form {
-  width: 850px;
+  width: 810px;
   height: 880px;
   margin-top: 60px;
   margin-left: 45px;
@@ -7,7 +7,7 @@
   flex-direction: column;
   text-align: left; /* 왼쪽 정렬 */
   justify-content: flex-start;
-    padding: 70px 0 50px 80px;
+  padding: 70px 0 50px 80px;
   border: 1px solid #d3d3d3;
   border-radius: 15px;
 }
@@ -16,7 +16,6 @@
   justify-content: space-between;
   margin-top: 50px;
 }
-
 
 .profile-edit-input input {
   padding-left: 10px;
@@ -169,3 +168,9 @@
   height: 30px;
 }
 
+.error {
+    color: red;
+    margin-top: 10px;
+    margin-left: 130px;
+    margin-bottom: -30px;
+}

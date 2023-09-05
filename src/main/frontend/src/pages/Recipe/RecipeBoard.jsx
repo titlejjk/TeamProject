@@ -6,27 +6,35 @@ import axios from 'axios';
 import SlickSlider from '../../lib/slickSlide'; 
 import { Arrow } from '../../lib/arrow'; 
 import BoardRecipeCardList from '../../component/CardList/BoardRecipeCardList';
-  
 
 const RecipeBoard = () => {
-     /*json이 저장된 주소를 불러와서 변수에 담기 */
- const categoriesUrl = "http://localhost:5000/categories";   
-    /*게시판 카테고리 목록을 저장하고 각각의 배열에 담기게 초기값 설정 */
-  const [categories, setCategories] = useState({ recipeBoardCategory: [], chefBoardCategory: [] });
-    
+     /* 사용자들의 data가 담겨있는 url 변수에 넣기! */
+     const usersCategoriesUrl = "http://localhost:9999/user/list";
+
+     const [UsersCategories, setUsersCategories] = useState([]);
+
     /*각각 카테고리목록을 axios로 불러오기 */
      useEffect(() => { 
-    axios.get(categoriesUrl)
+    axios.get(usersCategoriesUrl)
         .then((Response) => {
-            setCategories(Response.data)
+            setUsersCategories(Response.data)
             //console.log(Response.data)
         })   
         .catch((error) => {        
           console.error('Error fetching data:', error);
         });
-    }, []) 
-    
+    }, [])
 
+    //각 카테고리별 이미지 변수에 담기
+    const ImagesCategories = [
+        { userNickname: '반려묘',userProfile: '/images/animal01.png' },
+        { userNickname: '반려견', userProfile: '/images/animal02.png'},
+        { userNickname: '반려조', userProfile: '/images/animal03.png'},
+        { userNickname: '반려햄', userProfile: '/images/animal04.png' },
+        { userNickname: '기타', userProfile: '/images/animal05.png' },
+    ];
+
+     //사용자 카테고리 slide setting값
     const Settings = {
       infinite: false,
       speed: 500,
@@ -49,18 +57,18 @@ const RecipeBoard = () => {
 
             {/* 이미지 카테고리 */}
             <p style={titleStyle}>카테고리</p>
-              <ImageCategory categories={categories.recipeBoardCategory} /> 
+                <ImageCategory categories={ImagesCategories} />
                           
                 
               
               {/* 쉐프리스트 카테고리 : card list  + slider 적용 */}
               <p  style={titleStyle }>쉐프 소개</p> 
                 {/* chef list  + slider 적용 */}
-                <SlickSlider items={categories.chefBoardCategory.map((category, index) => (
-                  <ImageCategory key={index} categories={[category]} />
-                ))} settings={Settings} /> 
+                <SlickSlider items={UsersCategories.map((UserCategory, index) => (
+                  <ImageCategory key={index} categories={[UserCategory]} />
+                ))} settings={Settings} />
 
-             
+
               {/* 레시피  검색창 */}
                 <SearchBar />
                   

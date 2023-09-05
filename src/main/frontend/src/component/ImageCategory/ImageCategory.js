@@ -12,9 +12,9 @@ const ImageCategory = ({ categories }) => {
         <div className="category-list">
             {categories && categories.map((category, index) => (
                 <div key={index} className="images-category"> 
-                    <Link to={`/recipes/${category.name}`}className="category">
-                        <img src={category.img_url} alt={category.name} />
-                        <p>{category.name}</p>
+                    <Link to={`/recipes/list?userNum=${category.userNum}`}className="category">
+                        <img src={category.userProfile} alt={category.userNickname} />
+                        <p>{category.userNickname}</p>
                     </Link>
                 </div>
             ))}

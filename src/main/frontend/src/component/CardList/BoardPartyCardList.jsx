@@ -50,7 +50,7 @@ const RecipeCardList = () => {
         <div className='board-card-list container'>
             <div className='board-list-top'>
                 <p className='list-total-count'>전체 {totalRecipeCount} 개 </p>
-                <Link className='write-go'>글쓰기</Link>
+                <Link to="/partyWrite" className='write-go'>글쓰기</Link>
             </div>
             <div className="card-list">
                 {Array.isArray(currentCards) && currentCards.map((card, index) => (
@@ -58,7 +58,7 @@ const RecipeCardList = () => {
                 ))}
                 </div>
                 <Pagination pageCount={Math.ceil(cards.length / cardsPerPage)} onPageChange={handlePageChange} />
-           
+                    {/* pagination 추가한 내용 */}
         </div>
     );
 };

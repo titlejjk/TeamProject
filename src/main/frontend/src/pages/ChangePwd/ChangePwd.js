@@ -1,38 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
 import axios from "axios";
-import "./ChangePwd.css"; // 스타일링 파일 임포트
+import "./ChangePwd.css";
 
 const ChangePwd = () => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [passwordsMatch, setPasswordsMatch] = useState(true); // 비밀번호 일치 여부 상태
-  const [validPassword, setValidPassword] = useState(true); // 비밀번호 유효성 여부 상태
+  const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const [validPassword, setValidPassword] = useState(true);
   const navigate = useNavigate();
 
-  // 비밀번호 확인 함수
-  const checkPasswords = () => {
+  const checkPasswords = async (e) => {
+    e.preventDefault();
     if (newPassword === confirmPassword) {
       setPasswordsMatch(true);
 
-      // 비밀번호 유효성 검사 (영문, 숫자를 포함한 8자 이상의 비밀번호를 입력)
       if (
         newPassword.length >= 8 &&
         /[0-9]/.test(newPassword) &&
         /[A-Za-z]/.test(newPassword)
       ) {
         setValidPassword(true);
-
-        // Axios를 사용하여 백엔드로 변경된 비밀번호 데이터를 전송
-        axios
-          .post("/api/changePassword", { newPassword })
-          .then((response) => {
-            // 비밀번호 변경 성공 시 마이페이지로 이동
+        const userToken = localStorage.getItem("login-token");
+        if (!userToken) {
+          navigate("/login");
+        } else {
+          const decodedToken = jwt_decode(userToken);
+          const userEmail = decodedToken.userEmail;
+          console.log(userEmail, newPassword);
+          try {
+            await axios.post("/user/updatePassword", {
+              userEmail: userEmail,
+              userNewPassword: newPassword,
+            });
+            alert("비밀번호 변경 성공!");
+            console.log(newPassword);
             navigate("/mypage");
-          })
-          .catch((error) => {
+          } catch (error) {
             console.error("비밀번호 변경 실패:", error);
-          });
+          }
+        }
       } else {
         setValidPassword(false);
       }
@@ -41,6 +49,8 @@ const ChangePwd = () => {
       alert("비밀번호가 일치하지 않습니다.");
     }
   };
+
+  useEffect(() => {}, [confirmPassword, navigate]);
 
   return (
     <div className="changepwd-container container">

@@ -13,7 +13,7 @@
         "양상추"
       ],
       "description": "간단하게 만들 수 있는 닭가슴살 샐러드 레시피입니다.",
-      "main_image_url": "http://localhost:3000/pulic/images/recipe01.jpg",
+      "main_image_url": "http://localhost:3000/images/recipe01.jpg",
       "likes": 50,
       "category": "반려견"
     },
@@ -551,6 +551,34 @@
       }
     ]
   },
+  "recipedetail": [
+    {
+      "rcpNum": 1,
+      "imageFile": "https://recipe1.ezmember.co.kr/cache/recipe/2019/08/21/f51404dc513ccc76be4b5668f5dd350b1.jpg",
+      "title": "쉽고 빠르게, 더운 여름에 만들어 먹기 좋은 강아지용 냉면",
+      "content": "나만 먹기 눈치 보일 때 ! 강아지도 같이 호로록 시원하게 먹고 싶을 때!\n콩물로 쉽고 건강하게 먹을 수 있는 반려견용 멍냉면을 만들어 볼까요 !  10분이면 요리 끝 !",
+      "servingSize": 1,
+      "cookingTime": 10,
+      "cookingLevel": "난이도 중",
+      "ingre": "콩국물 500ml, 소면 동전크기만큼, 오이 반절, 고명 간식 조금",
+      "step": [
+        {
+          "desc": "조리는 1번 사진부터 5번 사진 순서대로 진행됩니다.",
+          "img": "https://recipe1.ezmember.co.kr/cache/recipe/2023/08/09/a393d884c9710311dca36a5e0a9bc1dc1.jpg",
+          "ingre": "https://recipe1.ezmember.co.kr/cache/recipe/2016/06/14/60d56df3fea1b0502da32e68c2d8f5ee1.jpg"
+        }
+      ],
+      "insight": {
+        "like": 150,
+        "reply": 5,
+        "viewCount": 12500
+      },
+      "user": {
+        "thumb": "https://randomuser.me/api/portraits/med/men/52.jpg",
+        "writer": "블루베리"
+      }
+    }
+  ],
   "partyList": [
     {
       "title": "뽀삐의 생일파티🐶🎉",
