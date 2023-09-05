@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.party_post.comment.dao.CommentMapper">
+
+    <!-- 댓글 생성 -->
+    <insert id="insertComment">
+        INSERT INTO party_comment (post_id, user_num, content)
+        VALUES (#{postId}, #{userNum}, #{content})
+    </insert>
+
+    <!-- 댓글 수정 -->
+    <update id="updateComment">
+        UPDATE party_comment
+        SET content = #{content}, updated_at = NOW()
+        WHERE comment_id = #{commentId}
+    </update>
+
+    <!-- 댓글 삭제 -->
+    <delete id="deleteComment">
+        DELETE FROM party_comment WHERE comment_id = #{commentId}
+    </delete>
+
+    <!-- 댓글 ID로 조회 -->
+    <select id="selectCommentById" resultType="com.project.party_post.comment.dto.CommentDto">
+        SELECT comment_id AS commentId, post_id AS postId, user_num AS userNum, content, created_at AS createdAt, updated_at AS updatedAt
+        FROM party_comment
+        WHERE comment_id = #{commentId}
+    </select>
+
+    <!-- 게시글 ID로 댓글 리스트 조회 -->
+    <select id="selectCommentsByPostId" resultType="com.project.party_post.comment.dto.CommentDto">
+        SELECT comment_id AS commentId, post_id AS postId, user_num AS userNum, content, created_at AS createdAt, updated_at AS updatedAt
+        FROM party_comment
+        WHERE post_id = #{postId}
+    </select>
+
+</mapper>

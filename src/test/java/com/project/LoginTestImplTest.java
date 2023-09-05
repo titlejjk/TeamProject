@@ -21,6 +21,7 @@ import static org.mockito.Mockito.verify;
 
 public class LoginTestImplTest {
 
+    //인스턴스생성 후 생성된 Mock객체를 자동으로 주입
     @InjectMocks
     private AuthServiceImpl authService;
 

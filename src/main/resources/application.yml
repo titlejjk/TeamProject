@@ -5,11 +5,11 @@ spring:
   datasource:
     url: jdbc:mariadb://localhost:3306/project
     username: root
-    password: root
+    password: 123
     driver-class-name: org.mariadb.jdbc.Driver
 
 mybatis:
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath:mapper/**/*.xml
   type-aliases-package: com.project.user.dto
 
 logging:
@@ -19,7 +19,7 @@ logging:
     com.project.project.user.mapper: DEBUG
 
 file:
-  location: /Users/sujeong/Documents/workspace/TeamProject/src/main/resources/static/upload
+  location: /Users/jojungeun/Desktop/TeamProject/TeamProject/src/main/resources/static/upload
 
 servlet:
   multipart:

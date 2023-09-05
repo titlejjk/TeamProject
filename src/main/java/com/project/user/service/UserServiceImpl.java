@@ -1,8 +1,7 @@
 package com.project.user.service;
 
 import com.project.exception.CustomException.NicknameAlreadyExistsException;
-import com.project.exception.CustomException.TokenInvalidException;
-import com.project.exception.CustomException.UserNotFoundException;
+import com.project.file_service.FileUploadService;
 import com.project.security.TokenProvider;
 import com.project.user.dao.PetMapper;
 import com.project.user.dao.UserMapper;
@@ -38,7 +37,7 @@ public class UserServiceImpl implements UserService {
         validateUserNickname(userDto.getUserNickname());
 
         // 이미지 업로드 후 저장 경로를 userProfile에 저장
-        String imagePath = uploadImageAndUpdateProfile(userDto);
+        String imagePath = uploadImageAndUpdateProfile(userDto, "users");
         userDto.setUserProfile(imagePath);
 
 
@@ -71,9 +70,10 @@ public class UserServiceImpl implements UserService {
     }
 
     // 이미지 업로드 및 프로필 경로 업데이트
-    private String uploadImageAndUpdateProfile(UserDto userDto) {
-        return fileUploadService.uploadFile(userDto.getUserImage());
+    private String uploadImageAndUpdateProfile(UserDto userDto, String subDirectory) {
+        return fileUploadService.uploadFile(userDto.getUserImage(), subDirectory);
     }
+
     // 새 토큰 생성
     private String generateNewToken(UserDto updatedUserDto) {
         System.out.println(updatedUserDto);
