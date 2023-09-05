@@ -2,8 +2,8 @@
 CREATE TABLE recipe(
     rcp_num INT AUTO_INCREMENT PRIMARY KEY, -- 게시글 번호
     user_num INT NOT NULL, -- 글 작성자
-    pet_num INT, -- 반려동물 번호 (카테고리)
     FOREIGN KEY (user_num) REFERENCES user(user_num),
+    pet_num INT, -- 반려동물 번호 (카테고리)
     rcp_title VARCHAR(255) NOT NULL, -- 제목
     rcp_content TEXT NOT NULL, -- 조리순서
 	serving_size INT NOT NULL, -- 제공분량
@@ -14,9 +14,6 @@ CREATE TABLE recipe(
     rcp_regdate DATE, -- 글 작성일
 	main_path TEXT NOT NULL -- 매인이미지 파일 경로
 )charset=utf8;
-
--- 레시피 게시판 컬럼 추가
-ALTER TABLE recipe ADD COLUMN pet_num INT AFTER user_num
 
 -- 레시피 게시판 : 서브 이미지
 CREATE TABLE recipe_subImg(
