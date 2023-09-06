@@ -20,8 +20,9 @@ public class PostServiceImpl implements PostService {
 
 
     @Override
-    public void insertPost(PostDto postDto) {
+    public void insertPost(PostDto postDto, List<MultipartFile> multipartFiles) {
         postMapper.insertPost(postDto);
+        insertImages(multipartFiles, postDto.getPostId());
     }
 
     @Override
@@ -35,13 +36,24 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public void updatePost(PostDto postDto) {
+    public void updatePost(int postId, PostDto postDto, List<MultipartFile> multipartFiles) {
+        // 기존 이미지 삭제
+        deleteImagesByPostId(postDto.getPostId());
+
+        // 게시글 수정을 위한 새로운 PostDto 객체 생성
         PostDto updatedPost = PostDto.builder()
                 .postId(postDto.getPostId())
                 .title(postDto.getTitle())
                 .content(postDto.getContent())
                 .build();
+
+        // 게시글 내용 수정
         postMapper.updatePost(updatedPost);
+
+        // 새로운 이미지 삽입
+        if(multipartFiles != null && !multipartFiles.isEmpty()) {
+            insertImages(multipartFiles, postDto.getPostId());
+        }
     }
 
     @Override

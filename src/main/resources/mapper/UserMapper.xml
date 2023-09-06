@@ -75,7 +75,7 @@
         </select>
 
         <!-- 회원의 프로필사진, 한 줄 소개 Select -->
-        <select id="findProfileAndIIntroduction" resultType="com.project.user.dto.UserDto">
-            SELECT user_profile, user_introduction FROM user WHERE user_email = #{userEmail};
+        <select id="findProfileAndIntroduction" parameterType="string" resultType="com.project.user.dto.UserDto">
+            SELECT user_profile as userProfile, user_introduction AS userIntroduction FROM user WHERE user_email = #{userEmail}
         </select>
 </mapper>

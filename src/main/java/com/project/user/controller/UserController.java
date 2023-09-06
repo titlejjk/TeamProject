@@ -55,8 +55,8 @@ public class UserController {
     }
 
     //회원의 프로필사진과 한 줄 소개 조회 메서드
-    @GetMapping("/profile")
-    public ResponseEntity<UserDto> getUserProfileAndIntroduction(@RequestParam String userEmail) {
+    @GetMapping("/profile/{userEmail}")
+    public ResponseEntity<UserDto> getUserProfileAndIntroduction(@PathVariable String userEmail) {
         UserDto userDto = userService.getUserProfileAndIntroduction(userEmail);
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }

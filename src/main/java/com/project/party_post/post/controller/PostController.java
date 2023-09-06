@@ -6,6 +6,7 @@ import com.project.party_post.post.dto.PostImageDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -17,9 +18,10 @@ public class PostController {
     private final PostService postService;
 
     //게시글 생성메서드
-    @PostMapping
-    public ResponseEntity<Void> createPost(@RequestBody PostDto postDto) {
-        postService.insertPost(postDto);
+    @PostMapping("/create")
+    public ResponseEntity<Void> createPostAndImages(@ModelAttribute PostDto postDto,
+                                                    @RequestParam("images") List<MultipartFile> multipartFiles) {
+        postService.insertPost(postDto, multipartFiles);
         return ResponseEntity.ok().build();
     }
 
@@ -39,8 +41,10 @@ public class PostController {
 
     //게시글 수정 메서드
     @PutMapping("/{postId}")
-    public ResponseEntity<Void> updatePost(@PathVariable int postId, @RequestBody PostDto postDto) {
-        postService.updatePost(postDto);
+    public ResponseEntity<Void> updatePostAndImages(@PathVariable int postId,
+                                                    @ModelAttribute PostDto postDto,
+                                                    @RequestParam(value = "files", required = false) List<MultipartFile> multipartFiles) {
+        postService.updatePost(postId, postDto, multipartFiles);  // 수정된 메서드 호출
         return ResponseEntity.ok().build();
     }
 

@@ -9,13 +9,13 @@ import java.util.List;
 public interface PostService {
 
     //게시글 생성
-    void insertPost(PostDto postDto);
+    void insertPost(PostDto postDto, List<MultipartFile> multipartFiles);
     //전체 게시글 조회
     List<PostDto> selectAllPosts();
     //하나의 게시글을 조회
     PostDto selectPostById(int postId);
     //게시글 수정
-    void updatePost(PostDto postDto);
+    void updatePost(int postId, PostDto postDto, List<MultipartFile> multipartFiles);
     //게시글 삭제
     void deletePost(int postId);
     //이미지 업로드 메서드

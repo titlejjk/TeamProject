@@ -103,6 +103,9 @@ public class UserServiceImpl implements UserService {
     //회원의 사진과 한줄소개를 조회
     @Override
     public UserDto getUserProfileAndIntroduction(String userEmail) {
-        return userMapper.findProfileAndIIntroduction(userEmail);
+        System.out.println(userEmail);
+        UserDto dto=userMapper.findProfileAndIntroduction(userEmail);
+        System.out.println(dto);
+        return dto;
     }
 }

@@ -18,5 +18,4 @@
         DELETE FROM post_image WHERE post_id = #{postId}
     </delete>
 
-
 </mapper>

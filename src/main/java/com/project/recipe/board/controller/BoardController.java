@@ -3,6 +3,7 @@ package com.project.recipe.board.controller;
 import com.project.exception.CustomException.ImageMissingException;
 import com.project.recipe.board.dto.BoardDto;
 import com.project.recipe.board.service.BoardService;
+import com.project.recipe.image.sub.dto.SubImgDto;
 import com.project.recipe.image.sub.service.SubImgService;
 import io.swagger.models.auth.In;
 import lombok.extern.slf4j.Slf4j;
@@ -31,12 +32,12 @@ public class BoardController {
     @PostMapping("/insert")
     @Transactional //Transaction 처리 (하나라도 실패하면 전체 roll back)
     public ResponseEntity<?> insert(@ModelAttribute BoardDto dto,
-                                    @RequestPart(value="subImg", required = false) List<MultipartFile> subImg){
+                                    @RequestPart(value = "subImages", required = false) List<MultipartFile> subImages) {
         try {
             //게시글 내용 저장
             rcpService.saveContent(dto);
             //서브 이미지 저장
-            subImgService.saveImg(dto.getRcpNum(), subImg);
+            subImgService.saveImg(dto.getRcpNum(), subImages);
 
             //저장 완료시 성공메시지 출력
             return new ResponseEntity<>("Insert Complete!", HttpStatus.CREATED);
@@ -48,10 +49,17 @@ public class BoardController {
 
     //게시글 수정
     @PostMapping("/update")
-    public ResponseEntity<?> update(@ModelAttribute BoardDto dto){
-        rcpService.updateContent(dto);
-        return new ResponseEntity<>("Update Complete!", HttpStatus.OK);
+    public ResponseEntity<?> update(@ModelAttribute BoardDto dto,
+                                    @RequestParam("subImages") List<MultipartFile> subImages) {
+        try {
+            //게시글 내용 수정
+            rcpService.updateContent(dto, subImages);
+            return new ResponseEntity<>("Update Complete!", HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Update Failed!", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
+
 
     //게시글 삭제
     @DeleteMapping("/delete")

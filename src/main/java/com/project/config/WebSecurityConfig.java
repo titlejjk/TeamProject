@@ -51,7 +51,7 @@ public class WebSecurityConfig {
                //회원등급에 대한 api권한부여
                .antMatchers("/","/**").hasAnyAuthority("USER")
                .antMatchers("/admin/**").hasAuthority("ADMIN")
-               .antMatchers("/**","/error","/auth/login","/user/**").permitAll()
+               .antMatchers("/**").permitAll()
                //  '/'와 '/api/auth' 경로는 모든 사용자에게 허용되고, 나머지 요청은 인증된 사용자에게만 허용
                .anyRequest().authenticated();
 

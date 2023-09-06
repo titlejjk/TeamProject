@@ -1,6 +1,7 @@
 package com.project.recipe.board.service;
 
 import com.project.recipe.board.dto.BoardDto;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -9,7 +10,7 @@ public interface BoardService {
     //게시글 등록
     void saveContent(BoardDto dto);
     //게시글 수정
-    void updateContent(BoardDto dto);
+    void updateContent(BoardDto dto, List<MultipartFile> subImages);
     //게시글 삭제
     void deleteContent(int rcpNum);
     //전체 게시글 목록
