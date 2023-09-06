@@ -11,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -59,5 +60,9 @@ public class UserController {
     public ResponseEntity<UserDto> getUserProfileAndIntroduction(@PathVariable String userEmail) {
         UserDto userDto = userService.getUserProfileAndIntroduction(userEmail);
         return new ResponseEntity<>(userDto, HttpStatus.OK);
+    }
+    @GetMapping(value = "/profile/image/{userEmail}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public @ResponseBody byte[] getUserProfileImage(@PathVariable String userEmail) throws IOException {
+        return userService.getUserProfileImage(userEmail);
     }
 }

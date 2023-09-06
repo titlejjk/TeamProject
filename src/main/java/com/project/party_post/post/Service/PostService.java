@@ -26,4 +26,6 @@ public interface PostService {
     public void deleteImagesByPostId(int postId);
     //게시글 ID로 게시글 정보를 가져오며, 조회수를 1 증가
     void incrementViewCount(int postId);
+
+    byte[] getPostImage(int postId, String imageName);
 }

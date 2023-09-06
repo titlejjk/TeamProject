@@ -1,6 +1,7 @@
 package com.project.user.service;
 
 import com.project.exception.CustomException.NicknameAlreadyExistsException;
+import com.project.exception.CustomException.UserNotFoundException;
 import com.project.file_service.FileUploadService;
 import com.project.security.TokenProvider;
 import com.project.user.dao.PetMapper;
@@ -11,6 +12,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 
 @Service
@@ -108,4 +114,21 @@ public class UserServiceImpl implements UserService {
         System.out.println(dto);
         return dto;
     }
+
+    @Override
+    public byte[] getUserProfileImage(String userEmail){
+        try{
+            UserDto user = userMapper.findByEmail(userEmail);
+            if (user == null) {
+                throw new UserNotFoundException("User not found");
+            }
+
+            String imagePath = user.getUserProfile();
+            Path path = Paths.get(imagePath);
+            return Files.readAllBytes(path);
+        }catch (IOException e){
+            throw new RuntimeException("Could not read image file", e);
+        }
+    }
+
 }

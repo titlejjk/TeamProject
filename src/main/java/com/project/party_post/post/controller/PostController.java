@@ -4,10 +4,12 @@ import com.project.party_post.post.Service.PostService;
 import com.project.party_post.post.dto.PostDto;
 import com.project.party_post.post.dto.PostImageDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -53,6 +55,11 @@ public class PostController {
     public ResponseEntity<Void> deletePost(@PathVariable int postId) {
         postService.deletePost(postId);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping(value = "/{postId}/images/{imageName}", produces = MediaType.IMAGE_JPEG_VALUE)
+    public @ResponseBody byte[] getPostImage(@PathVariable("postId") int postId, @PathVariable("imageName") String imageName) throws IOException {
+        return postService.getPostImage(postId, imageName);
     }
 
 }
