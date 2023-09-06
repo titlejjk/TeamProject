@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.notice.file.FileMapper">
+
+    <!-- 파일 정보 저장 -->
+    <insert id="saveAll" parameterType="list">
+        INSERT INTO notice_file (
+        noticeId, originalName, saveName, size, deleteYn, createdDate, deletedDate
+        ) VALUES
+        <foreach item="file" collection="list" separator=",">
+            (
+            #{file.noticeId}
+            , #{file.originalName}
+            , #{file.saveName}
+            , #{file.size}
+            , 0
+            , NOW()
+            , NULL
+            )
+        </foreach>
+    </insert>
+
+
+    <!-- 파일 리스트 조회 -->
+    <select id="findAllByNoticeId" parameterType="long" resultType="com.project.notice.file.FileDto">
+        SELECT
+        *
+        FROM
+        notice_file
+        WHERE
+        deleteYn = 0
+        AND noticeId = #{value}
+        ORDER BY
+        id
+    </select>
+
+
+    <!-- 파일 리스트 조회 -->
+    <select id="findAllByIds" parameterType="list" resultType="com.project.notice.file.FileDto">
+        SELECT
+        *
+        FROM
+        notice_file
+        WHERE
+        deleteYn = 0
+        AND id IN
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+        ORDER BY
+        id
+    </select>
+
+    <!-- 파일 수정 삭제 -->
+    <delete id="deleteAllByIds" parameterType="list">
+        UPDATE notice_file
+        SET
+        deleteYn = 1
+        , deletedDate = NOW()
+        WHERE
+        id IN
+        <foreach item="id" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <!-- 파일 상세정보 조회 -->
+    <select id="findById" parameterType="long" resultType="com.project.notice.file.FileDto">
+        SELECT
+            *
+        FROM
+            notice_file
+        WHERE
+            deleteYn = 0
+          AND id = #{value}
+    </select>
+
+</mapper>
