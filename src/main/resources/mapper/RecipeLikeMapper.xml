@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.recipe.like.dao.LikeMapper">
+    
+    <!--좋아요 기록 저장-->
+    <insert id="insertLike" parameterType="com.project.recipe.like.dto.LikeDto" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO recipe_like
+            (rcp_num, user_num)
+        VALUES
+            (#{rcpNum}, #{userNum})
+    </insert>
+
+    <!--좋아요 삭제-->
+    <delete id="deleteLike" parameterType="int">
+        DELETE FROM recipe_like
+        WHERE rcp_num=#{rcpNum} AND user_num=#{userNum}
+    </delete>
+    
+    <!--좋아요 여부 확인-->
+    <select id="countLike" parameterType="com.project.recipe.like.dto.LikeDto" resultType="int">
+    SELECT COUNT(*)
+    FROM recipe_like
+    WHERE rcp_num=#{rcpNum} AND user_num=#{userNum}
+    </select>
+
+    <!--좋아요 개수-->
+    <select id="countedLike" parameterType="int" resultType="int">
+        SELECT COUNT(*)
+        FROM recipe_like
+        WHERE rcp_num=#{rcpNum}
+    </select>
+
+    <!--좋아요 초기화 방지-->
+    <select id="isLikedByUser" parameterType="int" resultType="boolean">
+        SELECT COUNT(*)
+        FROM recipe_like
+        WHERE rcp_num=#{rcpNum} AND user_num=#{userNum}
+    </select>
+
+    <!--좋아요 순위별 조회-->
+    <select id="orderByLike" resultType="com.project.recipe.like.dto.LikeDto">
+        SELECT
+            rcp_num AS rcpNum, COUNT(*) AS likeCount
+        FROM recipe_like
+        GROUP BY rcp_num
+        ORDER BY likeCount DESC
+    </select>
+
+
+
+    <!--특정 사용자가 좋아요한 게시물을 조회-->
+<!--    <select id="getLikedList" parameterType="com.project.recipe.like.dto.LikeDto" resultType="com.project.recipe.like.dto.LikeDto">-->
+<!--        SELECT rl.rcp_num AS rcpNum, r.rcp_content AS content-->
+<!--        FROM recipe_like rl-->
+<!--        JOIN recipe r ON r.rcp_num = rl.rcp_num-->
+<!--        WHERE user_num = #{userNum}-->
+<!--    </select>-->
+
+</mapper>

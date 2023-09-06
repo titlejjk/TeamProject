@@ -1,0 +1,150 @@
+.party_detail_main{
+    margin: 0 auto;
+    max-width: 1280px;
+    width: 100%;
+    color: #606060;
+}
+
+.party_detail_main_image_container{
+    width: 100%;
+    /* 가로세로 비율 */
+    aspect-ratio: 3 / 1;
+}
+
+.party_detail_main_image_container > img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    /* object 가 종횡비를 유지하면서 정의된 너비와 높이를 가득 채울 때까지 확대 */
+    object-fit: cover;
+    /* object 중앙에 위치 */
+    object-position: center;
+}
+
+.party_detail_summary{
+    padding: 40px;
+    text-align: center;
+}
+
+.party_detail_summary > h2{
+    margin: 0;
+    /* 글자 크기 */
+    font-size: 28px;
+    /* 글씨 굵게 */
+    font-weight: 600;
+}
+
+.party_detail_summary > p{
+    /* \n 입력 시 줄바꿈이 적용되도록 처리 */
+    white-space: pre-line;
+    margin: 10px 0;
+}
+
+.party_detail_sub_image_container > div > img{
+    display: block;
+    width: 640px; height: 640px;
+    margin: 0 auto;
+}
+
+.party_detail_insight{
+    margin-top: 40px;
+    display: flex;
+    /* 자식 요소들 간 간격 조정 */
+    gap: 12px;
+    font-size: 14px;
+}
+
+.party_detail_user{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 26px;
+}
+
+.party_detail_user > div:has(img){
+    width: 70px;
+    height: 70px;
+    border-radius: 40px;
+    /* div 에 담긴 사진에서 div 를 넘어서는 영역은 숨긴다 */
+    overflow: hidden;
+}
+
+.party_detail_user > div > img{
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.party_detail_user > .title{
+    font-weight: 600;
+}
+
+.party_detail_user > button{
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background-color: #666666;
+    border: none;
+    color: #f4f4f4;
+    padding: 4px 14px;
+    border-radius: 30px;
+    font-size: 12px;
+}
+
+.party_detail_user > button > span > svg{
+    display: block;
+}
+
+.party_detail_reply{
+    margin: 0 auto;
+    padding: 40px 10px;
+    width: calc(100% - 20px);
+    max-width: 640px;
+}
+
+.party_detail_reply > .title{
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.party_detail_reply > .input{
+    display: flex;
+    margin-top: 10px; margin-bottom: 20px;
+    /* 요소 자기 자신을 기준으로 배치 */
+    position: relative;
+}
+
+.party_detail_reply > .input > div {
+    width: 50px; height: 50px;
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+.party_detail_reply > .input > div > img{
+    display: block;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+}
+
+.party_detail_reply > .input > input{
+    flex: 1;
+    border: 1px solid #b1b1b1;
+    border-radius: 10px;
+    padding: 0px 60px 0px 10px;
+    margin-left: 20px;
+    outline: none;
+}
+
+.party_detail_reply > .input > span{
+    /* 부모 요소를 기준으로 배치 */
+    position: absolute;
+    top: 13px;
+    right: 16px;
+}
+
+.party_detail_divider{
+    margin-top: 30px;
+    width: 100%; height: 1px;
+    background-color: #adadad;
+}

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.user.dao.UserMapper">
+
+        <!-- 이메일 중복 체크 -->
+        <select id="checkEmailDuplication"  resultType="int">
+            SELECT COUNT(*) FROM user WHERE user_email = #{userEmail}
+        </select>
+
+        <!-- 회원의 user_nickname 중복 체크 -->
+        <select id="findUserByNickname" resultType="int">
+            SELECT COUNT(*) FROM user WHERE user_nickname = #{userNickname}
+        </select>
+
+        <!-- 회원 정보 저장 -->
+    <insert id="insertUser">
+            INSERT INTO user (user_email, user_pwd, user_nickname, user_role)
+            VALUES (#{userEmail}, #{userPassword}, #{userNickname}, 'USER')
+        </insert>
+
+        <select id="getLastInsertUserNum" resultType="int">
+            SELECT LAST_INSERT_ID()
+        </select>
+
+        <!-- 사용자 정보 조회 -->
+        <select id="findByEmail" resultSets="string" resultType="com.project.user.dto.UserDto">
+            SELECT
+                user_num AS userNum,
+                user_email AS userEmail,
+                user_pwd AS userPassword,
+                user_nickname AS userNickname,
+                user_gender AS userGender,
+                user_birthday AS userBirthday,
+                user_profile AS userProfile,
+                user_introduction AS userIntroduction,
+                user_status AS userStatus,
+                user_created_at AS userCreatedAt,
+                user_updated_at AS userUpdatedAt,
+                user_role AS role
+            FROM user
+            WHERE user_email = #{userEmail}
+        </select>
+
+        <!-- 회원정보 수정 -->
+        <update id="updateUser" parameterType="com.project.user.dto.UserDto">
+            UPDATE user
+            SET
+                user_email = #{userEmail},
+                user_num = #{userNum},
+                user_nickname = #{userNickname},
+                user_gender = #{userGender},
+                user_birthday = #{userBirthday},
+                user_profile = #{userProfile},
+                user_introduction = #{userIntroduction},
+                user_updated_at = NOW()
+            WHERE user_num = #{userNum}
+        </update>
+
+        <!-- 회원탈퇴 -->
+        <update id="updateUserStatus">
+            UPDATE user
+            SET user_status = 'INACTIVE'
+            WHERE user_num = #{userNum}
+        </update>
+
+        <!-- 비밀번호 변경 -->
+        <update id="updatePassword">
+            UPDATE user SET user_pwd = #{userNewPassword} WHERE user_email = #{userEmail}
+        </update>
+
+        <!-- 유효한 회원여부 조회(회원계정 -->
+        <select id="findByUserEmail" resultType="com.project.user.dto.UserDto">
+            SELECT user_email FROM user WHERE user_email = #{userEmail}
+        </select>
+
+        <!-- 회원의 프로필사진, 한 줄 소개 Select -->
+        <select id="findProfileAndIIntroduction" resultType="com.project.user.dto.UserDto">
+            SELECT user_profile, user_introduction FROM user WHERE user_email = #{userEmail};
+        </select>
+</mapper>

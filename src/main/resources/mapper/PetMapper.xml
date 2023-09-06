@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.user.dao.PetMapper">
+
+    <!-- 사용자의 반려동물 정보 저장 -->
+    <insert id="insertUserPet">
+        INSERT INTO user_pet (user_num, pet_type_id)
+        VALUES(#{userNum}, #{petTypeId})
+    </insert>
+
+    <select id="getLastInsertPetId" resultType="int">
+        SELECT LAST_INSERT_ID()
+    </select>
+
+    <!-- 반려동물 유형 정보 조회 -->
+    <select id="findPetTypesByUserNum" resultType="java.util.HashMap">
+        SELECT up.user_num as userNum, pt.pet_type_id as petTypeId, pt.pet_type_name as petName
+        FROM user_pet up
+                 LEFT JOIN pet_type pt ON up.pet_type_id = pt.pet_type_id
+        WHERE up.user_num = #{userNum}
+    </select>
+
+    <!-- 회원의 pet을 삭제 -->
+    <delete id="deletePetsByUserNum" parameterType="int">
+        DELETE FROM user_pet
+        WHERE user_num = #{userNum}
+    </delete>
+
+    <!-- 회원의 pet을 등록 -->
+    <insert id="insertUserPet1" parameterType="com.project.user.dto.UserDto">
+        INSERT INTO user_pet (user_num, pet_type_id)
+        VALUES
+        <foreach collection="petTypeIds" item="petTypeId" separator=",">
+            (#{userNum}, #{petTypeId})
+        </foreach>
+    </insert>
+</mapper>

@@ -1,0 +1,38 @@
+#회원정보 저장
+CREATE TABLE user (
+    user_num INT PRIMARY KEY AUTO_INCREMENT,
+    user_email VARCHAR(100) NOT NULL UNIQUE,
+    user_pwd VARCHAR(60) NOT NULL,
+    user_nickname VARCHAR(50) NOT NULL UNIQUE,
+    user_gender ENUM('MALE', 'FEMALE') DEFAULT 'MALE',
+    user_birthday VARCHAR(10),
+    user_profile VARCHAR(200),
+    user_introduction TEXT,
+    user_status ENUM('ACTIVE', 'INACTIVE') DEFAULT 'ACTIVE',
+    user_created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    user_updated_at TIMESTAMP,
+    user_role ENUM('USER', 'ADMIN') DEFAULT 'USER'
+);
+
+
+##반려동물종류 저장
+CREATE TABLE pet_type (
+    pet_type_id INT PRIMARY KEY AUTO_INCREMENT,
+    pet_type_name VARCHAR(50) NOT NULL
+);
+
+###반려동물 테이블에 반려동물 종류 입력
+INSERT INTO pet_type (pet_type_name) VALUES
+('반려견'),
+('반려묘'),
+('반려햄스터'),
+('반려새'),
+('기타'),
+('없음');
+
+####UserPet테이블(회원과 반려동물의 연결)
+CREATE TABLE user_pet (
+    user_pet_id INT PRIMARY KEY AUTO_INCREMENT,
+    user_id INT NOT NULL,
+    pet_type_id INT NOT NULL
+);

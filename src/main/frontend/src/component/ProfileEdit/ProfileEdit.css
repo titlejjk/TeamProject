@@ -1,0 +1,176 @@
+.profile-edit-form {
+  width: 810px;
+  height: 880px;
+  margin-top: 60px;
+  margin-left: 45px;
+  display: flex;
+  flex-direction: column;
+  text-align: left; /* 왼쪽 정렬 */
+  justify-content: flex-start;
+  padding: 70px 0 50px 80px;
+  border: 1px solid #d3d3d3;
+  border-radius: 15px;
+}
+.profile-edit-input {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.profile-edit-input input {
+  padding-left: 10px;
+}
+.profile-edit-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.imgInput {
+  margin-left: 18px;
+}
+
+.withDrawal {
+  color: #ff0000;
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 80px;
+}
+
+.profile-edit-image,
+.profile-gender-input {
+  margin-top: 60px;
+}
+
+.profile-gender-input label {
+  margin-right: 91px !important;
+}
+
+.radio-man input,
+.radio-woman input {
+  margin-right: 10px;
+}
+.formStyle {
+  width: 530px;
+}
+
+.profile-edit-form label {
+  font-size: 20px;
+  margin-right: 20px;
+  margin: auto 0;
+}
+
+.profile-edit-form h2 {
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.profile-edit-form button {
+  margin-top: 50px;
+}
+
+.profile-edit-image {
+  margin-bottom: 20px;
+}
+
+.users-edit-button {
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: #ba7149;
+  color: white;
+  margin-top: 8px;
+  line-height: 42px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.users-edit-button:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.users-edit-button:hover {
+  color: #ba7149;
+  outline: 1px solid #ba7149;
+  outline-offset: -1px;
+}
+
+.users-edit-button:hover:after {
+  top: 0;
+  height: 100%;
+}
+
+.users-edit-button:active {
+  top: 2px;
+}
+
+.pwd-edit-button {
+  width: 150px;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: 500;
+  background-color: #ff6a10;
+  color: white;
+  margin-top: 8px;
+  line-height: 42px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  margin-left: 10px;
+}
+
+.pwd-edit-button:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background: #ffffff;
+  transition: all 0.3s ease;
+}
+
+.pwd-edit-button:hover {
+  color: #ff6a10;
+  outline: 1px solid #ff6a10;
+  outline-offset: -1px;
+}
+
+.pwd-edit-button:hover:after {
+  top: 0;
+  height: 100%;
+}
+
+.pwd-edit-button:active {
+  top: 2px;
+}
+
+.box {
+  width: 390px;
+  height: 30px;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+    margin-left: 130px;
+    margin-bottom: -30px;
+}

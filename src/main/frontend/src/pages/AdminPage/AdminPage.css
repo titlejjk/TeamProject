@@ -1,0 +1,47 @@
+/* 전체 페이지를 화면 가운데로 정렬 */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: auto;
+  margin: 60px 0 -100px;
+  height: 800px;
+}
+
+/* 테이블 스타일 */
+table {
+  width: 80%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 20px;
+}
+
+table,
+th,
+td {
+  border: 1px solid #ccc;
+}
+
+th,
+td {
+  padding: 10px;
+  text-align: center;
+}
+
+.status-button {
+  width: 90px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.status-button.active {
+  background-color: #27ae60;
+}
+
+.status-button.inactive {
+  background-color: #e74c3c;
+}
