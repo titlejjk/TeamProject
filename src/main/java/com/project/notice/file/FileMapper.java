@@ -24,10 +24,6 @@ public interface FileMapper {
      */
     void deleteAllByIds(List<Long> ids);
 
-    /**
-     * 그만해 이러다 다죽어
-     */
-
 
     /**
      * 파일 상세정보 조회

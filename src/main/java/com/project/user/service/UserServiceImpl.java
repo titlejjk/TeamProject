@@ -12,6 +12,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 @Builder
@@ -29,6 +31,11 @@ public class UserServiceImpl implements UserService {
     private final TokenProvider tokenProvider;
     //비밀번호 암호화
     private final PasswordEncoder passwordEncoder;
+
+    @Override
+    public List<UserDto> getAllUsers() {
+        return userMapper.getAllUsers();
+    }
 
     //사용자 프로필을 업데이트하는 메서드
     @Override
@@ -86,7 +93,11 @@ public class UserServiceImpl implements UserService {
         //사용자의 Status를 'INACTIVE'로 변경
         userMapper.updateUserStatus("INACTIVE", userNum);
     }
-
+    @Override
+    public void userActive(int userNum) {
+        //사용자의 Status를 'ACTIVE'로 변경
+        userMapper.userActive("ACTIVE", userNum);
+    }
     @Override
     public String updatePassword(UserDto userDto) {
 // 새 비밀번호를 BCrypt 알고리즘을 사용하여 암호화합니다.

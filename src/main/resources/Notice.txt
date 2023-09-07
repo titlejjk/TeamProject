@@ -22,3 +22,20 @@ create table notice_comment (
 
 공지사항테이블 과 공지사항댓글테이블 연결
 alter table notice_comment add constraint fk_notice_comment foreign key(post_id) references tb_notice(id);
+
+
+공지사항 파일테이블
+
+CREATE TABLE `notice_file` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '파일 번호 (PK)',
+  `noticeId` bigint(20) NOT NULL COMMENT '게시글 번호 (FK)',
+  `originalName` varchar(255) NOT NULL COMMENT '원본 파일명',
+  `saveName` varchar(40) NOT NULL COMMENT '저장 파일명',
+  `size` int(11) NOT NULL COMMENT '파일 크기',
+  `deleteYn` tinyint(1) NOT NULL COMMENT '삭제 여부',
+  `createdDate` datetime NOT NULL DEFAULT current_timestamp() COMMENT '생성일시',
+  `deletedDate` datetime DEFAULT NULL COMMENT '삭제일시',
+  PRIMARY KEY (`id`),
+  KEY `fk_notice_file` (`noticeId`),
+  CONSTRAINT `fk_notice_file` FOREIGN KEY (`noticeId`) REFERENCES `tb_notice` (`id`)
+) COMMENT '파일';

@@ -4,9 +4,12 @@ import com.project.user.dto.UserDto;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper//왜 mapper로 썼나?
 public interface UserMapper {
-
+    //Mapper 회원목록조회
+    List<UserDto> getAllUsers();
     //이메일 중복 체크
     int checkEmailDuplication (String userEmail);
 
@@ -26,6 +29,9 @@ public interface UserMapper {
 
     //회원탈퇴(UserStatus Update)
     void updateUserStatus(@Param("status") String status, @Param("userNum")int userNum);
+
+    //유저소셍(UserStatus Update)
+    void userActive(@Param("status") String status, @Param("userNum")int userNum);
 
     //회원의 비밀번호 변경
     void updatePassword(UserDto userDto);
