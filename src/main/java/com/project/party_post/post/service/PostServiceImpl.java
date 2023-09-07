@@ -1,4 +1,4 @@
-package com.project.party_post.post.Service;
+package com.project.party_post.post.service;
 
 import com.project.file_service.FileUploadService;
 import com.project.party_post.post.dao.PostMapper;
@@ -68,7 +68,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public void insertImages(List<MultipartFile> multipartFiles, int postId) {
         for (MultipartFile multipartFile : multipartFiles) {
-            String path = fileUploadService.uploadFile(multipartFile, "posts");
+            String path = fileUploadService.uploadFile(multipartFile);
             PostImageDto postImageDto = PostImageDto.builder()
                     .postId(postId)
                     .imageUrl(path)
@@ -90,5 +90,10 @@ public class PostServiceImpl implements PostService {
     @Override
     public void incrementViewCount(int postId) {
         postMapper.incrementViewCount(postId);
+    }
+
+    @Override
+    public byte[] getPostImage(int postId, String imageName) {
+        return new byte[0];
     }
 }

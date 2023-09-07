@@ -1,7 +1,7 @@
 package com.project.postTest;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.project.party_post.post.Service.PostService;
+import com.project.party_post.post.service.PostService;
 import com.project.party_post.post.dto.PostDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

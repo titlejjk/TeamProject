@@ -17,5 +17,4 @@ public interface UserService {
     //회원의 프로필사진과 한 줄 소개 조회
     UserDto getUserProfileAndIntroduction(String userEmail);
 
-    byte[] getUserProfileImage(String userEmail);
 }

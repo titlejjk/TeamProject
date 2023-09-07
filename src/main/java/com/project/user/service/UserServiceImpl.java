@@ -40,14 +40,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public String updateUser(UserDto userDto) throws NicknameAlreadyExistsException {
         log.info("Initial UserDto : {}", userDto);
+        //닉네임 중복확인
         validateUserNickname(userDto.getUserNickname());
 
         // 이미지 업로드 후 저장 경로를 userProfile에 저장
-        String imagePath = uploadImageAndUpdateProfile(userDto, "users");
-        userDto.setUserProfile(imagePath);
+        userDto = uploadImageAndUpdateProfile(userDto);
 
 
         UserDto updatedUserDto = UserDto.builder()
+                .userNum(userDto.getUserNum())
+                .userEmail(userDto.getUserEmail())
+                .userNickname(userDto.getUserNickname())
                 .userNum(userDto.getUserNum())
                 .userEmail(userDto.getUserEmail())
                 .userNickname(userDto.getUserNickname())
@@ -76,8 +79,9 @@ public class UserServiceImpl implements UserService {
     }
 
     // 이미지 업로드 및 프로필 경로 업데이트
-    private String uploadImageAndUpdateProfile(UserDto userDto, String subDirectory) {
-        return fileUploadService.uploadFile(userDto.getUserImage(), subDirectory);
+    private UserDto uploadImageAndUpdateProfile(UserDto userDto) {
+        String imagePath = fileUploadService.uploadFile(userDto.getUserImage());
+        return userDto.toBuilder().userProfile(imagePath).build();
     }
 
     // 새 토큰 생성
@@ -115,20 +119,5 @@ public class UserServiceImpl implements UserService {
         return dto;
     }
 
-    @Override
-    public byte[] getUserProfileImage(String userEmail){
-        try{
-            UserDto user = userMapper.findByEmail(userEmail);
-            if (user == null) {
-                throw new UserNotFoundException("User not found");
-            }
-
-            String imagePath = user.getUserProfile();
-            Path path = Paths.get(imagePath);
-            return Files.readAllBytes(path);
-        }catch (IOException e){
-            throw new RuntimeException("Could not read image file", e);
-        }
-    }
 
 }

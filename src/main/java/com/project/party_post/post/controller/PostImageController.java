@@ -1,6 +1,6 @@
 package com.project.party_post.post.controller;
 
-import com.project.party_post.post.Service.PostService;
+import com.project.party_post.post.service.PostService;
 import com.project.party_post.post.dto.PostImageDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

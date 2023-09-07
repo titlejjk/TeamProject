@@ -14,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 //모든 파라미터 생성자 생성
 @AllArgsConstructor
-@Builder
+@Builder(toBuilder = true)//부분업데이트 지원
 public class UserDto {
 
     private int userNum;
@@ -41,5 +41,6 @@ public class UserDto {
         this.userNickname = signUpRequest.getUserNickname();
         this.petTypeIds = signUpRequest.getPetTypeIds();
     }
+
 
 }

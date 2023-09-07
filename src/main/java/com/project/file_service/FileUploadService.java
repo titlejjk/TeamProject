@@ -13,13 +13,13 @@ public class FileUploadService {
     @Value("${file.location}")//파일 저장 경로(application.yml에서 설정)
     private String fileLocation;
 
-    public String uploadFile(MultipartFile file, String subDirectory){
+    public String uploadFile(MultipartFile file){
         //원본 파일 이름
         String originalFilename = file.getOriginalFilename();
         //저장할 파일 이름 (UUID 를 추가하여 중복 방지)
         String saveFileName = UUID.randomUUID().toString() + "_" + originalFilename;
         //실제 파일 저장 경로
-        String realPath = fileLocation + File.separator + subDirectory;
+        String realPath = fileLocation;
 
         //업로드 폴더 객체 생성
         File upload = new File(realPath);
@@ -35,6 +35,6 @@ public class FileUploadService {
             e.printStackTrace();//예외처리
         }
         //저장된 이미지 경로 반환
-        return "/" + subDirectory + "/" + saveFileName;
+        return saveFileName;
     }
 }

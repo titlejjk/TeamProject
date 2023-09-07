@@ -1,25 +1,21 @@
 package com.project.user.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.project.exception.CustomException.PasswordUpdateException;
-import com.project.exception.CustomException.TokenInvalidException;
-import com.project.exception.CustomException.UserNotFoundException;
+
 import com.project.user.dto.UserDto;
-import com.project.user.service.FollowService;
 import com.project.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
+import org.apache.commons.io.IOUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Map;
+import java.io.InputStream;
 
 @Slf4j
 @RestController
@@ -29,6 +25,17 @@ public class UserController {
     //회원관련 service
     private final UserService userService;
 
+    @Value("${file.location}")
+    private String fileLocation;
+    @GetMapping(
+            value = "/image/{userProfile}",
+            produces = {MediaType.IMAGE_JPEG_VALUE, MediaType.IMAGE_PNG_VALUE, MediaType.IMAGE_GIF_VALUE})
+    @ResponseBody
+    public byte[] getPostImage(@PathVariable("userProfile") String imageName) throws IOException {
+        String absolutePath = fileLocation + File.separator + imageName; // fileLocation은 파일 저장 위치
+        InputStream is = new FileInputStream(absolutePath);
+        return IOUtils.toByteArray(is); // Apache Commons IO 라이브러리의 IOUtils 사용
+    }
     //회원정보수정 메서드
     @PostMapping(value = "/updateuser", consumes = {"multipart/form-data"})
     public ResponseEntity<String> updateUser(@ModelAttribute UserDto userDto) {
@@ -61,8 +68,5 @@ public class UserController {
         UserDto userDto = userService.getUserProfileAndIntroduction(userEmail);
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
-    @GetMapping(value = "/profile/image/{userEmail}", produces = MediaType.IMAGE_JPEG_VALUE)
-    public @ResponseBody byte[] getUserProfileImage(@PathVariable String userEmail) throws IOException {
-        return userService.getUserProfileImage(userEmail);
-    }
+
 }

@@ -5,7 +5,7 @@
     <!-- 게시글 생성 -->
     <insert id="insertPost">
         INSERT INTO party_post(user_num, title, content)
-        VALUES(#{userDto.userNum}, #{title}, #{content})
+        VALUES(#{userNum}, #{title}, #{content})
     </insert>
 
     <!-- 게시글 목록 조회 -->

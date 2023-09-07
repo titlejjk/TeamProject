@@ -14,7 +14,7 @@
         </select>
 
         <!-- 회원 정보 저장 -->
-    <insert id="insertUser">
+        <insert id="insertUser">
             INSERT INTO user (user_email, user_pwd, user_nickname, user_role)
             VALUES (#{userEmail}, #{userPassword}, #{userNickname}, 'USER')
         </insert>
@@ -78,4 +78,5 @@
         <select id="findProfileAndIntroduction" parameterType="string" resultType="com.project.user.dto.UserDto">
             SELECT user_profile as userProfile, user_introduction AS userIntroduction FROM user WHERE user_email = #{userEmail}
         </select>
+
 </mapper>

@@ -24,7 +24,7 @@ public class TemperatureScheduler {
     }
 
     // 5초마다 이 메서드를 실행
-    @Scheduled(fixedRate = 5000)
+    //@Scheduled(fixedRate = 5000)
     public void publishTemperature() {
         if (isActive) {
             try {

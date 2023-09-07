@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 public class PostDto {
 
     private int postId; //게시글 ID
-    private UserDto userDto; //작성자 ID
+    private int userNum; //작성자 ID
     private String title; //게시글 제목
     private String content; //게시글 내용
     private String createdAt;  // 게시물 생성 날짜

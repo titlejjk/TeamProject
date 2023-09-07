@@ -1,4 +1,4 @@
-package com.project.party_post.post.Service;
+package com.project.party_post.post.service;
 
 import com.project.party_post.post.dto.PostDto;
 import com.project.party_post.post.dto.PostImageDto;
