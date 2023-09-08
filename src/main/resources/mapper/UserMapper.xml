@@ -53,6 +53,7 @@
                 user_birthday = #{userBirthday},
                 user_profile = #{userProfile},
                 user_introduction = #{userIntroduction},
+
                 user_updated_at = NOW()
             WHERE user_num = #{userNum}
         </update>

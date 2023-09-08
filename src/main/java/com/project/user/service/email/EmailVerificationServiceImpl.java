@@ -41,10 +41,20 @@ public class EmailVerificationServiceImpl implements EmailVerificationService{
         //저장후 이메일 전송
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(userEmail);
+        message.setSubject("인증 이메일 입니다");
+        message.setText("발급된 인증코드입니다 : " + verificationCode);
+        mailSender.send(message);
     }
 
     @Override
     public boolean verifyEmail(String userEmail, String verificationCode) {
+        EmailVerificationDto storedDto = emailVerificationMapper.findEmailCodeByUserEmail(userEmail);
+
+        if(storedDto != null && storedDto.getVerificationCode().equals(verificationCode)){
+            //인증 성공 후 DB에서 인증 코드 삭제
+            emailVerificationMapper.deleteEmailCode(userEmail);
+            return true;
+        }
         return false;
     }
 }
