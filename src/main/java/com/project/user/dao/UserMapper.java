@@ -30,9 +30,6 @@ public interface UserMapper {
     //회원의 비밀번호 변경
     void updatePassword(UserDto userDto);
 
-    //유효한 회원조회 여부
-    UserDto findById(String userEmail);
-
     //회원의 프로필 사진과 한 줄 소개 조회
     UserDto findProfileAndIntroduction(String userEmail);
 }

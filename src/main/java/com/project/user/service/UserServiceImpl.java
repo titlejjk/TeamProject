@@ -40,8 +40,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public String updateUser(UserDto userDto) throws NicknameAlreadyExistsException {
         log.info("Initial UserDto : {}", userDto);
-        //닉네임 중복확인
-        validateUserNickname(userDto.getUserNickname());
+        //기존 회원 정보 가져오기
+        UserDto existingUser = userMapper.findByEmail(userDto.getUserEmail());
+        //닉네임이 변경되었을 경우에만 중복 확인
+        if(!existingUser.getUserNickname().equals(userDto.getUserNickname())){
+            validateUserNickname(userDto.getUserNickname());
+        }
 
         // 이미지 업로드 후 저장 경로를 userProfile에 저장
         userDto = uploadImageAndUpdateProfile(userDto);
