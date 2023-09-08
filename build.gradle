@@ -48,6 +48,9 @@ dependencies {
 
 	//이미지추가 Apache Commons IO라이브러리
 	implementation 'commons-io:commons-io:2.8.0'
+
+	//이메일 서비스를 위한 의존성 추가
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 }
 
 

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.user.dao.EmailVerificationMapper">
+
+    <!-- 이메일 인증 코드 저장 -->
+    <insert id = "insertEmailCode">
+        INSERT INTO email_verification (user_email, verification_code, expiry_date)
+        VALUES (#{userEmail}, #{verificationCode}, #{expriyDate})
+    </insert>
+
+    <!-- 이메일 주소로 인증 코드 검색 -->
+    <select id = "findEmailCodeByUserEmail" resultType="com.project.user.dto.EmailVerificationDto">
+        SELECT
+            user_email AS userEmail,
+            verification_code AS verificationCode,
+            expiry_date AS expriyDate
+        FROM email_verification
+        WHERE user_email = #{userEmail}
+    </select>
+
+    <!-- 인증 코드 삭제 -->
+    <delete id = "deleteEmailCode">
+        DELETE FROM email_verification WHERE user_email = #{userEmail}
+    </delete>
+</mapper>
