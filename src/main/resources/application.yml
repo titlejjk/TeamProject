@@ -26,10 +26,13 @@ spring:
           starttls:
             enable: true
 
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
 mybatis:
   mapper-locations: classpath:mapper/**/*.xml
   type-aliases-package: com.project.user.dto
 
 file:
-  location: C:\\Users\\solid\\Desktop\\spring\\file\\
+  location:
 
