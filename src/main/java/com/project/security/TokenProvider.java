@@ -29,6 +29,7 @@ public class TokenProvider {
         claims.put("userEmail", userDto.getUserEmail());
         claims.put("userNickname", userDto.getUserNickname());
         claims.put("userBirthday", userDto.getUserBirthday());
+        claims.put("userGender", userDto.getUserGender());
         claims.put("userTypes", userDto.getPetTypes());
         claims.put("roles", userDto.getRole());
         //현재 시간으로부터 1시간으로 설정
